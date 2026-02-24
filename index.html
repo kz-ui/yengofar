@@ -27,6 +27,9 @@
     <!-- Favicon (inline SVG as data URI — no extra file needed) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💴</text></svg>">
 
+    <!-- Preload critical data early, in parallel with JS parsing -->
+    <link rel="preload" as="fetch" href="./data.json" crossorigin>
+
     <!-- Lucide icon library — thin outline, consistent 1.5px stroke weight -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
@@ -52,6 +55,10 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            overflow-x: hidden;
+        }
 
         body {
             font-family: "Inter", "Circular", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -575,6 +582,7 @@
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 18px;
             margin-bottom: 40px;
+            contain: layout;
         }
 
         /* ── CITY CARD ── */
@@ -586,6 +594,7 @@
             transition: box-shadow 0.2s, transform 0.2s;
             display: flex;
             flex-direction: column;
+            contain: layout style;
         }
 
         .bento-card:hover {
@@ -1442,7 +1451,9 @@ const LANG = {
     },
 };
 
-let currentLang = 'en';
+// Auto-detect browser language: use Japanese if the user's preferred language starts with 'ja'
+const _browserLang = (navigator.languages || [navigator.language || 'en'])[0];
+let currentLang = _browserLang.toLowerCase().startsWith('ja') ? 'ja' : 'en';
 function t(key) { return (LANG[currentLang] && LANG[currentLang][key]) || LANG.en[key] || key; }
 
 const REGION_KEY_MAP = {
@@ -1529,15 +1540,20 @@ const state = {
 document.addEventListener('DOMContentLoaded', loadData);
 
 async function loadData() {
-    // 1. Fetch live JPY/USD rate
-    try {
-        const res  = await fetch('https://api.frankfurter.app/latest?from=JPY&to=USD');
-        if (!res.ok) throw new Error('Rate fetch failed');
-        const data = await res.json();
-        state.jpyToUsd   = data.rates.USD;
+    // Fetch exchange rate and city data in parallel (saves 50-200ms vs sequential)
+    const [rateResult, dataResult] = await Promise.allSettled([
+        fetch('https://api.frankfurter.app/latest?from=JPY&to=USD')
+            .then(res => { if (!res.ok) throw new Error('Rate fetch failed'); return res.json(); }),
+        fetch('./data.json')
+            .then(res => { if (!res.ok) throw new Error(`data.json: HTTP ${res.status}`); return res.json(); })
+    ]);
+
+    // 1. Handle exchange rate result
+    if (rateResult.status === 'fulfilled') {
+        state.jpyToUsd   = rateResult.value.rates.USD;
         state.rateSource = 'live';
         setStatusBar('live', t('statusLive') + (state.jpyToUsd * 100).toFixed(4));
-    } catch {
+    } else {
         state.jpyToUsd   = 0.0063;
         state.rateSource = 'fallback';
         setStatusBar('fallback', t('statusCached'));
@@ -1545,34 +1561,38 @@ async function loadData() {
 
     updateBudgetHint();
 
-    // 2. Load city data — prefer auto-generated data.json (updated weekly by GitHub Actions),
+    // 2. Handle city data result — prefer auto-generated data.json (updated weekly by GitHub Actions),
     //    fall back to hardcoded data if the file is missing or malformed.
-    try {
-        const res = await fetch('./data.json');
-        if (!res.ok) throw new Error(`data.json: HTTP ${res.status}`);
-        const json = await res.json();
-        if (!Array.isArray(json.cities) || json.cities.length === 0) throw new Error('data.json: empty cities array');
+    if (dataResult.status === 'fulfilled') {
+        try {
+            const json = dataResult.value;
+            if (!Array.isArray(json.cities) || json.cities.length === 0) throw new Error('data.json: empty cities array');
 
-        // If cost fields are null (API name mismatch), merge with hardcoded baseline values
-        const COST_FIELDS = ['Budget_Accommodation','Midrange_Accommodation','Luxury_Accommodation',
-                             'Cheap_Meal','Midrange_Meal','Expensive_Meal','Local_Transport','Taxi'];
-        const needsMerge = json.cities.some(c => COST_FIELDS.some(f => c[f] == null));
-        if (needsMerge) {
-            const hardcoded = Object.fromEntries(getHardcodedData().map(c => [c.City, c]));
-            json.cities = json.cities.map(c => {
-                const base = hardcoded[c.City] || {};
-                const merged = { ...c };
-                for (const f of COST_FIELDS) {
-                    if (merged[f] == null && base[f] != null) merged[f] = base[f];
-                }
-                return merged;
-            });
+            // If cost fields are null (API name mismatch), merge with hardcoded baseline values
+            const COST_FIELDS = ['Budget_Accommodation','Midrange_Accommodation','Luxury_Accommodation',
+                                 'Cheap_Meal','Midrange_Meal','Expensive_Meal','Local_Transport','Taxi'];
+            const needsMerge = json.cities.some(c => COST_FIELDS.some(f => c[f] == null));
+            if (needsMerge) {
+                const hardcoded = Object.fromEntries(getHardcodedData().map(c => [c.City, c]));
+                json.cities = json.cities.map(c => {
+                    const base = hardcoded[c.City] || {};
+                    const merged = { ...c };
+                    for (const f of COST_FIELDS) {
+                        if (merged[f] == null && base[f] != null) merged[f] = base[f];
+                    }
+                    return merged;
+                });
+            }
+
+            state.allCities = json.cities;
+            state.dataDate = json.generated ? json.generated.split('T')[0] : null;
+            state.usingLiveData = true;
+        } catch {
+            state.allCities = getHardcodedData();
+            state.dataDate = null;
+            state.usingLiveData = false;
         }
-
-        state.allCities = json.cities;
-        state.dataDate = json.generated ? json.generated.split('T')[0] : null;
-        state.usingLiveData = true;
-    } catch {
+    } else {
         // Fallback: use hardcoded data baked into this HTML file
         state.allCities = getHardcodedData();
         state.dataDate = null;
@@ -1865,6 +1885,13 @@ function updateStaticText() {
     }
     // html lang attribute (accessibility)
     document.documentElement.lang = currentLang === 'ja' ? 'ja' : 'en';
+    // Sync lang toggle button label to current language
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) {
+        langBtn.textContent = currentLang === 'ja' ? '🇬🇧 English' : '🇯🇵 日本語';
+        langBtn.classList.toggle('active-ja', currentLang === 'ja');
+        langBtn.setAttribute('aria-label', currentLang === 'ja' ? 'Switch to English' : 'Switch to Japanese');
+    }
 }
 
 // ── SEARCH / FILTER ──
@@ -2071,14 +2098,32 @@ function loadMoreCities() {
     const budgetStr = render._budgetStr;
     if (!processed) return;
 
-    // Replace grid with all cities
     const grid = document.getElementById('city-grid');
-    if (grid) {
-        grid.innerHTML = processed.map((city, i) => cardHTML(city, i + 1, budgetStr)).join('');
-    }
-    // Remove the load-more button wrapper
-    const btn = document.getElementById('load-more-btn');
-    if (btn && btn.parentElement) btn.parentElement.remove();
+    if (!grid) return;
+
+    // Batch-render remaining cities across animation frames to avoid UI jank
+    const BATCH_SIZE = 20;
+    let currentIndex = 20; // First 20 already rendered
+
+    const renderBatch = () => {
+        const end = Math.min(currentIndex + BATCH_SIZE, processed.length);
+        const fragment = document.createDocumentFragment();
+        const temp = document.createElement('div');
+        temp.innerHTML = processed.slice(currentIndex, end).map((city, i) => cardHTML(city, currentIndex + i + 1, budgetStr)).join('');
+        while (temp.firstChild) fragment.appendChild(temp.firstChild);
+        grid.appendChild(fragment);
+        currentIndex = end;
+
+        if (currentIndex < processed.length) {
+            requestAnimationFrame(renderBatch);
+        } else {
+            // All cities rendered — remove load-more button
+            const btn = document.getElementById('load-more-btn');
+            if (btn && btn.parentElement) btn.parentElement.remove();
+        }
+    };
+
+    requestAnimationFrame(renderBatch);
 }
 
 // CSS gradient per region — instant, zero network requests
@@ -2250,12 +2295,6 @@ function setStyle(el) {
 
 function toggleLang() {
     currentLang = currentLang === 'en' ? 'ja' : 'en';
-    const btn = document.getElementById('lang-toggle');
-    if (btn) {
-        btn.textContent = currentLang === 'en' ? '🇯🇵 日本語' : '🇬🇧 English';
-        btn.classList.toggle('active-ja', currentLang === 'ja');
-        btn.setAttribute('aria-label', currentLang === 'ja' ? 'Switch to English' : 'Switch to Japanese');
-    }
     updateStaticText();
     render();
 }
