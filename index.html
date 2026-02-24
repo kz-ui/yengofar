@@ -1,0 +1,2362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>YenGoFar — Where Does Your Yen Go Furthest?</title>
+    <meta name="description" content="Find where the Japanese Yen goes furthest. Compare purchasing power, cost of living, and daily travel budgets across 150+ global destinations with live exchange rates.">
+    <meta name="keywords" content="yen travel, JPY purchasing power, cheap travel Japan, yen strong countries, Japan travel budget, currency comparison, yengofar">
+    <meta name="author" content="Marigold Lobster">
+    <link rel="canonical" href="https://yengofar.com/">
+
+    <!-- Open Graph (Facebook, LinkedIn previews) -->
+    <meta property="og:title" content="YenGoFar — Where Does Your Yen Go Furthest?">
+    <meta property="og:description" content="Live yen purchasing power tracker across 150+ global destinations. Find where your budget goes the furthest.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yengofar.com/">
+    <meta property="og:image" content="https://yengofar.com/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="YenGoFar — Where Does Your Yen Go Furthest?">
+    <meta name="twitter:description" content="Live yen purchasing power tracker across 150+ global destinations.">
+    <meta name="twitter:image" content="https://yengofar.com/og-image.png">
+
+    <!-- Favicon (inline SVG as data URI — no extra file needed) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💴</text></svg>">
+
+    <!-- Lucide icon library — thin outline, consistent 1.5px stroke weight -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+        /* ── KIWI-INSPIRED DESIGN SYSTEM ── */
+        :root {
+            --kiwi:       #00A991;
+            --kiwi-dark:  #007A6A;
+            --kiwi-light: #E6F7F5;
+            --navy:       #091B34;
+            --navy-mid:   #0D2543;
+            --navy-light: #1A3A5C;
+            --white:      #FFFFFF;
+            --gray-50:    #F4F6F9;
+            --gray-100:   #E8ECF2;
+            --gray-200:   #D0D8E4;
+            --gray-400:   #8A9AB4;
+            --gray-500:   #5C6E8A;
+            --coral:      #E8735A;
+            --coral-light:#FDF0ED;
+            --red:        #E8414F;
+            --amber:      #F5A623;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Inter", "Circular", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(to bottom, #091B34 0px, var(--gray-50) 320px) no-repeat top center, var(--gray-50);
+            color: var(--navy);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── SKIP LINK ── */
+        .skip-link {
+            position: absolute; left: -9999px; top: 8px;
+            background: var(--kiwi); color: white;
+            padding: 8px 16px; border-radius: 4px;
+            font-size: 14px; font-weight: 600; z-index: 9999; text-decoration: none;
+        }
+        .skip-link:focus { left: 8px; }
+
+        /* ── TOPNAV ── */
+        .topnav {
+            background: var(--navy);
+            padding: 0 40px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 17px;
+            color: white;
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            background: var(--kiwi);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.20);
+            color: rgba(255,255,255,0.85);
+            border-radius: 999px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: background 0.15s, border-color 0.15s;
+            white-space: nowrap;
+        }
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.18);
+            border-color: rgba(255,255,255,0.35);
+        }
+        .lang-btn.active-ja {
+            background: rgba(0,169,145,0.20);
+            border-color: var(--kiwi);
+            color: var(--kiwi);
+        }
+
+        /* ── HERO LAYOUT ── */
+        .hero-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            max-width: 1240px;
+            margin: 0 auto;
+        }
+
+        .hero-text { flex: 1; min-width: 0; }
+
+        .hero-art {
+            flex-shrink: 0;
+            width: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-right: 20px;
+            filter: drop-shadow(0 0 28px rgba(0,229,204,0.55)) drop-shadow(0 0 56px rgba(0,169,145,0.35));
+        }
+
+        .hero-controls-outer {
+            max-width: 1240px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) { .hero-art { display: none; } }
+
+        .nav-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.02em;
+        }
+
+        .status-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #22C55E;
+            flex-shrink: 0;
+        }
+        .status-dot.fallback { background: var(--amber); }
+        .status-dot.error    { background: var(--red); }
+
+        #status-text { color: rgba(255,255,255,0.7); }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #0F3D5C 100%);
+            padding: 52px 40px 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, rgba(13,37,67,0.65), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0,169,145,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-tagline {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--kiwi);
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: clamp(28px, 4vw, 46px);
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 10px;
+            max-width: 520px;
+        }
+
+        .hero h1 span { color: var(--kiwi); }
+
+        .hero-sub {
+            font-size: 15px;
+            color: rgba(255,255,255,0.55);
+            max-width: 460px;
+            line-height: 1.6;
+            margin-bottom: 36px;
+        }
+
+        /* ── HERO CONTROLS PANEL ── */
+        .controls-panel {
+            background: white;
+            border-radius: 16px 16px 0 0;
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 28px;
+            align-items: start;
+            box-shadow: 0 -4px 32px rgba(0,0,0,0.22), 0 4px 24px rgba(0,0,0,0.10);
+        }
+
+        .ctrl-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .ctrl-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray-400);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Style pills */
+        .style-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .style-pill {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border: 1.5px solid var(--gray-100);
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: var(--gray-50);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-500);
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        .style-pill:hover {
+            border-color: var(--kiwi);
+            color: var(--kiwi);
+        }
+
+        .style-pill.active {
+            background: var(--kiwi);
+            border-color: var(--kiwi);
+            color: white;
+        }
+
+        .style-pill .pill-icon { font-size: 15px; }
+
+        /* Budget input */
+        .budget-wrap { position: relative; }
+
+        .budget-symbol {
+            position: absolute;
+            left: 14px; top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: var(--gray-400);
+            pointer-events: none;
+            font-weight: 700;
+        }
+
+        .budget-input {
+            width: 100%;
+            padding: 13px 14px 13px 36px;
+            border: 1.5px solid var(--gray-100);
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--navy);
+            background: var(--gray-50);
+            outline: none;
+            transition: border-color 0.15s, background 0.15s;
+            font-family: inherit;
+            letter-spacing: -0.02em;
+        }
+
+        .budget-input:focus {
+            border-color: var(--kiwi);
+            background: white;
+        }
+
+        .budget-hint {
+            font-size: 11px;
+            color: var(--gray-400);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* Style description shown below pills */
+        .style-desc {
+            margin-top: 9px;
+            font-size: 11.5px;
+            color: var(--gray-500);
+            line-height: 1.5;
+            min-height: 2.2em;
+            transition: opacity 0.2s;
+        }
+
+        .style-desc strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+
+        /* ── MAIN CONTENT AREA ── */
+        .page-body {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 32px 40px 60px;
+        }
+
+        /* ── FILTER BAR ── */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+
+        .filter-bar[style*="display:none"] { display: none !important; }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 14px 10px 38px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 999px;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--navy);
+            background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%238A9AB4' stroke-width='2.5'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 14px center;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        .search-input:focus { border-color: var(--kiwi); }
+
+        .region-filter {
+            padding: 10px 14px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 999px;
+            font-size: 13px;
+            font-family: inherit;
+            color: var(--navy);
+            background: white;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+
+        .region-filter:focus { border-color: var(--kiwi); }
+
+        .visa-toggle {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-500);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            padding: 9px 14px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 999px;
+            background: white;
+            transition: all 0.15s;
+        }
+
+        .visa-toggle:has(input:checked) {
+            border-color: var(--kiwi);
+            color: var(--kiwi-dark);
+            background: var(--kiwi-light);
+        }
+
+        .visa-toggle input[type="checkbox"] {
+            width: 15px; height: 15px;
+            cursor: pointer;
+            accent-color: var(--kiwi);
+        }
+
+        /* ── STATS ROW ── */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 1px 4px rgba(9,27,52,0.06);
+        }
+
+        .stat-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .stat-icon.green  { background: var(--kiwi-light); }
+        .stat-icon.amber  { background: #FEF3C7; }
+        .stat-icon.purple { background: #EDE9FE; }
+
+        .stat-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--gray-400);
+            margin-bottom: 3px;
+        }
+
+        .stat-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .stat-sub {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+
+        /* ── TOP PICK BANNER ── */
+        .top-pick {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .top-pick-left { display: flex; align-items: center; gap: 16px; }
+
+        .top-pick-trophy {
+            font-size: 36px;
+            flex-shrink: 0;
+        }
+
+        .top-pick-eyebrow {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--kiwi);
+            margin-bottom: 4px;
+        }
+
+        .top-pick-destination {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        .top-pick-right {
+            text-align: right;
+        }
+
+        .top-pick-days {
+            font-size: clamp(28px, 5vw, 44px);
+            font-weight: 900;
+            color: var(--kiwi);
+            letter-spacing: -0.05em;
+            line-height: 1;
+        }
+
+        .top-pick-days-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 2px;
+        }
+
+        /* ── RESULTS META ── */
+        .results-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .results-count {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-500);
+        }
+
+        /* ── CITY CARD GRID ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 18px;
+            margin-bottom: 40px;
+        }
+
+        /* ── CITY CARD ── */
+        .bento-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(9,27,52,0.07);
+            transition: box-shadow 0.2s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bento-card:hover {
+            box-shadow: 0 8px 24px rgba(9,27,52,0.14);
+            transform: translateY(-3px);
+        }
+
+        /* Photo header */
+        .card-photo {
+            position: relative;
+            height: 160px;
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+            overflow: hidden;
+        }
+
+        .card-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+            opacity: 0.85;
+            transition: opacity 0.3s;
+        }
+
+        .bento-card:hover .card-photo img { opacity: 1; }
+
+        .card-photo-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(9,27,52,0.1) 0%, rgba(9,27,52,0.55) 100%);
+        }
+
+        .card-photo-top {
+            position: absolute;
+            top: 12px; left: 12px; right: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .rank-badge {
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 11px;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        /* ── BIG WATERMARK NUMBER (top 10 only) ── */
+        .rank-watermark {
+            position: absolute;
+            bottom: -8px;
+            left: 8px;
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 1;
+            color: rgba(255,255,255,0.13);
+            pointer-events: none;
+            user-select: none;
+            letter-spacing: -4px;
+            font-style: italic;
+        }
+
+        .visa-chip {
+            padding: 4px 9px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .visa-chip.yes { background: rgba(0,169,145,0.85); color: white; }
+        .visa-chip.no  { background: rgba(232,65,79,0.85);  color: white; }
+
+        .card-photo-bottom {
+            position: absolute;
+            bottom: 12px; left: 14px; right: 14px;
+        }
+
+        .value-chip {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .card-city-name-photo {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.02em;
+            margin-top: 4px;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        .card-country-photo {
+            font-size: 12px;
+            color: rgba(255,255,255,0.75);
+            margin-top: 1px;
+        }
+
+        /* Card body */
+        .card-body {
+            padding: 18px 20px 16px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .days-row {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .days-big {
+            font-size: 44px;
+            font-weight: 900;
+            letter-spacing: -0.06em;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .days-unit {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gray-400);
+        }
+
+        .days-label {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-bottom: 14px;
+        }
+
+        /* Value bar */
+        .value-bar-wrap { margin-bottom: 14px; }
+
+        .value-bar-track {
+            background: var(--gray-100);
+            border-radius: 999px;
+            height: 5px;
+            overflow: hidden;
+        }
+
+        .value-bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width 0.5s ease;
+        }
+
+        .value-bar-label {
+            font-size: 10px;
+            color: var(--gray-400);
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .daily-cost-line {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 14px;
+        }
+
+        .daily-cost-jpy {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--gray-500);
+            margin-left: 4px;
+        }
+
+        /* Cost breakdown */
+        .breakdown {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding-top: 14px;
+            border-top: 1px solid var(--gray-100);
+            margin-bottom: 14px;
+        }
+
+        .breakdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+        }
+
+        .breakdown-item .bi-icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .breakdown-item .bi-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: #ffffff;
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .bi-label { color: var(--gray-500); display: block; margin-bottom: 1px; }
+        .bi-value { font-weight: 700; color: var(--navy); font-size: 12px; }
+
+        /* Details toggle */
+        .toggle-details {
+            background: none;
+            border: none;
+            color: var(--kiwi);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0;
+            font-family: inherit;
+            margin-top: auto;
+        }
+
+        .toggle-details:hover { text-decoration: underline; }
+
+        .extra-details {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .extra-details.open { display: block; }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 11px;
+            border-bottom: 1px solid var(--gray-50);
+        }
+
+        .detail-row:last-child { border-bottom: none; }
+        .d-label { color: var(--gray-500); }
+        .d-value { font-weight: 700; color: var(--navy); }
+
+        /* ── LOADING / ERRORS ── */
+        .loading, .load-progress {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--gray-500);
+        }
+
+        .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid var(--gray-200);
+            border-top-color: var(--kiwi);
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .progress-track {
+            background: var(--gray-100);
+            border-radius: 999px;
+            height: 4px;
+            width: 220px;
+            margin: 16px auto 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--kiwi);
+            border-radius: 999px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-label { font-size: 12px; color: var(--gray-400); }
+
+        .error-state {
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            border-radius: 14px;
+            padding: 28px;
+            text-align: center;
+            color: #991B1B;
+        }
+
+        /* ── DEAL / TRENDING BADGE ── */
+        .deal-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #F59E0B, #EF4444);
+            color: white;
+            margin-bottom: 6px;
+            animation: pulse-deal 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-deal {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.8; }
+        }
+
+        /* ── API NOTICE ── */
+        .api-notice {
+            background: #FFF7ED;
+            border: 1px solid #FED7AA;
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #7C2D12;
+        }
+
+        .api-notice strong { color: #9A3412; }
+
+        .api-notice code {
+            background: #FEE2C8;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.45);
+            text-align: center;
+            font-size: 11px;
+            padding: 28px 20px;
+            line-height: 1.8;
+        }
+
+        .site-footer a { color: var(--kiwi); text-decoration: none; }
+        .site-footer a:hover { text-decoration: underline; }
+
+        .site-footer strong {
+            display: block;
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 4px;
+        }
+
+        .disclaimer {
+            margin-top: 10px;
+            font-size: 10px;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.7;
+        }
+
+        .powered-by {
+            margin-top: 16px;
+            font-size: 11px;
+            letter-spacing: 0.04em;
+            opacity: 0.8;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .topnav { padding: 0 24px; }
+            .hero { padding: 40px 24px 0; }
+            .controls-panel { grid-template-columns: 1fr 1fr; }
+            .page-body { padding: 28px 24px 48px; }
+            .stats-row { grid-template-columns: 1fr; gap: 10px; }
+        }
+
+        @media (max-width: 640px) {
+            .topnav { padding: 0 16px; }
+            .hero { padding: 28px 16px 0; }
+            .controls-panel { grid-template-columns: 1fr; padding: 20px 18px; gap: 20px; }
+            .page-body { padding: 0 0 40px; }
+            .grid { grid-template-columns: 1fr; }
+            .days-big { font-size: 38px; }
+            .top-pick { flex-direction: column; }
+            .top-pick-right { text-align: left; }
+            /* Filter bar becomes a seamless white continuation of the controls panel */
+            .filter-bar {
+                gap: 8px;
+                background: var(--white);
+                padding: 14px 16px 16px;
+                border-bottom: 1px solid var(--gray-100);
+                margin-bottom: 20px;
+            }
+            /* Restore horizontal padding to content sections below the filter bar */
+            .stats-row,
+            .top-pick,
+            .results-meta,
+            .grid { padding-left: 16px; padding-right: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<a class="skip-link" href="#results">Skip to results</a>
+
+<!-- ── TOP NAV ── -->
+<nav class="topnav" role="navigation" aria-label="Main navigation">
+    <a class="nav-logo" href="#" aria-label="YenGoFar home">
+        <div class="nav-logo-icon" aria-hidden="true">💴</div>
+        YenGoFar
+    </a>
+    <div class="nav-right">
+        <div class="nav-status" role="status" aria-live="polite">
+            <span class="status-dot" id="status-dot" aria-hidden="true"></span>
+            <span id="status-text">Fetching live rates…</span>
+        </div>
+        <button id="lang-toggle" class="lang-btn" onclick="toggleLang()" aria-label="Switch to Japanese">
+            🇯🇵 日本語
+        </button>
+    </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" aria-label="Search controls">
+    <div class="hero-inner">
+
+        <!-- Left: text -->
+        <div class="hero-text">
+            <p class="hero-tagline">Live Yen Purchasing Power Tracker</p>
+            <h1>Where does your <span>yen</span><br>go far?</h1>
+            <p class="hero-sub">
+                Enter your budget and instantly see how many days each destination covers — 150 cities, sorted by yen purchasing power.
+            </p>
+        </div><!-- /hero-text -->
+
+        <!-- Right: nested hex tunnel illustration -->
+        <div class="hero-art" aria-hidden="true">
+            <svg width="240" height="240" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Aperture vignette — darkens edges to frame the tunnel -->
+                    <radialGradient id="hvignette" cx="50%" cy="50%" r="50%">
+                        <stop offset="55%"  stop-color="#00E5CC" stop-opacity="0"/>
+                        <stop offset="100%" stop-color="#00091A" stop-opacity="0.65"/>
+                    </radialGradient>
+                    <!-- Tunnel glow — bright center bloom -->
+                    <radialGradient id="hglow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%"   stop-color="#00E5CC" stop-opacity="0.35"/>
+                        <stop offset="40%"  stop-color="#00A991" stop-opacity="0.12"/>
+                        <stop offset="100%" stop-color="#00E5CC" stop-opacity="0"/>
+                    </radialGradient>
+                    <!-- Outer rings — vivid teal -->
+                    <linearGradient id="hg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#00E5CC"/>
+                        <stop offset="100%" stop-color="#00A991"/>
+                    </linearGradient>
+                    <!-- Mid rings fade toward cooler tones -->
+                    <linearGradient id="hg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#00CFBB"/>
+                        <stop offset="100%" stop-color="#0097A7"/>
+                    </linearGradient>
+                    <linearGradient id="hg3" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#00B8A9"/>
+                        <stop offset="100%" stop-color="#00838F"/>
+                    </linearGradient>
+                    <linearGradient id="hg4" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#009E94"/>
+                        <stop offset="100%" stop-color="#006E7A"/>
+                    </linearGradient>
+                    <linearGradient id="hg5" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#007F7A"/>
+                        <stop offset="100%" stop-color="#004E5A"/>
+                    </linearGradient>
+                    <!-- Deep rings — barely visible, suggest infinite depth -->
+                    <linearGradient id="hg6" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#005A62"/>
+                        <stop offset="100%" stop-color="#003040"/>
+                    </linearGradient>
+                    <linearGradient id="hg7" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%"   stop-color="#003A42"/>
+                        <stop offset="100%" stop-color="#001820"/>
+                    </linearGradient>
+                    <!-- Shallow DOF blur for outer edge -->
+                    <filter id="hblur" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="1.2"/>
+                    </filter>
+                    <!-- Distance blur for deep inner rings -->
+                    <filter id="hblur2" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="0.6"/>
+                    </filter>
+                </defs>
+                <!-- Background glow bloom -->
+                <circle cx="22" cy="22" r="22" fill="url(#hglow)"/>
+                <!-- Outer ring — blurred like near DOF edge -->
+                <polygon points="22,2.5 39,12.25 39,31.75 22,41.5 5,31.75 5,12.25"
+                         stroke="url(#hg1)" stroke-width="1.8" fill="none" stroke-linejoin="round"
+                         opacity="0.90" filter="url(#hblur)"/>
+                <!-- Ring 2 — crisp, full opacity -->
+                <polygon points="22,5.5 36.2,13.75 36.2,30.25 22,38.5 7.8,30.25 7.8,13.75"
+                         stroke="url(#hg1)" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity="0.92"/>
+                <!-- Ring 3 -->
+                <polygon points="22,9 33.1,15.5 33.1,28.5 22,35 10.9,28.5 10.9,15.5"
+                         stroke="url(#hg2)" stroke-width="1.3" fill="none" stroke-linejoin="round" opacity="0.80"/>
+                <!-- Ring 4 — perspective compression begins -->
+                <polygon points="22,12 30.3,17.0 30.3,27.0 22,32 13.7,27.0 13.7,17.0"
+                         stroke="url(#hg3)" stroke-width="1.15" fill="none" stroke-linejoin="round" opacity="0.66"/>
+                <!-- Ring 5 -->
+                <polygon points="22,14.8 28.0,18.4 28.0,25.6 22,29.2 16.0,25.6 16.0,18.4"
+                         stroke="url(#hg4)" stroke-width="1.0" fill="none" stroke-linejoin="round" opacity="0.52"/>
+                <!-- Ring 6 — fading fast -->
+                <polygon points="22,17.0 26.1,19.3 26.1,24.7 22,27.0 17.9,24.7 17.9,19.3"
+                         stroke="url(#hg5)" stroke-width="0.85" fill="none" stroke-linejoin="round" opacity="0.38"/>
+                <!-- Ring 7 — almost gone -->
+                <polygon points="22,18.8 24.6,20.3 24.6,23.7 22,25.2 19.4,23.7 19.4,20.3"
+                         stroke="url(#hg6)" stroke-width="0.7" fill="none" stroke-linejoin="round"
+                         opacity="0.24" filter="url(#hblur2)"/>
+                <!-- Ring 8 — vanishing -->
+                <polygon points="22,20.2 23.4,21.0 23.4,23.0 22,23.8 20.6,23.0 20.6,21.0"
+                         stroke="url(#hg7)" stroke-width="0.55" fill="none" stroke-linejoin="round"
+                         opacity="0.13" filter="url(#hblur2)"/>
+                <!-- Ring 9 — barely a whisper -->
+                <polygon points="22,21.2 22.7,21.6 22.7,22.4 22,22.8 21.3,22.4 21.3,21.6"
+                         stroke="url(#hg7)" stroke-width="0.4" fill="none" stroke-linejoin="round"
+                         opacity="0.07" filter="url(#hblur2)"/>
+                <!-- Vanishing point -->
+                <circle cx="22" cy="22" r="0.8" fill="#FFFFFF" opacity="0.95"/>
+                <circle cx="22" cy="22" r="1.8" fill="none" stroke="#00E5CC" stroke-width="0.3" opacity="0.4"/>
+                <!-- Vignette — aperture framing -->
+                <circle cx="22" cy="22" r="22" fill="url(#hvignette)"/>
+            </svg>
+        </div><!-- /hero-art -->
+
+    </div><!-- /hero-inner -->
+
+    <!-- Controls panel: full width, sits at bottom of hero overlapping page-body -->
+    <div class="hero-controls-outer">
+        <div class="controls-panel" aria-label="Travel preferences">
+
+            <!-- Travel style -->
+            <div class="ctrl-group">
+                <span class="ctrl-label">Travel Style</span>
+                <div class="style-pills" role="radiogroup" aria-label="Travel style">
+                    <div class="style-pill" role="radio" aria-checked="false" tabindex="0"
+                         data-style="budget" onclick="setStyle(this)" onkeydown="keySelect(event,this)">
+                        <span class="pill-icon" aria-hidden="true">🎒</span> Budget
+                    </div>
+                    <div class="style-pill active" role="radio" aria-checked="true" tabindex="0"
+                         data-style="midrange" onclick="setStyle(this)" onkeydown="keySelect(event,this)">
+                        <span class="pill-icon" aria-hidden="true">🏨</span> Mid-Range
+                    </div>
+                    <div class="style-pill" role="radio" aria-checked="false" tabindex="0"
+                         data-style="luxury" onclick="setStyle(this)" onkeydown="keySelect(event,this)">
+                        <span class="pill-icon" aria-hidden="true">✨</span> Luxury
+                    </div>
+                </div>
+                <p class="style-desc" id="style-desc" aria-live="polite">
+                    <strong>Mid-Range</strong> — Think Marriott or Sheraton. Comfortable hotel room, sit-down meals, taxis, and a tour or two.
+                </p>
+            </div>
+
+            <!-- Budget input -->
+            <div class="ctrl-group">
+                <label class="ctrl-label" for="budget-input">Your Budget</label>
+                <div class="budget-wrap">
+                    <span class="budget-symbol" aria-hidden="true">¥</span>
+                    <input
+                        type="text"
+                        inputmode="numeric"
+                        id="budget-input"
+                        class="budget-input"
+                        value="100,000"
+                        aria-label="Budget in Japanese yen"
+                        oninput="onBudgetChange()"
+                    >
+                </div>
+                <p class="budget-hint" id="budget-usd-hint">≈ $630 USD</p>
+            </div>
+
+        </div><!-- /controls-panel -->
+    </div><!-- /hero-controls-outer -->
+</section>
+
+<!-- ── PAGE BODY ── -->
+<div class="page-body">
+
+    <!-- Filter bar (hidden until data loads) -->
+    <div class="filter-bar" id="search-wrap">
+        <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="Search city or country…"
+            aria-label="Search cities"
+            oninput="onSearch()"
+        >
+        <select class="region-filter" id="region-filter" onchange="onSearch()" aria-label="Filter by region">
+            <option value="">All Regions</option>
+        </select>
+        <label class="visa-toggle">
+            <input type="checkbox" id="visa-only" onchange="onSearch()">
+            Visa-free for Japan
+        </label>
+    </div>
+
+    <!-- Results injected here by render() -->
+    <main id="results">
+        <div class="loading" aria-label="Loading destination data">
+            <div class="spinner" aria-hidden="true"></div>
+            <p>Loading destination data…</p>
+        </div>
+    </main>
+
+</div><!-- /page-body -->
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+    <strong class="footer-sources-label">Data Sources</strong>
+    Live exchange rates: <a href="https://www.frankfurter.app" target="_blank" rel="noopener">Frankfurter API</a> (European Central Bank) ·
+    Cost-of-living data: <a href="https://www.numbeo.com" target="_blank" rel="noopener">Numbeo</a> / <a href="https://www.expatistan.com" target="_blank" rel="noopener">Expatistan</a> · Updated quarterly
+    <p class="disclaimer">
+        All costs are estimates based on publicly available data. Actual prices vary. This tool is for planning purposes only — always verify costs before booking.
+    </p>
+    <p class="powered-by">
+        Powered by <a href="http://marigoldlobster.com" target="_blank" rel="noopener" style="color:var(--coral);font-weight:700;text-decoration:none;">Marigold Lobster</a>
+    </p>
+</footer>
+
+<script>
+"use strict";
+
+// ── INTERNATIONALISATION ──
+const LANG = {
+    en: {
+        // Status bar
+        statusLive:        'Live rate: ¥100 = $',
+        statusCached:      'Using cached rate: ¥100 = $0.63',
+        // Hero
+        tagline:           'Live Yen Purchasing Power Tracker',
+        h1Part1:           'Where does your ',
+        h1Yen:             'yen',
+        h1Part2:           'go far?',
+        heroSub:           'Enter your budget and instantly see how many days each destination covers — 150 cities, sorted by yen purchasing power.',
+        // Controls
+        labelStyle:        'TRAVEL STYLE',
+        pillBudget:        'Budget',
+        pillMidrange:      'Mid-Range',
+        pillLuxury:        'Luxury',
+        labelBudget:       'YOUR BUDGET',
+        // Style descriptions
+        styleDescBudget:   '<strong>Budget</strong> — Hostel dorm or cheap guesthouse, street food and local noodle shops, buses and tuk-tuks. Maximum days, minimum spend.',
+        styleDescMidrange: '<strong>Mid-Range</strong> — Think Marriott or Sheraton. Comfortable hotel room, sit-down meals, taxis, and a tour or two.',
+        styleDescLuxury:   '<strong>Luxury</strong> — A standard room at a Four Seasons or equivalent. Fine dining, private transfers, and premium experiences. No suites required.',
+        // Filter bar
+        searchPlaceholder: 'Search city or country\u2026',
+        allRegions:        'All Regions',
+        visaFree:          'Visa-free for Japan',
+        // Stats
+        bestValue:         'Best Yen Value',
+        worstValue:        'Worst Yen Value',
+        liveRate:          'Live Exchange Rate',
+        days:              'days',
+        ecbRate:           'ECB live rate',
+        cachedRate:        'Cached rate',
+        // Top pick
+        topPickEyebrow:    'Top pick for yen travelers',
+        daysOfTravel:      'days of',
+        travelSuffix:      'travel',
+        // Results meta
+        sortedBy:          'sorted by yen purchasing power',
+        cities:            'cities',
+        // Card elements
+        visaFreeChip:      '\u2713 Visa Free',
+        visaReq:           'Visa Req.',
+        dealChip:          '\uD83D\uDD25 Deal \u2014 Below 18-mo avg',
+        cheaperThan:       '\u00D7 cheaper than Tokyo',
+        lodging:           'Lodging',
+        dining:            'Dining',
+        transit:           'Transit',
+        experiences:       'Experiences',
+        showDetails:       'Show details \u2193',
+        hideDetails:       'Hide details \u2191',
+        localCurrency:     'Local Currency',
+        timeZone:          'Time Zone',
+        bestSeason:        'Best Season',
+        fromTokyo:         '\u2708\uFE0F From Tokyo',
+        flightTime:        '\uD83D\uDD50 Flight Time',
+        safety:            '\uD83D\uDEE1\uFE0F Safety (Numbeo)',
+        yearRound:         'Year-round',
+        // Safety labels
+        safetyVeryHigh:    'Very High Safety',
+        safetyHigh:        'High Safety',
+        safetyModerate:    'Moderate Safety',
+        safetyLow:         'Low Safety',
+        // Flight labels
+        flightOrigin:      'Origin city',
+        flightDirect:      'Direct',
+        flight1Stop:       '1 Stop',
+        flight2Stop:       '2 Stops',
+        // Value tiers
+        tierExceptional:   'Exceptional Value',
+        tierExcellent:     'Excellent Value',
+        tierGreat:         'Great Value',
+        tierGood:          'Good Value',
+        tierSimilar:       'Similar Cost',
+        tierExpensive:     'Expensive',
+        tierVeryExpensive: 'Very Expensive',
+        // Empty state
+        noResults:         'No destinations match your filters. Try broadening your search.',
+        // Footer
+        dataSourcesLabel:  'Data Sources',
+        // Region names
+        regionSoutheastAsia:  'Southeast Asia',
+        regionEastAsia:       'East Asia',
+        regionSouthAsia:      'South Asia',
+        regionCentralAsia:    'Central Asia',
+        regionMiddleEast:     'Middle East',
+        regionOceania:        'Oceania',
+        regionEasternEurope:  'Eastern Europe',
+        regionSouthernEurope: 'Southern Europe',
+        regionWesternEurope:  'Western Europe',
+        regionLatinAmerica:   'Latin America',
+        regionNorthAmerica:   'North America',
+        regionAfrica:         'Africa',
+    },
+    ja: {
+        // Status bar
+        statusLive:        '\u30E9\u30A4\u30D6\u30EC\u30FC\u30C8: \u00A5100 = $',
+        statusCached:      '\u30AD\u30E3\u30C3\u30B7\u30E5\u30EC\u30FC\u30C8: \u00A5100 = $0.63',
+        // Hero
+        tagline:           '\u5186\u306E\u8CFC\u8CB7\u529B\u30E9\u30A4\u30D6\u30C8\u30E9\u30C3\u30AB\u30FC',
+        h1Part1:           '\u3042\u306A\u305F\u306E',
+        h1Yen:             '\u5186',
+        h1Part2:           '\u306F\u3069\u3053\u307E\u3067\u4F38\u3073\u308B\uFF1F',
+        heroSub:           '予算を入力すると、150都市での滞在可能日数が即座にわかります。円の購買力順に並べて表示。',
+        // Controls
+        labelStyle:        '\u65C5\u884C\u30B9\u30BF\u30A4\u30EB',
+        pillBudget:        '\u30D0\u30B8\u30A7\u30C3\u30C8',
+        pillMidrange:      '\u30DF\u30C9\u30EB\u30EC\u30F3\u30B8',
+        pillLuxury:        '\u30E9\u30B0\u30B8\u30E5\u30A2\u30EA\u30FC',
+        labelBudget:       '\u3042\u306A\u305F\u306E\u4E88\u7B97',
+        // Style descriptions
+        styleDescBudget:   '<strong>\u30D0\u30B8\u30A7\u30C3\u30C8</strong> \u2014 \u30C9\u30DF\u30C8\u30EA\u3084\u5B89\u5BBF\u3001\u5C4B\u53F0\u3084\u30ED\u30FC\u30AB\u30EB\u98DF\u5802\u3001\u30D0\u30B9\u3084\u30C8\u30A5\u30AF\u30C8\u30A5\u30AF\u3002\u6700\u5927\u65E5\u6570\u3001\u6700\u5C0F\u51FA\u8CBB\u3002',
+        styleDescMidrange: '<strong>\u30DF\u30C9\u30EB\u30EC\u30F3\u30B8</strong> \u2014 \u30DE\u30EA\u30AA\u30C3\u30C8\u3084\u30B7\u30A7\u30E9\u30C8\u30F3\u76F8\u5F53\u3002\u5FEB\u9069\u306A\u30DB\u30C6\u30EB\u3001\u30EC\u30B9\u30C8\u30E9\u30F3\u3067\u306E\u98DF\u4E8B\u3001\u30BF\u30AF\u30B7\u30FC\u3001\u89B3\u5149\uFF11\u301C\uFF12\u672C\u3002',
+        styleDescLuxury:   '<strong>\u30E9\u30B0\u30B8\u30E5\u30A2\u30EA\u30FC</strong> \u2014 \u30D5\u30A9\u30FC\u30B7\u30FC\u30BA\u30F3\u30BA\u76F8\u5F53\u306E\u30B9\u30BF\u30F3\u30C0\u30FC\u30C9\u30EB\u30FC\u30E0\u3002\u9AD8\u7D1A\u30EC\u30B9\u30C8\u30E9\u30F3\u3001\u30D7\u30E9\u30A4\u30D9\u30FC\u30C8\u9001\u8FCE\u3001\u30D7\u30EC\u30DF\u30A2\u30E0\u4F53\u9A13\u3002\u30B9\u30A4\u30FC\u30C8\u4E0D\u8981\u3002',
+        // Filter bar
+        searchPlaceholder: '\u90FD\u5E02\u307E\u305F\u306F\u56FD\u3067\u691C\u7D22\u2026',
+        allRegions:        '\u5168\u5730\u57DF',
+        visaFree:          '\u65E5\u672C\u4EBA\u30D3\u30B6\u4E0D\u8981',
+        // Stats
+        bestValue:         '\u6700\u9AD8\u306E\u5186\u4FA1\u5024',
+        worstValue:        '\u6700\u4F4E\u306E\u5186\u4FA1\u5024',
+        liveRate:          '\u30E9\u30A4\u30D6\u70BA\u66FF\u30EC\u30FC\u30C8',
+        days:              '\u65E5',
+        ecbRate:           'ECB\u30E9\u30A4\u30D6\u30EC\u30FC\u30C8',
+        cachedRate:        '\u30AD\u30E3\u30C3\u30B7\u30E5\u30EC\u30FC\u30C8',
+        // Top pick
+        topPickEyebrow:    '\u5186\u65C5\u884C\u8005\u306E\u30C8\u30C3\u30D7\u30D4\u30C3\u30AF',
+        daysOfTravel:      '\u65E5\u9593',
+        travelSuffix:      '\u65C5\u884C',
+        // Results meta
+        sortedBy:          '\u5186\u306E\u8CFC\u8CB7\u529B\u9806',
+        cities:            '\u90FD\u5E02',
+        // Card elements
+        visaFreeChip:      '\u2713 \u30D3\u30B6\u4E0D\u8981',
+        visaReq:           '\u30D3\u30B6\u5FC5\u8981',
+        dealChip:          '\uD83D\uDD25 \u304A\u5F97 \u2014 18\u30F6\u6708\u5E73\u5747\u4EE5\u4E0B',
+        cheaperThan:       '\u500D\u304A\u5F97 (\u6771\u4EAC\u6BD4)',
+        lodging:           '\u5BBF\u6CCA',
+        dining:            '\u98DF\u4E8B',
+        transit:           '\u4EA4\u901A',
+        experiences:       '\u4F53\u9A13',
+        showDetails:       '\u8A73\u7D30\u3092\u898B\u308B \u2193',
+        hideDetails:       '\u8A73\u7D30\u3092\u9589\u3058\u308B \u2191',
+        localCurrency:     '\u73FE\u5730\u901A\u8CA8',
+        timeZone:          '\u30BF\u30A4\u30E0\u30BE\u30FC\u30F3',
+        bestSeason:        '\u30D9\u30B9\u30C8\u30B7\u30FC\u30BA\u30F3',
+        fromTokyo:         '\u2708\uFE0F \u6771\u4EAC\u304B\u3089',
+        flightTime:        '\uD83D\uDD50 \u30D5\u30E9\u30A4\u30C8\u6642\u9593',
+        safety:            '\uD83D\uDEE1\uFE0F \u5B89\u5168\u6027 (Numbeo)',
+        yearRound:         '\u5E74\u9593\u3092\u901A\u3058\u3066',
+        // Safety labels
+        safetyVeryHigh:    '\u975E\u5E38\u306B\u5B89\u5168',
+        safetyHigh:        '\u5B89\u5168',
+        safetyModerate:    '\u666E\u901A',
+        safetyLow:         '\u6CE8\u610F\u304C\u5FC5\u8981',
+        // Flight labels
+        flightOrigin:      '\u51FA\u767A\u5730',
+        flightDirect:      '\u76F4\u884C\u4FBF',
+        flight1Stop:       '1\u56DE\u4E57\u7D99',
+        flight2Stop:       '2\u56DE\u4E57\u7D99',
+        // Value tiers
+        tierExceptional:   '\u6700\u9AD8\u306E\u4FA1\u5024',
+        tierExcellent:     '\u512A\u308C\u305F\u4FA1\u5024',
+        tierGreat:         '\u304A\u5F97',
+        tierGood:          '\u826F\u3044\u4FA1\u5024',
+        tierSimilar:       '\u6771\u4EAC\u3068\u540C\u7B49',
+        tierExpensive:     '\u9AD8\u3081',
+        tierVeryExpensive: '\u304B\u306A\u308A\u9AD8\u3081',
+        // Empty state
+        noResults:         '\u6761\u4EF6\u306B\u5408\u3046\u76EE\u7684\u5730\u304C\u3042\u308A\u307E\u305B\u3093\u3002\u691C\u7D22\u3092\u5E83\u3052\u3066\u307F\u3066\u304F\u3060\u3055\u3044\u3002',
+        // Footer
+        dataSourcesLabel:  '\u30C7\u30FC\u30BF\u30BD\u30FC\u30B9',
+        // Region names
+        regionSoutheastAsia:  '\u6771\u5357\u30A2\u30B8\u30A2',
+        regionEastAsia:       '\u6771\u30A2\u30B8\u30A2',
+        regionSouthAsia:      '\u5357\u30A2\u30B8\u30A2',
+        regionCentralAsia:    '\u4E2D\u592E\u30A2\u30B8\u30A2',
+        regionMiddleEast:     '\u4E2D\u6771',
+        regionOceania:        '\u30AA\u30BB\u30A2\u30CB\u30A2',
+        regionEasternEurope:  '\u6771\u6B27',
+        regionSouthernEurope: '\u5357\u6B27',
+        regionWesternEurope:  '\u897F\u6B27',
+        regionLatinAmerica:   '\u30E9\u30C6\u30F3\u30A2\u30E1\u30EA\u30AB',
+        regionNorthAmerica:   '\u5317\u30A2\u30E1\u30EA\u30AB',
+        regionAfrica:         '\u30A2\u30D5\u30EA\u30AB',
+    },
+};
+
+let currentLang = 'en';
+function t(key) { return (LANG[currentLang] && LANG[currentLang][key]) || LANG.en[key] || key; }
+
+const REGION_KEY_MAP = {
+    'Southeast Asia':  'regionSoutheastAsia',
+    'East Asia':       'regionEastAsia',
+    'South Asia':      'regionSouthAsia',
+    'Central Asia':    'regionCentralAsia',
+    'Middle East':     'regionMiddleEast',
+    'Oceania':         'regionOceania',
+    'Eastern Europe':  'regionEasternEurope',
+    'Southern Europe': 'regionSouthernEurope',
+    'Western Europe':  'regionWesternEurope',
+    'Latin America':   'regionLatinAmerica',
+    'North America':   'regionNorthAmerica',
+    'Africa':          'regionAfrica',
+};
+function regionLabel(englishRegion) { return t(REGION_KEY_MAP[englishRegion] || englishRegion); }
+
+const TIER_KEY_MAP = {
+    'Exceptional Value': 'tierExceptional',
+    'Excellent Value':   'tierExcellent',
+    'Great Value':       'tierGreat',
+    'Good Value':        'tierGood',
+    'Similar Cost':      'tierSimilar',
+    'Expensive':         'tierExpensive',
+    'Very Expensive':    'tierVeryExpensive',
+};
+function tierLabel(label) { return t(TIER_KEY_MAP[label]) || label; }
+
+function styleDisplayName(style) {
+    return t({ budget: 'pillBudget', midrange: 'pillMidrange', luxury: 'pillLuxury' }[style] || style);
+}
+function getStyleDesc(style) {
+    return t('styleDesc' + style.charAt(0).toUpperCase() + style.slice(1));
+}
+function formatCardDaysLabel(budgetStr, style) {
+    return currentLang === 'ja'
+        ? `${budgetStr}\u4E88\u7B97 \u00B7 ${styleDisplayName(style)}\u65C5\u884C`
+        : `on ${budgetStr} \u00B7 ${styleDisplayName(style)} travel`;
+}
+function topPickDaysLabel(style) {
+    return currentLang === 'ja'
+        ? `${styleDisplayName(style)}\u65C5\u884C\u306E\u65E5\u6570`
+        : `${t('daysOfTravel')} ${styleDisplayName(style)} ${t('travelSuffix')}`;
+}
+
+// ── CONFIG ── (edit these to customize)
+const CONFIG = {
+    // ─────────────────────────────────────────────────────────────────────────
+    // RapidAPI key for "Cost of Living and Prices" by TravelTables.
+    // Sign up free at https://rapidapi.com/traveltables/api/cost-of-living-and-prices
+    // Paste your key below. Leave blank to use built-in sample data instead.
+    // ─────────────────────────────────────────────────────────────────────────
+    RAPIDAPI_KEY: '',  // removed — API no longer used
+
+    // Baseline daily costs in USD for each style (Tokyo / New York)
+    BASELINES: {
+        JP: { budget: 45, midrange: 90, luxury: 160 },
+        US: { budget: 90, midrange: 180, luxury: 320 },
+    },
+
+    // Delay between per-city API calls (ms) — stay within free tier rate limits
+    FETCH_DELAY_MS: 300,
+};
+
+// ── STATE ──
+const BASE = 'JP'; // always compare vs Tokyo
+
+const state = {
+    style: 'midrange',
+    budgetJpy: 100000,
+    jpyToUsd: 0.0063,
+    cities: [],          // processed city objects ready to render
+    allCities: [],       // full unfiltered set
+    rateSource: 'fallback',
+    searchQuery: '',
+    regionFilter: '',
+    visaOnly: false,
+    usingLiveData: false,
+};
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', loadData);
+
+async function loadData() {
+    // 1. Fetch live JPY/USD rate
+    try {
+        const res  = await fetch('https://api.frankfurter.app/latest?from=JPY&to=USD');
+        if (!res.ok) throw new Error('Rate fetch failed');
+        const data = await res.json();
+        state.jpyToUsd   = data.rates.USD;
+        state.rateSource = 'live';
+        setStatusBar('live', t('statusLive') + (state.jpyToUsd * 100).toFixed(4));
+    } catch {
+        state.jpyToUsd   = 0.0063;
+        state.rateSource = 'fallback';
+        setStatusBar('fallback', t('statusCached'));
+    }
+
+    updateBudgetHint();
+
+    // 2. Load hardcoded city data (no API needed — data updated quarterly)
+    state.allCities = getHardcodedData();
+    state.usingLiveData = false;
+    finalizeData();
+}
+
+function setStatusBar(mode, text) {
+    document.getElementById('status-text').textContent = text;
+    const dot = document.getElementById('status-dot');
+    dot.className = 'status-dot' + (mode === 'live' ? '' : mode === 'fallback' ? ' fallback' : ' error');
+}
+
+function showApiNotice() { /* no-op — data is now hardcoded */ }
+
+// ── RAPIDAPI INTEGRATION ──
+
+// Curated list of traveler-relevant cities with metadata we can't get from the API
+// (visa status, timezone, best season, region). city_name + country_name must match
+// TravelTables exactly so the prices lookup works.
+const CITY_MANIFEST = [
+    // ── SOUTHEAST ASIA (17) ──
+    { City: 'Bangkok',          Country: 'Thailand',              Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'Yes' },
+    { City: 'Chiang Mai',       Country: 'Thailand',              Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'Yes' },
+    { City: 'Phuket',           Country: 'Thailand',              Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Nov–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Pattaya',          Country: 'Thailand',              Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'Yes' },
+    { City: 'Ho Chi Minh City', Country: 'Vietnam',               Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Hanoi',            Country: 'Vietnam',               Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Oct–Dec', Visa_Free_Japan: 'Yes' },
+    { City: 'Da Nang',          Country: 'Vietnam',               Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Feb–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Bali',             Country: 'Indonesia',             Region: 'Southeast Asia', Timezone: 'UTC+8',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Jakarta',          Country: 'Indonesia',             Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Kuala Lumpur',     Country: 'Malaysia',              Region: 'Southeast Asia', Timezone: 'UTC+8',    Best_Season: 'Mar–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Penang',           Country: 'Malaysia',              Region: 'Southeast Asia', Timezone: 'UTC+8',    Best_Season: 'Dec–Feb', Visa_Free_Japan: 'Yes' },
+    { City: 'Singapore',        Country: 'Singapore',             Region: 'Southeast Asia', Timezone: 'UTC+8',    Best_Season: 'Feb–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Manila',           Country: 'Philippines',           Region: 'Southeast Asia', Timezone: 'UTC+8',    Best_Season: 'Dec–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Cebu City',        Country: 'Philippines',           Region: 'Southeast Asia', Timezone: 'UTC+8',    Best_Season: 'Jan–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Phnom Penh',       Country: 'Cambodia',              Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Siem Reap',        Country: 'Cambodia',              Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Vientiane',        Country: 'Laos',                  Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'Yes' },
+    { City: 'Luang Prabang',    Country: 'Laos',                  Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Surabaya',         Country: 'Indonesia',             Region: 'Southeast Asia', Timezone: 'UTC+7',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Davao',            Country: 'Philippines',           Region: 'Southeast Asia', Timezone: 'UTC+8',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Yangon',           Country: 'Myanmar',               Region: 'Southeast Asia', Timezone: 'UTC+6:30', Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No'  },
+
+    // ── EAST ASIA (13) ──
+    { City: 'Tokyo',            Country: 'Japan',                 Region: 'East Asia',      Timezone: 'UTC+9',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Osaka',            Country: 'Japan',                 Region: 'East Asia',      Timezone: 'UTC+9',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Seoul',            Country: 'South Korea',           Region: 'East Asia',      Timezone: 'UTC+9',    Best_Season: 'Sep–Nov', Visa_Free_Japan: 'Yes' },
+    { City: 'Busan',            Country: 'South Korea',           Region: 'East Asia',      Timezone: 'UTC+9',    Best_Season: 'Sep–Nov', Visa_Free_Japan: 'Yes' },
+    { City: 'Taipei',           Country: 'Taiwan',                Region: 'East Asia',      Timezone: 'UTC+8',    Best_Season: 'Oct–Dec', Visa_Free_Japan: 'Yes' },
+    { City: 'Taichung',         Country: 'Taiwan',                Region: 'East Asia',      Timezone: 'UTC+8',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Hong Kong',        Country: 'Hong Kong',             Region: 'East Asia',      Timezone: 'UTC+8',    Best_Season: 'Oct–Dec', Visa_Free_Japan: 'Yes' },
+    { City: 'Beijing',          Country: 'China',                 Region: 'East Asia',      Timezone: 'UTC+8',    Best_Season: 'Sep–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Shanghai',         Country: 'China',                 Region: 'East Asia',      Timezone: 'UTC+8',    Best_Season: 'Apr–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Chengdu',          Country: 'China',                 Region: 'East Asia',      Timezone: 'UTC+8',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Shenzhen',         Country: 'China',                 Region: 'East Asia',      Timezone: 'UTC+8',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Ulaanbaatar',      Country: 'Mongolia',              Region: 'East Asia',      Timezone: 'UTC+8',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Macau',            Country: 'Macau',                 Region: 'East Asia',      Timezone: 'UTC+8',    Best_Season: 'Oct–Dec', Visa_Free_Japan: 'Yes' },
+
+    // ── SOUTH ASIA (10) ──
+    { City: 'Mumbai',           Country: 'India',                 Region: 'South Asia',     Timezone: 'UTC+5:30', Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No'  },
+    { City: 'Delhi',            Country: 'India',                 Region: 'South Asia',     Timezone: 'UTC+5:30', Best_Season: 'Oct–Mar', Visa_Free_Japan: 'No'  },
+    { City: 'Bangalore',        Country: 'India',                 Region: 'South Asia',     Timezone: 'UTC+5:30', Best_Season: 'Oct–Feb', Visa_Free_Japan: 'No'  },
+    { City: 'Goa',              Country: 'India',                 Region: 'South Asia',     Timezone: 'UTC+5:30', Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No'  },
+    { City: 'Colombo',          Country: 'Sri Lanka',             Region: 'South Asia',     Timezone: 'UTC+5:30', Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Kathmandu',        Country: 'Nepal',                 Region: 'South Asia',     Timezone: 'UTC+5:45', Best_Season: 'Oct–Nov', Visa_Free_Japan: 'No'  },
+    { City: 'Dhaka',            Country: 'Bangladesh',            Region: 'South Asia',     Timezone: 'UTC+6',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No'  },
+    { City: 'Islamabad',        Country: 'Pakistan',              Region: 'South Asia',     Timezone: 'UTC+5',    Best_Season: 'Mar–May', Visa_Free_Japan: 'No'  },
+    { City: 'Lahore',           Country: 'Pakistan',              Region: 'South Asia',     Timezone: 'UTC+5',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'No'  },
+    { City: 'Jaipur',           Country: 'India',                 Region: 'South Asia',     Timezone: 'UTC+5:30', Best_Season: 'Oct–Mar', Visa_Free_Japan: 'No'  },
+
+    // ── CENTRAL ASIA & CAUCASUS (6) ──
+    { City: 'Tbilisi',          Country: 'Georgia',               Region: 'Central Asia',   Timezone: 'UTC+4',    Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Yerevan',          Country: 'Armenia',               Region: 'Central Asia',   Timezone: 'UTC+4',    Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Baku',             Country: 'Azerbaijan',            Region: 'Central Asia',   Timezone: 'UTC+4',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'No'  },
+    { City: 'Almaty',           Country: 'Kazakhstan',            Region: 'Central Asia',   Timezone: 'UTC+6',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Tashkent',         Country: 'Uzbekistan',            Region: 'Central Asia',   Timezone: 'UTC+5',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Bishkek',          Country: 'Kyrgyzstan',            Region: 'Central Asia',   Timezone: 'UTC+6',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Samarkand',        Country: 'Uzbekistan',            Region: 'Central Asia',   Timezone: 'UTC+5',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Ashgabat',         Country: 'Turkmenistan',          Region: 'Central Asia',   Timezone: 'UTC+5',    Best_Season: 'Apr–May', Visa_Free_Japan: 'No'  },
+    { City: 'Nur-Sultan',       Country: 'Kazakhstan',            Region: 'Central Asia',   Timezone: 'UTC+6',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+
+    // ── MIDDLE EAST (10) ──
+    { City: 'Dubai',            Country: 'United Arab Emirates',  Region: 'Middle East',    Timezone: 'UTC+4',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Abu Dhabi',        Country: 'United Arab Emirates',  Region: 'Middle East',    Timezone: 'UTC+4',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Doha',             Country: 'Qatar',                 Region: 'Middle East',    Timezone: 'UTC+3',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Muscat',           Country: 'Oman',                  Region: 'Middle East',    Timezone: 'UTC+4',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Riyadh',           Country: 'Saudi Arabia',          Region: 'Middle East',    Timezone: 'UTC+3',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Amman',            Country: 'Jordan',                Region: 'Middle East',    Timezone: 'UTC+3',    Best_Season: 'Mar–May', Visa_Free_Japan: 'No'  },
+    { City: 'Beirut',           Country: 'Lebanon',               Region: 'Middle East',    Timezone: 'UTC+2',    Best_Season: 'May–Oct', Visa_Free_Japan: 'No'  },
+    { City: 'Tel Aviv',         Country: 'Israel',                Region: 'Middle East',    Timezone: 'UTC+2',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Kuwait City',      Country: 'Kuwait',                Region: 'Middle East',    Timezone: 'UTC+3',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'No'  },
+    { City: 'Manama',           Country: 'Bahrain',               Region: 'Middle East',    Timezone: 'UTC+3',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes' },
+
+    // ── OCEANIA (8) ──
+    { City: 'Sydney',           Country: 'Australia',             Region: 'Oceania',        Timezone: 'UTC+11',   Best_Season: 'Sep–Nov', Visa_Free_Japan: 'No'  },
+    { City: 'Melbourne',        Country: 'Australia',             Region: 'Oceania',        Timezone: 'UTC+11',   Best_Season: 'Oct–Apr', Visa_Free_Japan: 'No'  },
+    { City: 'Brisbane',         Country: 'Australia',             Region: 'Oceania',        Timezone: 'UTC+10',   Best_Season: 'Jun–Aug', Visa_Free_Japan: 'No'  },
+    { City: 'Perth',            Country: 'Australia',             Region: 'Oceania',        Timezone: 'UTC+8',    Best_Season: 'Sep–Nov', Visa_Free_Japan: 'No'  },
+    { City: 'Auckland',         Country: 'New Zealand',           Region: 'Oceania',        Timezone: 'UTC+13',   Best_Season: 'Dec–Feb', Visa_Free_Japan: 'Yes' },
+    { City: 'Wellington',       Country: 'New Zealand',           Region: 'Oceania',        Timezone: 'UTC+13',   Best_Season: 'Dec–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Suva',             Country: 'Fiji',                  Region: 'Oceania',        Timezone: 'UTC+12',   Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Port Moresby',     Country: 'Papua New Guinea',      Region: 'Oceania',        Timezone: 'UTC+10',   Best_Season: 'May–Oct', Visa_Free_Japan: 'No'  },
+
+    // ── EASTERN EUROPE (16) ──
+    { City: 'Budapest',         Country: 'Hungary',               Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'Apr–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Prague',           Country: 'Czech Republic',        Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Warsaw',           Country: 'Poland',                Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Krakow',           Country: 'Poland',                Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Bucharest',        Country: 'Romania',               Region: 'Eastern Europe', Timezone: 'UTC+2',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Sofia',            Country: 'Bulgaria',              Region: 'Eastern Europe', Timezone: 'UTC+2',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Belgrade',         Country: 'Serbia',                Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Tallinn',          Country: 'Estonia',               Region: 'Eastern Europe', Timezone: 'UTC+2',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Riga',             Country: 'Latvia',                Region: 'Eastern Europe', Timezone: 'UTC+2',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Vilnius',          Country: 'Lithuania',             Region: 'Eastern Europe', Timezone: 'UTC+2',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Ljubljana',        Country: 'Slovenia',              Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Bratislava',       Country: 'Slovakia',              Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Sarajevo',         Country: 'Bosnia and Herzegovina',Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Skopje',           Country: 'North Macedonia',       Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Tirana',           Country: 'Albania',               Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Zagreb',           Country: 'Croatia',               Region: 'Eastern Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+
+    // ── SOUTHERN EUROPE (9) ──
+    { City: 'Lisbon',           Country: 'Portugal',              Region: 'Southern Europe', Timezone: 'UTC+0',   Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Porto',            Country: 'Portugal',              Region: 'Southern Europe', Timezone: 'UTC+0',   Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Athens',           Country: 'Greece',                Region: 'Southern Europe', Timezone: 'UTC+2',   Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Thessaloniki',     Country: 'Greece',                Region: 'Southern Europe', Timezone: 'UTC+2',   Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Barcelona',        Country: 'Spain',                 Region: 'Southern Europe', Timezone: 'UTC+1',   Best_Season: 'May–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Madrid',           Country: 'Spain',                 Region: 'Southern Europe', Timezone: 'UTC+1',   Best_Season: 'Sep–Nov', Visa_Free_Japan: 'Yes' },
+    { City: 'Rome',             Country: 'Italy',                 Region: 'Southern Europe', Timezone: 'UTC+1',   Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Milan',            Country: 'Italy',                 Region: 'Southern Europe', Timezone: 'UTC+1',   Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Istanbul',         Country: 'Turkey',                Region: 'Southern Europe', Timezone: 'UTC+3',   Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+
+    // ── WESTERN EUROPE (14) ──
+    { City: 'London',           Country: 'United Kingdom',        Region: 'Western Europe', Timezone: 'UTC+0',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Edinburgh',        Country: 'United Kingdom',        Region: 'Western Europe', Timezone: 'UTC+0',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Paris',            Country: 'France',                Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Nice',             Country: 'France',                Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Amsterdam',        Country: 'Netherlands',           Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'Apr–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Berlin',           Country: 'Germany',               Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Munich',           Country: 'Germany',               Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Hamburg',          Country: 'Germany',               Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Vienna',           Country: 'Austria',               Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'Apr–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Zurich',           Country: 'Switzerland',           Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Brussels',         Country: 'Belgium',               Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Copenhagen',       Country: 'Denmark',               Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Stockholm',        Country: 'Sweden',                Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Oslo',             Country: 'Norway',                Region: 'Western Europe', Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+
+    // ── LATIN AMERICA (16) ──
+    { City: 'Mexico City',      Country: 'Mexico',                Region: 'Latin America',  Timezone: 'UTC-6',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Guadalajara',      Country: 'Mexico',                Region: 'Latin America',  Timezone: 'UTC-6',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Cancun',           Country: 'Mexico',                Region: 'Latin America',  Timezone: 'UTC-5',    Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Medellin',         Country: 'Colombia',              Region: 'Latin America',  Timezone: 'UTC-5',    Best_Season: 'Feb–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Bogota',           Country: 'Colombia',              Region: 'Latin America',  Timezone: 'UTC-5',    Best_Season: 'Dec–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Cartagena',        Country: 'Colombia',              Region: 'Latin America',  Timezone: 'UTC-5',    Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Buenos Aires',     Country: 'Argentina',             Region: 'Latin America',  Timezone: 'UTC-3',    Best_Season: 'Oct–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Lima',             Country: 'Peru',                  Region: 'Latin America',  Timezone: 'UTC-5',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Cusco',            Country: 'Peru',                  Region: 'Latin America',  Timezone: 'UTC-5',    Best_Season: 'Apr–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Santiago',         Country: 'Chile',                 Region: 'Latin America',  Timezone: 'UTC-3',    Best_Season: 'Dec–Feb', Visa_Free_Japan: 'Yes' },
+    { City: 'Sao Paulo',        Country: 'Brazil',                Region: 'Latin America',  Timezone: 'UTC-3',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Rio de Janeiro',   Country: 'Brazil',                Region: 'Latin America',  Timezone: 'UTC-3',    Best_Season: 'May–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Montevideo',       Country: 'Uruguay',               Region: 'Latin America',  Timezone: 'UTC-3',    Best_Season: 'Dec–Mar', Visa_Free_Japan: 'Yes' },
+    { City: 'Panama City',      Country: 'Panama',                Region: 'Latin America',  Timezone: 'UTC-5',    Best_Season: 'Jan–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'San Jose',         Country: 'Costa Rica',            Region: 'Latin America',  Timezone: 'UTC-6',    Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Quito',            Country: 'Ecuador',               Region: 'Latin America',  Timezone: 'UTC-5',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes' },
+
+    // ── NORTH AMERICA (5) ──
+    { City: 'New York',         Country: 'United States',         Region: 'North America',  Timezone: 'UTC-5',    Best_Season: 'Sep–Nov', Visa_Free_Japan: 'Yes' },
+    { City: 'Los Angeles',      Country: 'United States',         Region: 'North America',  Timezone: 'UTC-8',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Chicago',          Country: 'United States',         Region: 'North America',  Timezone: 'UTC-6',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Toronto',          Country: 'Canada',                Region: 'North America',  Timezone: 'UTC-5',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes' },
+    { City: 'Vancouver',        Country: 'Canada',                Region: 'North America',  Timezone: 'UTC-8',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes' },
+
+    // ── AFRICA (12) ──
+    { City: 'Cape Town',        Country: 'South Africa',          Region: 'Africa',         Timezone: 'UTC+2',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'Yes' },
+    { City: 'Johannesburg',     Country: 'South Africa',          Region: 'Africa',         Timezone: 'UTC+2',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Nairobi',          Country: 'Kenya',                 Region: 'Africa',         Timezone: 'UTC+3',    Best_Season: 'Jul–Oct', Visa_Free_Japan: 'No'  },
+    { City: 'Marrakech',        Country: 'Morocco',               Region: 'Africa',         Timezone: 'UTC+1',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Casablanca',       Country: 'Morocco',               Region: 'Africa',         Timezone: 'UTC+1',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Cairo',            Country: 'Egypt',                 Region: 'Africa',         Timezone: 'UTC+2',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'No'  },
+    { City: 'Accra',            Country: 'Ghana',                 Region: 'Africa',         Timezone: 'UTC+0',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'No'  },
+    { City: 'Lagos',            Country: 'Nigeria',               Region: 'Africa',         Timezone: 'UTC+1',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No'  },
+    { City: 'Dar es Salaam',    Country: 'Tanzania',              Region: 'Africa',         Timezone: 'UTC+3',    Best_Season: 'Jun–Oct', Visa_Free_Japan: 'No'  },
+    { City: 'Addis Ababa',      Country: 'Ethiopia',              Region: 'Africa',         Timezone: 'UTC+3',    Best_Season: 'Oct–Jan', Visa_Free_Japan: 'No'  },
+    { City: 'Tunis',            Country: 'Tunisia',               Region: 'Africa',         Timezone: 'UTC+1',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes' },
+    { City: 'Kampala',          Country: 'Uganda',                Region: 'Africa',         Timezone: 'UTC+3',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'No'  },
+    { City: 'Dakar',            Country: 'Senegal',               Region: 'Africa',         Timezone: 'UTC+0',    Best_Season: 'Nov–May', Visa_Free_Japan: 'Yes' },
+    { City: 'Lusaka',           Country: 'Zambia',                Region: 'Africa',         Timezone: 'UTC+2',    Best_Season: 'May–Aug', Visa_Free_Japan: 'No'  },
+    { City: 'Christchurch',     Country: 'New Zealand',           Region: 'Oceania',        Timezone: 'UTC+13',   Best_Season: 'Dec–Feb', Visa_Free_Japan: 'Yes' },
+    { City: 'Gold Coast',       Country: 'Australia',             Region: 'Oceania',        Timezone: 'UTC+10',   Best_Season: 'Jun–Aug', Visa_Free_Japan: 'No'  },
+    { City: 'Noumea',           Country: 'New Caledonia',         Region: 'Oceania',        Timezone: 'UTC+11',   Best_Season: 'Jul–Sep', Visa_Free_Japan: 'Yes' },
+    { City: 'Nadi',             Country: 'Fiji',                  Region: 'Oceania',        Timezone: 'UTC+12',   Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes' },
+    { City: 'Papeete',          Country: 'French Polynesia',      Region: 'Oceania',        Timezone: 'UTC-10',   Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes' },
+];
+
+// (RapidAPI integration removed — data is now hardcoded below)
+
+function updateRegionDropdown() {
+    const sel = document.getElementById('region-filter');
+    // First option is "All Regions" — update its label
+    if (sel.options[0]) sel.options[0].textContent = t('allRegions');
+    // Remaining options: value stays English (used for filter comparisons), textContent translates
+    for (let i = 1; i < sel.options.length; i++) {
+        sel.options[i].textContent = regionLabel(sel.options[i].value);
+    }
+}
+
+function finalizeData() {
+    // Populate region filter (value = English region name, used for filter comparisons)
+    const regions = [...new Set(state.allCities.map(c => c.Region).filter(Boolean))].sort();
+    const sel = document.getElementById('region-filter');
+    regions.forEach(r => {
+        const opt = document.createElement('option');
+        opt.value = r; opt.textContent = regionLabel(r);
+        sel.appendChild(opt);
+    });
+
+    applyFilters();
+    updateStaticText(); // initialise static DOM text from t()
+}
+
+function updateStaticText() {
+    // Hero
+    const tagEl = document.querySelector('.hero-tagline');
+    if (tagEl) tagEl.textContent = t('tagline');
+    const h1 = document.querySelector('.hero h1');
+    if (h1 && h1.childNodes.length >= 4) {
+        h1.childNodes[0].nodeValue = t('h1Part1');
+        h1.childNodes[1].textContent = t('h1Yen');
+        // childNodes[2] is <br> — leave it
+        h1.childNodes[3].nodeValue = t('h1Part2');
+    }
+    const subEl = document.querySelector('.hero-sub');
+    if (subEl) subEl.textContent = t('heroSub');
+    // Controls labels
+    const ctrlLabels = document.querySelectorAll('.ctrl-label');
+    if (ctrlLabels[0]) ctrlLabels[0].textContent = t('labelStyle');
+    if (ctrlLabels[1]) ctrlLabels[1].textContent = t('labelBudget');
+    // Style pills (each: <span.pill-icon> + text node)
+    const pills = document.querySelectorAll('.style-pill');
+    if (pills[0] && pills[0].lastChild) pills[0].lastChild.nodeValue = ' ' + t('pillBudget');
+    if (pills[1] && pills[1].lastChild) pills[1].lastChild.nodeValue = ' ' + t('pillMidrange');
+    if (pills[2] && pills[2].lastChild) pills[2].lastChild.nodeValue = ' ' + t('pillLuxury');
+    // Style description
+    const desc = document.getElementById('style-desc');
+    if (desc) desc.innerHTML = getStyleDesc(state.style);
+    // Filter bar
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) searchInput.placeholder = t('searchPlaceholder');
+    updateRegionDropdown();
+    // Visa toggle text node (last child of label)
+    const visaLabel = document.querySelector('.visa-toggle');
+    if (visaLabel && visaLabel.lastChild) visaLabel.lastChild.nodeValue = ' ' + t('visaFree');
+    // Footer sources label
+    const srcLabel = document.querySelector('.footer-sources-label');
+    if (srcLabel) srcLabel.textContent = t('dataSourcesLabel');
+    // Status bar
+    if (state.rateSource === 'live') {
+        setStatusBar('live', t('statusLive') + (state.jpyToUsd * 100).toFixed(4));
+    } else {
+        setStatusBar('fallback', t('statusCached'));
+    }
+    // html lang attribute (accessibility)
+    document.documentElement.lang = currentLang === 'ja' ? 'ja' : 'en';
+}
+
+// ── SEARCH / FILTER ──
+function applyFilters() {
+    const q      = state.searchQuery.toLowerCase();
+    const region = state.regionFilter;
+    const visa   = state.visaOnly;
+
+    state.cities = state.allCities.filter(c => {
+        if (q && !`${c.City} ${c.Country}`.toLowerCase().includes(q)) return false;
+        if (region && c.Region !== region) return false;
+        if (visa && c.Visa_Free_Japan !== 'Yes') return false;
+        return true;
+    });
+
+    render();
+}
+
+let searchTimer;
+function onSearch() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+        state.searchQuery  = document.getElementById('search-input').value;
+        state.regionFilter = document.getElementById('region-filter').value;
+        state.visaOnly     = document.getElementById('visa-only').checked;
+        applyFilters();
+    }, 200);
+}
+
+// ── SAFETY HELPERS (scores based on Numbeo Safety Index scale) ──
+function safetyColor(score) {
+    if (!score) return 'var(--gray-400)';
+    if (score >= 80) return '#10B981';   // Very High — deep green
+    if (score >= 60) return '#34D399';   // High — light green
+    if (score >= 40) return '#F59E0B';   // Moderate — amber
+    return '#EF4444';                    // Low — red
+}
+function safetyLabel(score) {
+    if (!score) return '—';
+    if (score >= 80) return t('safetyVeryHigh');
+    if (score >= 60) return t('safetyHigh');
+    if (score >= 40) return t('safetyModerate');
+    return t('safetyLow');
+}
+// ── FLIGHT STOPS HELPER ──
+function flightStopsLabel(stops) {
+    if (stops === 0) return t('flightOrigin');
+    if (stops === 1) return t('flightDirect');
+    if (stops === 2) return t('flight1Stop');
+    if (stops === 3) return t('flight2Stop');
+    return '—';
+}
+
+// ── CALCULATION ──
+function calcDaily(city, style) {
+    const acc = num(city[`${cap(style)}_Accommodation`]);
+    let food;
+    if (style === 'budget') {
+        food = num(city.Cheap_Meal) * 3;
+    } else if (style === 'luxury') {
+        food = num(city.Expensive_Meal) * 2 + num(city.Midrange_Meal);
+    } else {
+        food = num(city.Cheap_Meal) + num(city.Midrange_Meal) * 2;
+    }
+    const transport  = num(city.Local_Transport) * 2 + (style === 'luxury' ? num(city.Taxi) * 2 : 0);
+    const activities = num(city[`${cap(style)}_Activities`]);
+    return { acc, food, transport, activities, total: acc + food + transport + activities };
+}
+
+function valueTier(dailyUsd, style, base) {
+    const baseline = CONFIG.BASELINES[base][style];
+    const ratio    = baseline / dailyUsd;
+    // ratio > 1 means cheaper than baseline; < 1 means more expensive
+    if (ratio >= 3.0) return { label: 'Exceptional Value', color: '#059669', bgAlpha: '20' };
+    if (ratio >= 2.0) return { label: 'Excellent Value',   color: '#10B981', bgAlpha: '18' };
+    if (ratio >= 1.4) return { label: 'Great Value',       color: '#34D399', bgAlpha: '16' };
+    if (ratio >= 1.1) return { label: 'Good Value',        color: '#84CC16', bgAlpha: '20' };
+    if (ratio >= 0.8) return { label: 'Similar Cost',      color: '#F59E0B', bgAlpha: '20' };
+    if (ratio >= 0.55)return { label: 'Expensive',         color: '#F97316', bgAlpha: '15' };
+    return              { label: 'Very Expensive',         color: '#EF4444', bgAlpha: '15' };
+}
+
+function barPercent(dailyUsd, style, base) {
+    // 100% bar = baseline daily cost; capped so the bar never overflows
+    const baseline = CONFIG.BASELINES[base][style];
+    return Math.min(100, Math.round((baseline / Math.max(dailyUsd, 1)) * 40));
+}
+
+// ── RENDER ──
+function render() {
+    const jpyToUsd  = state.jpyToUsd;
+    const budgetUsd = state.budgetJpy * jpyToUsd;
+
+    const processed = state.cities.map(city => {
+        const bd      = calcDaily(city, state.style);
+        const days    = bd.total > 0 ? budgetUsd / bd.total : 0;
+        const tier    = valueTier(bd.total, state.style, BASE);
+        // Deal: current midrange daily cost is >8% below 18-month average
+        const avg18m  = num(city.Avg18m_Daily);
+        const isDeal  = avg18m > 0 && bd.total < avg18m * 0.92;
+        return { ...city, bd, days, tier, isDeal, jpyPerDay: Math.round(bd.total / jpyToUsd) };
+    }).filter(c => c.bd.total > 0);
+
+    processed.sort((a, b) => b.days - a.days);
+
+    if (processed.length === 0) {
+        document.getElementById('results').innerHTML =
+            `<div class="error-state">${t('noResults')}</div>`;
+        return;
+    }
+
+    // Best/Worst: use the full unfiltered set when only a city search is active
+    // (region filter intentionally narrows the comparison; city search should not)
+    const isSearchOnly = state.searchQuery && !state.regionFilter;
+    let globalProcessed = processed;
+    if (isSearchOnly) {
+        globalProcessed = state.allCities
+            .filter(c => !state.visaOnly || c.Visa_Free_Japan === 'Yes')
+            .map(city => {
+                const bd   = calcDaily(city, state.style);
+                const days = bd.total > 0 ? budgetUsd / bd.total : 0;
+                return { ...city, bd, days };
+            })
+            .filter(c => c.bd.total > 0)
+            .sort((a, b) => b.days - a.days);
+    }
+    const top       = globalProcessed[0];
+    const worst     = globalProcessed[globalProcessed.length - 1];
+    const baseLabel = 'Tokyo';
+    const budgetStr = `¥${state.budgetJpy.toLocaleString()}`;
+    const baseDaily = CONFIG.BASELINES[BASE][state.style];
+    const baseDays  = baseDaily > 0 ? Math.round(budgetUsd / baseDaily) : '—';
+    const dataLabel = `${processed.length} ${t('cities')}`;
+
+    const html = `
+        <div class="stats-row" role="region" aria-label="Top-line statistics">
+            <div class="stat-card">
+                <div class="stat-icon green" aria-hidden="true">🏆</div>
+                <div>
+                    <div class="stat-label">${t('bestValue')}</div>
+                    <div class="stat-value">${Math.round(top.days)}<span style="font-size:0.5em;letter-spacing:0;font-weight:700"> ${t('days')}</span></div>
+                    <div class="stat-sub">#1 · ${top.City}, ${top.Country}</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon amber" aria-hidden="true">📉</div>
+                <div>
+                    <div class="stat-label">${t('worstValue')}</div>
+                    <div class="stat-value">${Math.round(worst.days)}<span style="font-size:0.5em;letter-spacing:0;font-weight:700"> ${t('days')}</span></div>
+                    <div class="stat-sub">#${processed.length} · ${worst.City}, ${worst.Country}</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon purple" aria-hidden="true">📡</div>
+                <div>
+                    <div class="stat-label">${t('liveRate')}</div>
+                    <div class="stat-value" style="font-size:18px;letter-spacing:-0.01em;">¥100 = $${(jpyToUsd * 100).toFixed(4)}</div>
+                    <div class="stat-sub">${state.rateSource === 'live' ? t('ecbRate') : t('cachedRate')}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="top-pick" role="region" aria-label="Top recommendation">
+            <div class="top-pick-left">
+                <div class="top-pick-trophy" aria-hidden="true">🏆</div>
+                <div>
+                    <div class="top-pick-eyebrow">${t('topPickEyebrow')}</div>
+                    <div class="top-pick-destination">${top.City}, ${top.Country}</div>
+                    <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:4px;">
+                        vs. <strong style="color:rgba(255,255,255,0.8);">${baseDays} days</strong> in ${baseLabel} on ${budgetStr}
+                    </div>
+                </div>
+            </div>
+            <div class="top-pick-right">
+                <div class="top-pick-days">${Math.round(top.days)}</div>
+                <div class="top-pick-days-label">${topPickDaysLabel(state.style)}</div>
+            </div>
+        </div>
+
+        <div class="results-meta">
+            <p class="results-count">${dataLabel} · ${t('sortedBy')} · ${styleDisplayName(state.style)}</p>
+        </div>
+
+        <div class="grid" role="list">
+            ${processed.map((city, i) => cardHTML(city, i + 1, budgetStr)).join('')}
+        </div>
+    `;
+
+    document.getElementById('results').innerHTML = html;
+}
+
+// Unsplash photo query per city (falls back to city name search)
+function cityPhotoUrl(city) {
+    const q = encodeURIComponent(city.City + ' ' + city.Country + ' city travel');
+    return `https://source.unsplash.com/640x320/?${q}`;
+}
+
+function cardHTML(city, rank, budgetStr) {
+    const { bd, days, tier, isDeal, jpyPerDay } = city;
+    const visa    = city.Visa_Free_Japan === 'Yes' || city.Visa_Free_Japan === 'TRUE';
+    const pct     = barPercent(bd.total, state.style, BASE);
+    const baseline= CONFIG.BASELINES[BASE][state.style];
+    const ratio   = baseline > 0 && bd.total > 0 ? (baseline / bd.total).toFixed(1) : 'N/A';
+    const photoUrl= cityPhotoUrl(city);
+
+    return `
+    <article class="bento-card" role="listitem">
+
+        <!-- Photo header -->
+        <div class="card-photo">
+            <img src="${photoUrl}" alt="${city.City} cityscape" loading="lazy"
+                 onerror="this.style.display='none'">
+            <div class="card-photo-overlay" aria-hidden="true"></div>
+            ${rank <= 10 ? `<div class="rank-watermark" aria-hidden="true">${rank}</div>` : ''}
+            <div class="card-photo-top">
+                <span class="rank-badge" aria-label="Rank ${rank}">#${rank}</span>
+                <span class="visa-chip ${visa ? 'yes' : 'no'}">${visa ? t('visaFreeChip') : t('visaReq')}</span>
+            </div>
+            <div class="card-photo-bottom">
+                ${isDeal ? `<div class="deal-chip">${t('dealChip')}</div>` : ''}
+                <div class="value-chip" style="background:${tier.color}CC;color:white;">${tierLabel(tier.label)}</div>
+                <div class="card-city-name-photo">${city.City}</div>
+                <div class="card-country-photo">${city.Country}${city.Region ? ' · ' + city.Region : ''}</div>
+            </div>
+        </div>
+
+        <!-- Card body -->
+        <div class="card-body">
+            <div class="days-row">
+                <span class="days-big">${Math.round(days)}</span>
+                <span class="days-unit">${t('days')}</span>
+            </div>
+            <div class="days-label">${formatCardDaysLabel(budgetStr, state.style)}</div>
+
+            <div class="value-bar-wrap" aria-hidden="true">
+                <div class="value-bar-track">
+                    <div class="value-bar-fill" style="width:${pct}%;background:${tier.color};"></div>
+                </div>
+                <div class="value-bar-label">${ratio}${t('cheaperThan')}</div>
+            </div>
+
+            <div class="daily-cost-line">
+                ¥${jpyPerDay.toLocaleString()}/day
+                <span class="daily-cost-jpy">≈ $${bd.total.toFixed(0)} USD</span>
+            </div>
+
+            <div class="breakdown" aria-label="Daily cost breakdown">
+                <div class="breakdown-item">
+                    <span class="bi-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M2 12V8a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v4"/><path d="M2 20h20"/><rect x="6" y="4" width="4" height="4" rx="1"/></svg>
+                    </span>
+                    <div>
+                        <div class="bi-label">${t('lodging')}</div>
+                        <div class="bi-value">¥${Math.round(bd.acc / state.jpyToUsd).toLocaleString()}</div>
+                    </div>
+                </div>
+                <div class="breakdown-item">
+                    <span class="bi-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+                    </span>
+                    <div>
+                        <div class="bi-label">${t('dining')}</div>
+                        <div class="bi-value">¥${Math.round(bd.food / state.jpyToUsd).toLocaleString()}</div>
+                    </div>
+                </div>
+                <div class="breakdown-item">
+                    <span class="bi-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="10" rx="2"/><path d="M6 8V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><path d="M6 17v2"/><path d="M18 17v2"/><circle cx="8" cy="13" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="13" r="1" fill="currentColor" stroke="none"/></svg>
+                    </span>
+                    <div>
+                        <div class="bi-label">${t('transit')}</div>
+                        <div class="bi-value">¥${Math.round(bd.transport / state.jpyToUsd).toLocaleString()}</div>
+                    </div>
+                </div>
+                <div class="breakdown-item">
+                    <span class="bi-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                    </span>
+                    <div>
+                        <div class="bi-label">${t('experiences')}</div>
+                        <div class="bi-value">¥${Math.round(bd.activities / state.jpyToUsd).toLocaleString()}</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="toggle-details" onclick="toggleDetails(this)" aria-expanded="false">
+                ${t('showDetails')}
+            </button>
+            <div class="extra-details" aria-hidden="true">
+                <div class="detail-row">
+                    <span class="d-label">${t('localCurrency')}</span>
+                    <span class="d-value">${city.Currency || '—'}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="d-label">${t('timeZone')}</span>
+                    <span class="d-value">${city.Timezone || '—'}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="d-label">${t('bestSeason')}</span>
+                    <span class="d-value">${city.Best_Season || t('yearRound')}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="d-label">${t('fromTokyo')}</span>
+                    <span class="d-value">${flightStopsLabel(city.Flight_Stops)}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="d-label">${t('flightTime')}</span>
+                    <span class="d-value">${city.Flight_Hours || '—'}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="d-label">${t('safety')}</span>
+                    <span class="d-value" style="color:${safetyColor(city.Safety_Index)};font-weight:700;">
+                        ${city.Safety_Index ? safetyLabel(city.Safety_Index) + ' (' + city.Safety_Index + ')' : '—'}
+                    </span>
+                </div>
+            </div>
+        </div><!-- /card-body -->
+    </article>
+    `;
+}
+
+// ── UI INTERACTION ──
+function toggleDetails(btn) {
+    const panel = btn.nextElementSibling;
+    const open  = panel.classList.toggle('open');
+    panel.setAttribute('aria-hidden', String(!open));
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? t('hideDetails') : t('showDetails');
+}
+
+function setStyle(el) {
+    document.querySelectorAll('.style-pill').forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-checked', 'false');
+    });
+    el.classList.add('active');
+    el.setAttribute('aria-checked', 'true');
+    state.style = el.dataset.style;
+    const desc = document.getElementById('style-desc');
+    if (desc) desc.innerHTML = getStyleDesc(state.style);
+    applyFilters();
+}
+
+function toggleLang() {
+    currentLang = currentLang === 'en' ? 'ja' : 'en';
+    const btn = document.getElementById('lang-toggle');
+    if (btn) {
+        btn.textContent = currentLang === 'en' ? '🇯🇵 日本語' : '🇬🇧 English';
+        btn.classList.toggle('active-ja', currentLang === 'ja');
+        btn.setAttribute('aria-label', currentLang === 'ja' ? 'Switch to English' : 'Switch to Japanese');
+    }
+    updateStaticText();
+    render();
+}
+
+function keySelect(event, el) {
+    if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        setStyle(el);
+    }
+}
+
+
+let budgetTimer;
+function onBudgetChange() {
+    clearTimeout(budgetTimer);
+    const el  = document.getElementById('budget-input');
+    const raw = parseInt(el.value.replace(/,/g, ''), 10);
+
+    // Reformat with commas, preserving cursor position
+    if (!isNaN(raw)) {
+        const formatted = raw.toLocaleString('en');
+        const cursor = el.selectionStart + (formatted.length - el.value.length);
+        el.value = formatted;
+        try { el.setSelectionRange(cursor, cursor); } catch(e) {}
+    }
+
+    budgetTimer = setTimeout(() => {
+        if (!isNaN(raw) && raw >= 1000) {
+            state.budgetJpy = raw;
+            updateBudgetHint();
+            applyFilters();
+        }
+    }, 400);
+}
+
+function updateBudgetHint() {
+    const usd = (state.budgetJpy * state.jpyToUsd).toFixed(0);
+    document.getElementById('budget-usd-hint').textContent = `≈ $${Number(usd).toLocaleString()} USD`;
+}
+
+// ── UTILITIES ──
+function num(v) { return parseFloat(v) || 0; }
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+// ── HARDCODED CITY DATA ──
+// All prices in USD. Avg18m_Daily = estimated average USD midrange daily cost
+// over past 18 months. Used to flag a "Deal" if today's cost is >8% below avg.
+// Sources: Numbeo, Expatistan, travel blog averages (Feb 2026). Update quarterly.
+function getHardcodedData() {
+    return [
+        // ── SOUTHEAST ASIA ──
+        { City: 'Bangkok',          Country: 'Thailand',             Region: 'Southeast Asia', Currency: 'THB',  Timezone: 'UTC+7',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'Yes', Budget_Accommodation: 10, Midrange_Accommodation: 40,  Luxury_Accommodation: 150, Cheap_Meal: 2,   Midrange_Meal: 8,  Expensive_Meal: 25,  Local_Transport: 1.5, Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 15, Luxury_Activities: 45,  Avg18m_Daily: 70,  Safety_Index: 60, Flight_Stops: 1, Flight_Hours: '6h 30m' },
+        { City: 'Chiang Mai',       Country: 'Thailand',             Region: 'Southeast Asia', Currency: 'THB',  Timezone: 'UTC+7',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'Yes', Budget_Accommodation: 8,  Midrange_Accommodation: 35,  Luxury_Accommodation: 120, Cheap_Meal: 2,   Midrange_Meal: 8,  Expensive_Meal: 25,  Local_Transport: 1.5, Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 15, Luxury_Activities: 40,  Avg18m_Daily: 65,  Safety_Index: 62, Flight_Stops: 2, Flight_Hours: '6h 20m' },
+        { City: 'Phuket',           Country: 'Thailand',             Region: 'Southeast Asia', Currency: 'THB',  Timezone: 'UTC+7',    Best_Season: 'Nov–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 55,  Luxury_Accommodation: 200, Cheap_Meal: 3,   Midrange_Meal: 10, Expensive_Meal: 30,  Local_Transport: 2,   Taxi: 7,  Budget_Activities: 8,  Midrange_Activities: 20, Luxury_Activities: 60,  Avg18m_Daily: 95,  Safety_Index: 58, Flight_Stops: 1, Flight_Hours: '7h 10m' },
+        { City: 'Pattaya',          Country: 'Thailand',             Region: 'Southeast Asia', Currency: 'THB',  Timezone: 'UTC+7',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'Yes', Budget_Accommodation: 9,  Midrange_Accommodation: 38,  Luxury_Accommodation: 130, Cheap_Meal: 2,   Midrange_Meal: 8,  Expensive_Meal: 25,  Local_Transport: 1.5, Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 14, Luxury_Activities: 42,  Avg18m_Daily: 68,  Safety_Index: 55, Flight_Stops: 2,  Flight_Hours: '6h 45m' },
+        { City: 'Ho Chi Minh City', Country: 'Vietnam',              Region: 'Southeast Asia', Currency: 'VND',  Timezone: 'UTC+7',    Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 10, Midrange_Accommodation: 38,  Luxury_Accommodation: 140, Cheap_Meal: 2,   Midrange_Meal: 7,  Expensive_Meal: 22,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 12, Luxury_Activities: 35,  Avg18m_Daily: 72,  Safety_Index: 63, Flight_Stops: 1, Flight_Hours: '5h 30m' },
+        { City: 'Hanoi',            Country: 'Vietnam',              Region: 'Southeast Asia', Currency: 'VND',  Timezone: 'UTC+7',    Best_Season: 'Oct–Dec', Visa_Free_Japan: 'Yes', Budget_Accommodation: 9,  Midrange_Accommodation: 35,  Luxury_Accommodation: 130, Cheap_Meal: 1.5, Midrange_Meal: 6,  Expensive_Meal: 20,  Local_Transport: 0.8, Taxi: 3,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 30,  Avg18m_Daily: 62,  Safety_Index: 65, Flight_Stops: 1, Flight_Hours: '5h 20m' },
+        { City: 'Da Nang',          Country: 'Vietnam',              Region: 'Southeast Asia', Currency: 'VND',  Timezone: 'UTC+7',    Best_Season: 'Feb–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 10, Midrange_Accommodation: 38,  Luxury_Accommodation: 130, Cheap_Meal: 2,   Midrange_Meal: 7,  Expensive_Meal: 20,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 11, Luxury_Activities: 32,  Avg18m_Daily: 65,  Safety_Index: 68, Flight_Stops: 2,  Flight_Hours: '5h 10m' },
+        { City: 'Bali',             Country: 'Indonesia',            Region: 'Southeast Asia', Currency: 'IDR',  Timezone: 'UTC+8',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 12, Midrange_Accommodation: 50,  Luxury_Accommodation: 200, Cheap_Meal: 2.5, Midrange_Meal: 9,  Expensive_Meal: 28,  Local_Transport: 2,   Taxi: 6,  Budget_Activities: 6,  Midrange_Activities: 18, Luxury_Activities: 55,  Avg18m_Daily: 82,  Safety_Index: 66, Flight_Stops: 2, Flight_Hours: '6h 30m' },
+        { City: 'Jakarta',          Country: 'Indonesia',            Region: 'Southeast Asia', Currency: 'IDR',  Timezone: 'UTC+7',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 12, Midrange_Accommodation: 45,  Luxury_Accommodation: 160, Cheap_Meal: 2,   Midrange_Meal: 8,  Expensive_Meal: 25,  Local_Transport: 1.5, Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 14, Luxury_Activities: 40,  Avg18m_Daily: 75,  Safety_Index: 52, Flight_Stops: 1, Flight_Hours: '7h 20m' },
+        { City: 'Kuala Lumpur',     Country: 'Malaysia',             Region: 'Southeast Asia', Currency: 'MYR',  Timezone: 'UTC+8',    Best_Season: 'Mar–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 14, Midrange_Accommodation: 55,  Luxury_Accommodation: 170, Cheap_Meal: 3,   Midrange_Meal: 9,  Expensive_Meal: 28,  Local_Transport: 1.2, Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 14, Luxury_Activities: 40,  Avg18m_Daily: 83,  Safety_Index: 67, Flight_Stops: 1, Flight_Hours: '7h 00m' },
+        { City: 'Penang',           Country: 'Malaysia',             Region: 'Southeast Asia', Currency: 'MYR',  Timezone: 'UTC+8',    Best_Season: 'Dec–Feb', Visa_Free_Japan: 'Yes', Budget_Accommodation: 12, Midrange_Accommodation: 45,  Luxury_Accommodation: 150, Cheap_Meal: 2.5, Midrange_Meal: 8,  Expensive_Meal: 25,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 12, Luxury_Activities: 35,  Avg18m_Daily: 72,  Safety_Index: 69, Flight_Stops: 2,  Flight_Hours: '7h 10m' },
+        { City: 'Singapore',        Country: 'Singapore',            Region: 'Southeast Asia', Currency: 'SGD',  Timezone: 'UTC+8',    Best_Season: 'Feb–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 35, Midrange_Accommodation: 120, Luxury_Accommodation: 380, Cheap_Meal: 5,   Midrange_Meal: 18, Expensive_Meal: 55,  Local_Transport: 2,   Taxi: 12, Budget_Activities: 10, Midrange_Activities: 28, Luxury_Activities: 90,  Avg18m_Daily: 175, Safety_Index: 88, Flight_Stops: 1, Flight_Hours: '7h 10m' },
+        { City: 'Manila',           Country: 'Philippines',          Region: 'Southeast Asia', Currency: 'PHP',  Timezone: 'UTC+8',    Best_Season: 'Dec–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 10, Midrange_Accommodation: 40,  Luxury_Accommodation: 140, Cheap_Meal: 2,   Midrange_Meal: 7,  Expensive_Meal: 22,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 11, Luxury_Activities: 32,  Avg18m_Daily: 68,  Safety_Index: 44, Flight_Stops: 1, Flight_Hours: '4h 20m' },
+        { City: 'Cebu City',        Country: 'Philippines',          Region: 'Southeast Asia', Currency: 'PHP',  Timezone: 'UTC+8',    Best_Season: 'Jan–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 10, Midrange_Accommodation: 38,  Luxury_Accommodation: 130, Cheap_Meal: 2,   Midrange_Meal: 7,  Expensive_Meal: 20,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 11, Luxury_Activities: 30,  Avg18m_Daily: 65,  Safety_Index: 46, Flight_Stops: 2,  Flight_Hours: '4h 30m' },
+        { City: 'Phnom Penh',       Country: 'Cambodia',             Region: 'Southeast Asia', Currency: 'USD',  Timezone: 'UTC+7',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 8,  Midrange_Accommodation: 30,  Luxury_Accommodation: 100, Cheap_Meal: 2,   Midrange_Meal: 6,  Expensive_Meal: 18,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 55,  Safety_Index: 50, Flight_Stops: 2,  Flight_Hours: '6h 20m' },
+        { City: 'Siem Reap',        Country: 'Cambodia',             Region: 'Southeast Asia', Currency: 'USD',  Timezone: 'UTC+7',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 8,  Midrange_Accommodation: 30,  Luxury_Accommodation: 110, Cheap_Meal: 2,   Midrange_Meal: 6,  Expensive_Meal: 18,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 12, Luxury_Activities: 30,  Avg18m_Daily: 55,  Safety_Index: 55, Flight_Stops: 2,  Flight_Hours: '6h 30m' },
+        { City: 'Vientiane',        Country: 'Laos',                 Region: 'Southeast Asia', Currency: 'USD',  Timezone: 'UTC+7',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'Yes', Budget_Accommodation: 8,  Midrange_Accommodation: 28,  Luxury_Accommodation: 90,  Cheap_Meal: 2,   Midrange_Meal: 5,  Expensive_Meal: 15,  Local_Transport: 1,   Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 9,  Luxury_Activities: 25,  Avg18m_Daily: 50,  Safety_Index: 62, Flight_Stops: 3,  Flight_Hours: '5h 30m' },
+        { City: 'Luang Prabang',    Country: 'Laos',                 Region: 'Southeast Asia', Currency: 'USD',  Timezone: 'UTC+7',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 10, Midrange_Accommodation: 35,  Luxury_Accommodation: 110, Cheap_Meal: 2,   Midrange_Meal: 6,  Expensive_Meal: 18,  Local_Transport: 1,   Taxi: 3,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 58,  Safety_Index: 65, Flight_Stops: 3,  Flight_Hours: '5h 40m' },
+        { City: 'Surabaya',         Country: 'Indonesia',            Region: 'Southeast Asia', Currency: 'IDR',  Timezone: 'UTC+7',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 10, Midrange_Accommodation: 38,  Luxury_Accommodation: 130, Cheap_Meal: 1.5, Midrange_Meal: 6,  Expensive_Meal: 18,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 60,  Safety_Index: 55, Flight_Stops: 2,  Flight_Hours: '7h 30m' },
+        { City: 'Davao',            Country: 'Philippines',          Region: 'Southeast Asia', Currency: 'PHP',  Timezone: 'UTC+8',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 9,  Midrange_Accommodation: 32,  Luxury_Accommodation: 110, Cheap_Meal: 1.5, Midrange_Meal: 6,  Expensive_Meal: 18,  Local_Transport: 0.8, Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 9,  Luxury_Activities: 25,  Avg18m_Daily: 55,  Safety_Index: 50, Flight_Stops: 3,  Flight_Hours: '4h 10m' },
+        { City: 'Yangon',           Country: 'Myanmar',              Region: 'Southeast Asia', Currency: 'MMK',  Timezone: 'UTC+6:30', Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No',  Budget_Accommodation: 12, Midrange_Accommodation: 45,  Luxury_Accommodation: 140, Cheap_Meal: 1.5, Midrange_Meal: 5,  Expensive_Meal: 15,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 8,  Luxury_Activities: 22,  Avg18m_Daily: 60,  Safety_Index: 42, Flight_Stops: 3,  Flight_Hours: '6h 50m' },
+
+        // ── EAST ASIA ──
+        { City: 'Tokyo',            Country: 'Japan',                Region: 'East Asia',      Currency: 'JPY',  Timezone: 'UTC+9',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 30, Midrange_Accommodation: 100, Luxury_Accommodation: 350, Cheap_Meal: 8,   Midrange_Meal: 20, Expensive_Meal: 60,  Local_Transport: 3,   Taxi: 15, Budget_Activities: 10, Midrange_Activities: 30, Luxury_Activities: 100, Avg18m_Daily: 155, Safety_Index: 85, Flight_Stops: 0,  Flight_Hours: '0h (origin)' },
+        { City: 'Osaka',            Country: 'Japan',                Region: 'East Asia',      Currency: 'JPY',  Timezone: 'UTC+9',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 28, Midrange_Accommodation: 90,  Luxury_Accommodation: 300, Cheap_Meal: 7,   Midrange_Meal: 18, Expensive_Meal: 55,  Local_Transport: 2.5, Taxi: 13, Budget_Activities: 9,  Midrange_Activities: 26, Luxury_Activities: 85,  Avg18m_Daily: 142, Safety_Index: 84, Flight_Stops: 2, Flight_Hours: '1h 20m' },
+        { City: 'Seoul',            Country: 'South Korea',          Region: 'East Asia',      Currency: 'KRW',  Timezone: 'UTC+9',    Best_Season: 'Sep–Nov', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 80,  Luxury_Accommodation: 260, Cheap_Meal: 7,   Midrange_Meal: 16, Expensive_Meal: 45,  Local_Transport: 1.5, Taxi: 8,  Budget_Activities: 8,  Midrange_Activities: 20, Luxury_Activities: 65,  Avg18m_Daily: 125, Safety_Index: 82, Flight_Stops: 1, Flight_Hours: '2h 30m' },
+        { City: 'Busan',            Country: 'South Korea',          Region: 'East Asia',      Currency: 'KRW',  Timezone: 'UTC+9',    Best_Season: 'Sep–Nov', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 65,  Luxury_Accommodation: 220, Cheap_Meal: 6,   Midrange_Meal: 14, Expensive_Meal: 40,  Local_Transport: 1.5, Taxi: 7,  Budget_Activities: 7,  Midrange_Activities: 18, Luxury_Activities: 55,  Avg18m_Daily: 110, Safety_Index: 81, Flight_Stops: 1, Flight_Hours: '1h 30m' },
+        { City: 'Taipei',           Country: 'Taiwan',               Region: 'East Asia',      Currency: 'TWD',  Timezone: 'UTC+8',    Best_Season: 'Oct–Dec', Visa_Free_Japan: 'Yes', Budget_Accommodation: 20, Midrange_Accommodation: 65,  Luxury_Accommodation: 210, Cheap_Meal: 4,   Midrange_Meal: 10, Expensive_Meal: 30,  Local_Transport: 1.2, Taxi: 7,  Budget_Activities: 6,  Midrange_Activities: 15, Luxury_Activities: 45,  Avg18m_Daily: 98,  Safety_Index: 83, Flight_Stops: 1, Flight_Hours: '3h 00m' },
+        { City: 'Taichung',         Country: 'Taiwan',               Region: 'East Asia',      Currency: 'TWD',  Timezone: 'UTC+8',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 58,  Luxury_Accommodation: 180, Cheap_Meal: 3.5, Midrange_Meal: 9,  Expensive_Meal: 27,  Local_Transport: 1,   Taxi: 6,  Budget_Activities: 5,  Midrange_Activities: 13, Luxury_Activities: 40,  Avg18m_Daily: 88,  Safety_Index: 82, Flight_Stops: 2,  Flight_Hours: '3h 10m' },
+        { City: 'Hong Kong',        Country: 'Hong Kong',            Region: 'East Asia',      Currency: 'HKD',  Timezone: 'UTC+8',    Best_Season: 'Oct–Dec', Visa_Free_Japan: 'Yes', Budget_Accommodation: 40, Midrange_Accommodation: 130, Luxury_Accommodation: 420, Cheap_Meal: 6,   Midrange_Meal: 18, Expensive_Meal: 55,  Local_Transport: 2,   Taxi: 12, Budget_Activities: 10, Midrange_Activities: 28, Luxury_Activities: 90,  Avg18m_Daily: 185, Safety_Index: 80, Flight_Stops: 1, Flight_Hours: '4h 00m' },
+        { City: 'Beijing',          Country: 'China',                Region: 'East Asia',      Currency: 'CNY',  Timezone: 'UTC+8',    Best_Season: 'Sep–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 20, Midrange_Accommodation: 70,  Luxury_Accommodation: 230, Cheap_Meal: 3,   Midrange_Meal: 10, Expensive_Meal: 30,  Local_Transport: 1,   Taxi: 6,  Budget_Activities: 6,  Midrange_Activities: 16, Luxury_Activities: 48,  Avg18m_Daily: 105, Safety_Index: 72, Flight_Stops: 1, Flight_Hours: '3h 30m' },
+        { City: 'Shanghai',         Country: 'China',                Region: 'East Asia',      Currency: 'CNY',  Timezone: 'UTC+8',    Best_Season: 'Apr–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 80,  Luxury_Accommodation: 260, Cheap_Meal: 4,   Midrange_Meal: 12, Expensive_Meal: 35,  Local_Transport: 1.2, Taxi: 7,  Budget_Activities: 7,  Midrange_Activities: 18, Luxury_Activities: 55,  Avg18m_Daily: 120, Safety_Index: 74, Flight_Stops: 1, Flight_Hours: '2h 10m' },
+        { City: 'Chengdu',          Country: 'China',                Region: 'East Asia',      Currency: 'CNY',  Timezone: 'UTC+8',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 55,  Luxury_Accommodation: 180, Cheap_Meal: 2.5, Midrange_Meal: 8,  Expensive_Meal: 24,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 13, Luxury_Activities: 38,  Avg18m_Daily: 82,  Safety_Index: 72, Flight_Stops: 2,  Flight_Hours: '4h 50m' },
+        { City: 'Shenzhen',         Country: 'China',                Region: 'East Asia',      Currency: 'CNY',  Timezone: 'UTC+8',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 65,  Luxury_Accommodation: 210, Cheap_Meal: 3,   Midrange_Meal: 10, Expensive_Meal: 30,  Local_Transport: 1,   Taxi: 6,  Budget_Activities: 6,  Midrange_Activities: 15, Luxury_Activities: 45,  Avg18m_Daily: 98,  Safety_Index: 73, Flight_Stops: 2,  Flight_Hours: '4h 10m' },
+        { City: 'Ulaanbaatar',      Country: 'Mongolia',             Region: 'East Asia',      Currency: 'MNT',  Timezone: 'UTC+8',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 50,  Luxury_Accommodation: 160, Cheap_Meal: 3,   Midrange_Meal: 8,  Expensive_Meal: 22,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 12, Luxury_Activities: 35,  Avg18m_Daily: 72,  Safety_Index: 57, Flight_Stops: 2,  Flight_Hours: '3h 30m' },
+        { City: 'Macau',            Country: 'Macau',                Region: 'East Asia',      Currency: 'MOP',  Timezone: 'UTC+8',    Best_Season: 'Oct–Dec', Visa_Free_Japan: 'Yes', Budget_Accommodation: 45, Midrange_Accommodation: 140, Luxury_Accommodation: 450, Cheap_Meal: 6,   Midrange_Meal: 18, Expensive_Meal: 55,  Local_Transport: 1.5, Taxi: 8,  Budget_Activities: 8,  Midrange_Activities: 22, Luxury_Activities: 70,  Avg18m_Daily: 185, Safety_Index: 79, Flight_Stops: 2, Flight_Hours: '4h 00m' },
+
+        // ── SOUTH ASIA ──
+        { City: 'Mumbai',           Country: 'India',                Region: 'South Asia',     Currency: 'INR',  Timezone: 'UTC+5:30', Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No',  Budget_Accommodation: 15, Midrange_Accommodation: 55,  Luxury_Accommodation: 200, Cheap_Meal: 2,   Midrange_Meal: 7,  Expensive_Meal: 25,  Local_Transport: 0.5, Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 35,  Avg18m_Daily: 80,  Safety_Index: 55, Flight_Stops: 1, Flight_Hours: '9h 30m' },
+        { City: 'Delhi',            Country: 'India',                Region: 'South Asia',     Currency: 'INR',  Timezone: 'UTC+5:30', Best_Season: 'Oct–Mar', Visa_Free_Japan: 'No',  Budget_Accommodation: 12, Midrange_Accommodation: 45,  Luxury_Accommodation: 180, Cheap_Meal: 1.5, Midrange_Meal: 6,  Expensive_Meal: 22,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 9,  Luxury_Activities: 30,  Avg18m_Daily: 68,  Safety_Index: 48, Flight_Stops: 1, Flight_Hours: '8h 40m' },
+        { City: 'Bangalore',        Country: 'India',                Region: 'South Asia',     Currency: 'INR',  Timezone: 'UTC+5:30', Best_Season: 'Oct–Feb', Visa_Free_Japan: 'No',  Budget_Accommodation: 13, Midrange_Accommodation: 48,  Luxury_Accommodation: 175, Cheap_Meal: 1.5, Midrange_Meal: 6,  Expensive_Meal: 22,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 9,  Luxury_Activities: 28,  Avg18m_Daily: 70,  Safety_Index: 52, Flight_Stops: 2,  Flight_Hours: '9h 40m' },
+        { City: 'Goa',              Country: 'India',                Region: 'South Asia',     Currency: 'INR',  Timezone: 'UTC+5:30', Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No',  Budget_Accommodation: 14, Midrange_Accommodation: 50,  Luxury_Accommodation: 180, Cheap_Meal: 2,   Midrange_Meal: 7,  Expensive_Meal: 22,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 12, Luxury_Activities: 35,  Avg18m_Daily: 75,  Safety_Index: 60, Flight_Stops: 3,  Flight_Hours: '9h 20m' },
+        { City: 'Colombo',          Country: 'Sri Lanka',            Region: 'South Asia',     Currency: 'LKR',  Timezone: 'UTC+5:30', Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 14, Midrange_Accommodation: 55,  Luxury_Accommodation: 175, Cheap_Meal: 2.5, Midrange_Meal: 8,  Expensive_Meal: 25,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 12, Luxury_Activities: 35,  Avg18m_Daily: 90,  Safety_Index: 63, Flight_Stops: 2,  Flight_Hours: '9h 30m' },
+        { City: 'Kathmandu',        Country: 'Nepal',                Region: 'South Asia',     Currency: 'NPR',  Timezone: 'UTC+5:45', Best_Season: 'Oct–Nov', Visa_Free_Japan: 'No',  Budget_Accommodation: 8,  Midrange_Accommodation: 30,  Luxury_Accommodation: 100, Cheap_Meal: 1.5, Midrange_Meal: 5,  Expensive_Meal: 15,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 48,  Safety_Index: 54, Flight_Stops: 3,  Flight_Hours: '7h 10m' },
+        { City: 'Dhaka',            Country: 'Bangladesh',           Region: 'South Asia',     Currency: 'BDT',  Timezone: 'UTC+6',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No',  Budget_Accommodation: 10, Midrange_Accommodation: 38,  Luxury_Accommodation: 120, Cheap_Meal: 1,   Midrange_Meal: 4,  Expensive_Meal: 12,  Local_Transport: 0.3, Taxi: 2,  Budget_Activities: 2,  Midrange_Activities: 6,  Luxury_Activities: 18,  Avg18m_Daily: 50,  Safety_Index: 43, Flight_Stops: 3,  Flight_Hours: '8h 20m' },
+        { City: 'Islamabad',        Country: 'Pakistan',             Region: 'South Asia',     Currency: 'PKR',  Timezone: 'UTC+5',    Best_Season: 'Mar–May', Visa_Free_Japan: 'No',  Budget_Accommodation: 12, Midrange_Accommodation: 40,  Luxury_Accommodation: 130, Cheap_Meal: 1.5, Midrange_Meal: 5,  Expensive_Meal: 15,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 7,  Luxury_Activities: 22,  Avg18m_Daily: 55,  Safety_Index: 40, Flight_Stops: 3,  Flight_Hours: '8h 50m' },
+        { City: 'Lahore',           Country: 'Pakistan',             Region: 'South Asia',     Currency: 'PKR',  Timezone: 'UTC+5',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'No',  Budget_Accommodation: 10, Midrange_Accommodation: 35,  Luxury_Accommodation: 120, Cheap_Meal: 1,   Midrange_Meal: 4,  Expensive_Meal: 13,  Local_Transport: 0.4, Taxi: 2.5, Budget_Activities: 3, Midrange_Activities: 7,  Luxury_Activities: 20,  Avg18m_Daily: 50,  Safety_Index: 38, Flight_Stops: 3,  Flight_Hours: '9h 10m' },
+        { City: 'Jaipur',           Country: 'India',                Region: 'South Asia',     Currency: 'INR',  Timezone: 'UTC+5:30', Best_Season: 'Oct–Mar', Visa_Free_Japan: 'No',  Budget_Accommodation: 10, Midrange_Accommodation: 38,  Luxury_Accommodation: 140, Cheap_Meal: 1.5, Midrange_Meal: 5,  Expensive_Meal: 16,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 8,  Luxury_Activities: 25,  Avg18m_Daily: 58,  Safety_Index: 50, Flight_Stops: 3,  Flight_Hours: '8h 30m' },
+
+        // ── CENTRAL ASIA ──
+        { City: 'Tbilisi',          Country: 'Georgia',              Region: 'Central Asia',   Currency: 'GEL',  Timezone: 'UTC+4',    Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 12, Midrange_Accommodation: 40,  Luxury_Accommodation: 130, Cheap_Meal: 3,   Midrange_Meal: 10, Expensive_Meal: 30,  Local_Transport: 0.5, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 15, Luxury_Activities: 45,  Avg18m_Daily: 68,  Safety_Index: 68, Flight_Stops: 2,  Flight_Hours: '10h 30m' },
+        { City: 'Yerevan',          Country: 'Armenia',              Region: 'Central Asia',   Currency: 'AMD',  Timezone: 'UTC+4',    Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 12, Midrange_Accommodation: 42,  Luxury_Accommodation: 135, Cheap_Meal: 3,   Midrange_Meal: 9,  Expensive_Meal: 28,  Local_Transport: 0.5, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 13, Luxury_Activities: 40,  Avg18m_Daily: 68,  Safety_Index: 66, Flight_Stops: 3,  Flight_Hours: '10h 20m' },
+        { City: 'Baku',             Country: 'Azerbaijan',           Region: 'Central Asia',   Currency: 'AZN',  Timezone: 'UTC+4',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'No',  Budget_Accommodation: 14, Midrange_Accommodation: 50,  Luxury_Accommodation: 160, Cheap_Meal: 3,   Midrange_Meal: 9,  Expensive_Meal: 28,  Local_Transport: 0.5, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 13, Luxury_Activities: 40,  Avg18m_Daily: 75,  Safety_Index: 63, Flight_Stops: 3,  Flight_Hours: '10h 40m' },
+        { City: 'Almaty',           Country: 'Kazakhstan',           Region: 'Central Asia',   Currency: 'KZT',  Timezone: 'UTC+6',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 52,  Luxury_Accommodation: 165, Cheap_Meal: 3,   Midrange_Meal: 9,  Expensive_Meal: 28,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 13, Luxury_Activities: 38,  Avg18m_Daily: 78,  Safety_Index: 60, Flight_Stops: 2,  Flight_Hours: '6h 00m' },
+        { City: 'Tashkent',         Country: 'Uzbekistan',           Region: 'Central Asia',   Currency: 'UZS',  Timezone: 'UTC+5',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 10, Midrange_Accommodation: 35,  Luxury_Accommodation: 110, Cheap_Meal: 2,   Midrange_Meal: 6,  Expensive_Meal: 18,  Local_Transport: 0.4, Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 9,  Luxury_Activities: 25,  Avg18m_Daily: 52,  Safety_Index: 58, Flight_Stops: 2,  Flight_Hours: '7h 30m' },
+        { City: 'Bishkek',          Country: 'Kyrgyzstan',           Region: 'Central Asia',   Currency: 'KGS',  Timezone: 'UTC+6',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 8,  Midrange_Accommodation: 28,  Luxury_Accommodation: 90,  Cheap_Meal: 1.5, Midrange_Meal: 5,  Expensive_Meal: 15,  Local_Transport: 0.3, Taxi: 2,  Budget_Activities: 3,  Midrange_Activities: 7,  Luxury_Activities: 20,  Avg18m_Daily: 42,  Safety_Index: 56, Flight_Stops: 3,  Flight_Hours: '6h 40m' },
+        { City: 'Samarkand',        Country: 'Uzbekistan',           Region: 'Central Asia',   Currency: 'UZS',  Timezone: 'UTC+5',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 10, Midrange_Accommodation: 32,  Luxury_Accommodation: 100, Cheap_Meal: 2,   Midrange_Meal: 5,  Expensive_Meal: 15,  Local_Transport: 0.4, Taxi: 2.5, Budget_Activities: 4, Midrange_Activities: 9,  Luxury_Activities: 24,  Avg18m_Daily: 48,  Safety_Index: 59, Flight_Stops: 3,  Flight_Hours: '7h 50m' },
+        { City: 'Ashgabat',         Country: 'Turkmenistan',         Region: 'Central Asia',   Currency: 'TMT',  Timezone: 'UTC+5',    Best_Season: 'Apr–May', Visa_Free_Japan: 'No',  Budget_Accommodation: 18, Midrange_Accommodation: 60,  Luxury_Accommodation: 180, Cheap_Meal: 3,   Midrange_Meal: 8,  Expensive_Meal: 22,  Local_Transport: 0.3, Taxi: 3,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 80,  Safety_Index: 40, Flight_Stops: 3,  Flight_Hours: '8h 00m' },
+        { City: 'Nur-Sultan',       Country: 'Kazakhstan',           Region: 'Central Asia',   Currency: 'KZT',  Timezone: 'UTC+6',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 60,  Luxury_Accommodation: 190, Cheap_Meal: 3.5, Midrange_Meal: 10, Expensive_Meal: 30,  Local_Transport: 0.8, Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 14, Luxury_Activities: 42,  Avg18m_Daily: 88,  Safety_Index: 58, Flight_Stops: 3,  Flight_Hours: '6h 20m' },
+
+        // ── MIDDLE EAST ──
+        { City: 'Dubai',            Country: 'United Arab Emirates', Region: 'Middle East',    Currency: 'AED',  Timezone: 'UTC+4',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 45, Midrange_Accommodation: 140, Luxury_Accommodation: 450, Cheap_Meal: 8,   Midrange_Meal: 25, Expensive_Meal: 80,  Local_Transport: 2.5, Taxi: 12, Budget_Activities: 12, Midrange_Activities: 35, Luxury_Activities: 120, Avg18m_Daily: 210, Safety_Index: 82, Flight_Stops: 1, Flight_Hours: '9h 50m' },
+        { City: 'Abu Dhabi',        Country: 'United Arab Emirates', Region: 'Middle East',    Currency: 'AED',  Timezone: 'UTC+4',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 40, Midrange_Accommodation: 130, Luxury_Accommodation: 420, Cheap_Meal: 7,   Midrange_Meal: 22, Expensive_Meal: 70,  Local_Transport: 2,   Taxi: 10, Budget_Activities: 10, Midrange_Activities: 30, Luxury_Activities: 100, Avg18m_Daily: 195, Safety_Index: 83, Flight_Stops: 1, Flight_Hours: '10h 00m' },
+        { City: 'Doha',             Country: 'Qatar',                Region: 'Middle East',    Currency: 'QAR',  Timezone: 'UTC+3',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 40, Midrange_Accommodation: 130, Luxury_Accommodation: 400, Cheap_Meal: 7,   Midrange_Meal: 22, Expensive_Meal: 65,  Local_Transport: 2,   Taxi: 10, Budget_Activities: 10, Midrange_Activities: 28, Luxury_Activities: 90,  Avg18m_Daily: 188, Safety_Index: 80, Flight_Stops: 2, Flight_Hours: '10h 30m' },
+        { City: 'Muscat',           Country: 'Oman',                 Region: 'Middle East',    Currency: 'OMR',  Timezone: 'UTC+4',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 30, Midrange_Accommodation: 90,  Luxury_Accommodation: 280, Cheap_Meal: 5,   Midrange_Meal: 15, Expensive_Meal: 45,  Local_Transport: 1.5, Taxi: 7,  Budget_Activities: 7,  Midrange_Activities: 18, Luxury_Activities: 55,  Avg18m_Daily: 128, Safety_Index: 78, Flight_Stops: 2, Flight_Hours: '10h 20m' },
+        { City: 'Riyadh',           Country: 'Saudi Arabia',         Region: 'Middle East',    Currency: 'SAR',  Timezone: 'UTC+3',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 35, Midrange_Accommodation: 110, Luxury_Accommodation: 350, Cheap_Meal: 5,   Midrange_Meal: 16, Expensive_Meal: 50,  Local_Transport: 1.5, Taxi: 7,  Budget_Activities: 7,  Midrange_Activities: 18, Luxury_Activities: 58,  Avg18m_Daily: 148, Safety_Index: 72, Flight_Stops: 2,  Flight_Hours: '10h 20m' },
+        { City: 'Amman',            Country: 'Jordan',               Region: 'Middle East',    Currency: 'JOD',  Timezone: 'UTC+3',    Best_Season: 'Mar–May', Visa_Free_Japan: 'No',  Budget_Accommodation: 22, Midrange_Accommodation: 75,  Luxury_Accommodation: 240, Cheap_Meal: 5,   Midrange_Meal: 14, Expensive_Meal: 42,  Local_Transport: 1,   Taxi: 6,  Budget_Activities: 7,  Midrange_Activities: 18, Luxury_Activities: 55,  Avg18m_Daily: 112, Safety_Index: 65, Flight_Stops: 2,  Flight_Hours: '10h 40m' },
+        { City: 'Beirut',           Country: 'Lebanon',              Region: 'Middle East',    Currency: 'USD',  Timezone: 'UTC+2',    Best_Season: 'May–Oct', Visa_Free_Japan: 'No',  Budget_Accommodation: 25, Midrange_Accommodation: 80,  Luxury_Accommodation: 250, Cheap_Meal: 6,   Midrange_Meal: 16, Expensive_Meal: 48,  Local_Transport: 1,   Taxi: 6,  Budget_Activities: 6,  Midrange_Activities: 16, Luxury_Activities: 48,  Avg18m_Daily: 115, Safety_Index: 42, Flight_Stops: 3,  Flight_Hours: '11h 10m' },
+        { City: 'Tel Aviv',         Country: 'Israel',               Region: 'Middle East',    Currency: 'ILS',  Timezone: 'UTC+2',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 50, Midrange_Accommodation: 160, Luxury_Accommodation: 500, Cheap_Meal: 10,  Midrange_Meal: 25, Expensive_Meal: 75,  Local_Transport: 2.5, Taxi: 14, Budget_Activities: 12, Midrange_Activities: 30, Luxury_Activities: 100, Avg18m_Daily: 235, Safety_Index: 55, Flight_Stops: 2,  Flight_Hours: '11h 30m' },
+        { City: 'Kuwait City',      Country: 'Kuwait',               Region: 'Middle East',    Currency: 'KWD',  Timezone: 'UTC+3',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'No',  Budget_Accommodation: 35, Midrange_Accommodation: 110, Luxury_Accommodation: 350, Cheap_Meal: 5,   Midrange_Meal: 15, Expensive_Meal: 45,  Local_Transport: 1.5, Taxi: 7,  Budget_Activities: 7,  Midrange_Activities: 18, Luxury_Activities: 55,  Avg18m_Daily: 148, Safety_Index: 70, Flight_Stops: 2,  Flight_Hours: '10h 10m' },
+        { City: 'Manama',           Country: 'Bahrain',              Region: 'Middle East',    Currency: 'BHD',  Timezone: 'UTC+3',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 30, Midrange_Accommodation: 95,  Luxury_Accommodation: 300, Cheap_Meal: 5,   Midrange_Meal: 14, Expensive_Meal: 42,  Local_Transport: 1.5, Taxi: 7,  Budget_Activities: 6,  Midrange_Activities: 16, Luxury_Activities: 50,  Avg18m_Daily: 132, Safety_Index: 74, Flight_Stops: 2,  Flight_Hours: '10h 00m' },
+
+        // ── OCEANIA ──
+        { City: 'Sydney',           Country: 'Australia',            Region: 'Oceania',        Currency: 'AUD',  Timezone: 'UTC+11',   Best_Season: 'Sep–Nov', Visa_Free_Japan: 'No',  Budget_Accommodation: 55, Midrange_Accommodation: 160, Luxury_Accommodation: 480, Cheap_Meal: 12,  Midrange_Meal: 28, Expensive_Meal: 80,  Local_Transport: 4,   Taxi: 18, Budget_Activities: 15, Midrange_Activities: 35, Luxury_Activities: 110, Avg18m_Daily: 250, Safety_Index: 78, Flight_Stops: 2, Flight_Hours: '9h 30m' },
+        { City: 'Melbourne',        Country: 'Australia',            Region: 'Oceania',        Currency: 'AUD',  Timezone: 'UTC+11',   Best_Season: 'Oct–Apr', Visa_Free_Japan: 'No',  Budget_Accommodation: 50, Midrange_Accommodation: 150, Luxury_Accommodation: 450, Cheap_Meal: 11,  Midrange_Meal: 26, Expensive_Meal: 75,  Local_Transport: 3.5, Taxi: 16, Budget_Activities: 13, Midrange_Activities: 32, Luxury_Activities: 100, Avg18m_Daily: 235, Safety_Index: 79, Flight_Stops: 2,  Flight_Hours: '9h 40m' },
+        { City: 'Brisbane',         Country: 'Australia',            Region: 'Oceania',        Currency: 'AUD',  Timezone: 'UTC+10',   Best_Season: 'Jun–Aug', Visa_Free_Japan: 'No',  Budget_Accommodation: 45, Midrange_Accommodation: 130, Luxury_Accommodation: 400, Cheap_Meal: 10,  Midrange_Meal: 24, Expensive_Meal: 70,  Local_Transport: 3,   Taxi: 15, Budget_Activities: 12, Midrange_Activities: 28, Luxury_Activities: 90,  Avg18m_Daily: 210, Safety_Index: 77, Flight_Stops: 2,  Flight_Hours: '8h 50m' },
+        { City: 'Perth',            Country: 'Australia',            Region: 'Oceania',        Currency: 'AUD',  Timezone: 'UTC+8',    Best_Season: 'Sep–Nov', Visa_Free_Japan: 'No',  Budget_Accommodation: 42, Midrange_Accommodation: 120, Luxury_Accommodation: 370, Cheap_Meal: 10,  Midrange_Meal: 23, Expensive_Meal: 68,  Local_Transport: 3,   Taxi: 14, Budget_Activities: 11, Midrange_Activities: 26, Luxury_Activities: 85,  Avg18m_Daily: 195, Safety_Index: 80, Flight_Stops: 2,  Flight_Hours: '7h 00m' },
+        { City: 'Auckland',         Country: 'New Zealand',          Region: 'Oceania',        Currency: 'NZD',  Timezone: 'UTC+13',   Best_Season: 'Dec–Feb', Visa_Free_Japan: 'Yes', Budget_Accommodation: 45, Midrange_Accommodation: 130, Luxury_Accommodation: 400, Cheap_Meal: 10,  Midrange_Meal: 23, Expensive_Meal: 68,  Local_Transport: 3,   Taxi: 14, Budget_Activities: 11, Midrange_Activities: 26, Luxury_Activities: 85,  Avg18m_Daily: 200, Safety_Index: 83, Flight_Stops: 2,  Flight_Hours: '10h 30m' },
+        { City: 'Wellington',       Country: 'New Zealand',          Region: 'Oceania',        Currency: 'NZD',  Timezone: 'UTC+13',   Best_Season: 'Dec–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 40, Midrange_Accommodation: 120, Luxury_Accommodation: 370, Cheap_Meal: 9,   Midrange_Meal: 22, Expensive_Meal: 65,  Local_Transport: 2.5, Taxi: 13, Budget_Activities: 10, Midrange_Activities: 24, Luxury_Activities: 78,  Avg18m_Daily: 190, Safety_Index: 82, Flight_Stops: 3,  Flight_Hours: '10h 50m' },
+        { City: 'Christchurch',     Country: 'New Zealand',          Region: 'Oceania',        Currency: 'NZD',  Timezone: 'UTC+13',   Best_Season: 'Dec–Feb', Visa_Free_Japan: 'Yes', Budget_Accommodation: 35, Midrange_Accommodation: 100, Luxury_Accommodation: 320, Cheap_Meal: 8,   Midrange_Meal: 20, Expensive_Meal: 58,  Local_Transport: 2,   Taxi: 11, Budget_Activities: 9,  Midrange_Activities: 22, Luxury_Activities: 68,  Avg18m_Daily: 168, Safety_Index: 82, Flight_Stops: 3,  Flight_Hours: '11h 10m' },
+        { City: 'Gold Coast',       Country: 'Australia',            Region: 'Oceania',        Currency: 'AUD',  Timezone: 'UTC+10',   Best_Season: 'Jun–Aug', Visa_Free_Japan: 'No',  Budget_Accommodation: 42, Midrange_Accommodation: 120, Luxury_Accommodation: 380, Cheap_Meal: 10,  Midrange_Meal: 22, Expensive_Meal: 65,  Local_Transport: 2.5, Taxi: 13, Budget_Activities: 12, Midrange_Activities: 28, Luxury_Activities: 88,  Avg18m_Daily: 195, Safety_Index: 76, Flight_Stops: 3,  Flight_Hours: '8h 40m' },
+        { City: 'Suva',             Country: 'Fiji',                 Region: 'Oceania',        Currency: 'FJD',  Timezone: 'UTC+12',   Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 20, Midrange_Accommodation: 70,  Luxury_Accommodation: 220, Cheap_Meal: 4,   Midrange_Meal: 12, Expensive_Meal: 35,  Local_Transport: 1.5, Taxi: 6,  Budget_Activities: 8,  Midrange_Activities: 20, Luxury_Activities: 60,  Avg18m_Daily: 110, Safety_Index: 56, Flight_Stops: 3,  Flight_Hours: '8h 00m' },
+        { City: 'Nadi',             Country: 'Fiji',                 Region: 'Oceania',        Currency: 'FJD',  Timezone: 'UTC+12',   Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 75,  Luxury_Accommodation: 240, Cheap_Meal: 4,   Midrange_Meal: 12, Expensive_Meal: 36,  Local_Transport: 1.5, Taxi: 6,  Budget_Activities: 8,  Midrange_Activities: 22, Luxury_Activities: 65,  Avg18m_Daily: 115, Safety_Index: 57, Flight_Stops: 3,  Flight_Hours: '8h 10m' },
+        { City: 'Noumea',           Country: 'New Caledonia',        Region: 'Oceania',        Currency: 'XPF',  Timezone: 'UTC+11',   Best_Season: 'Jul–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 55, Midrange_Accommodation: 160, Luxury_Accommodation: 480, Cheap_Meal: 10,  Midrange_Meal: 25, Expensive_Meal: 70,  Local_Transport: 2,   Taxi: 12, Budget_Activities: 12, Midrange_Activities: 28, Luxury_Activities: 88,  Avg18m_Daily: 225, Safety_Index: 72, Flight_Stops: 3,  Flight_Hours: '8h 20m' },
+        { City: 'Papeete',          Country: 'French Polynesia',     Region: 'Oceania',        Currency: 'XPF',  Timezone: 'UTC-10',   Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 60, Midrange_Accommodation: 180, Luxury_Accommodation: 550, Cheap_Meal: 10,  Midrange_Meal: 28, Expensive_Meal: 80,  Local_Transport: 2,   Taxi: 14, Budget_Activities: 12, Midrange_Activities: 30, Luxury_Activities: 95,  Avg18m_Daily: 260, Safety_Index: 75, Flight_Stops: 3,  Flight_Hours: '11h 00m' },
+        { City: 'Port Moresby',     Country: 'Papua New Guinea',     Region: 'Oceania',        Currency: 'PGK',  Timezone: 'UTC+10',   Best_Season: 'May–Oct', Visa_Free_Japan: 'No',  Budget_Accommodation: 35, Midrange_Accommodation: 110, Luxury_Accommodation: 320, Cheap_Meal: 5,   Midrange_Meal: 14, Expensive_Meal: 40,  Local_Transport: 1.5, Taxi: 8,  Budget_Activities: 7,  Midrange_Activities: 18, Luxury_Activities: 55,  Avg18m_Daily: 155, Safety_Index: 28, Flight_Stops: 3,  Flight_Hours: '4h 40m' },
+
+        // ── EASTERN EUROPE ──
+        { City: 'Budapest',         Country: 'Hungary',              Region: 'Eastern Europe', Currency: 'HUF',  Timezone: 'UTC+1',    Best_Season: 'Apr–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 60,  Luxury_Accommodation: 180, Cheap_Meal: 5,   Midrange_Meal: 15, Expensive_Meal: 45,  Local_Transport: 2,   Taxi: 8,  Budget_Activities: 8,  Midrange_Activities: 20, Luxury_Activities: 60,  Avg18m_Daily: 100, Safety_Index: 72, Flight_Stops: 2,  Flight_Hours: '11h 30m' },
+        { City: 'Prague',           Country: 'Czech Republic',       Region: 'Eastern Europe', Currency: 'CZK',  Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 65,  Luxury_Accommodation: 200, Cheap_Meal: 6,   Midrange_Meal: 14, Expensive_Meal: 40,  Local_Transport: 1.5, Taxi: 8,  Budget_Activities: 8,  Midrange_Activities: 20, Luxury_Activities: 60,  Avg18m_Daily: 108, Safety_Index: 76, Flight_Stops: 2,  Flight_Hours: '11h 00m' },
+        { City: 'Warsaw',           Country: 'Poland',               Region: 'Eastern Europe', Currency: 'PLN',  Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 16, Midrange_Accommodation: 58,  Luxury_Accommodation: 175, Cheap_Meal: 5,   Midrange_Meal: 13, Expensive_Meal: 38,  Local_Transport: 1.2, Taxi: 6,  Budget_Activities: 6,  Midrange_Activities: 16, Luxury_Activities: 48,  Avg18m_Daily: 95,  Safety_Index: 71, Flight_Stops: 2,  Flight_Hours: '11h 20m' },
+        { City: 'Krakow',           Country: 'Poland',               Region: 'Eastern Europe', Currency: 'PLN',  Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 14, Midrange_Accommodation: 50,  Luxury_Accommodation: 155, Cheap_Meal: 4,   Midrange_Meal: 11, Expensive_Meal: 32,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 14, Luxury_Activities: 42,  Avg18m_Daily: 82,  Safety_Index: 73, Flight_Stops: 3,  Flight_Hours: '11h 30m' },
+        { City: 'Bucharest',        Country: 'Romania',              Region: 'Eastern Europe', Currency: 'RON',  Timezone: 'UTC+2',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 14, Midrange_Accommodation: 50,  Luxury_Accommodation: 155, Cheap_Meal: 4,   Midrange_Meal: 11, Expensive_Meal: 32,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 5,  Midrange_Activities: 14, Luxury_Activities: 42,  Avg18m_Daily: 78,  Safety_Index: 65, Flight_Stops: 2,  Flight_Hours: '11h 40m' },
+        { City: 'Sofia',            Country: 'Bulgaria',             Region: 'Eastern Europe', Currency: 'BGN',  Timezone: 'UTC+2',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 12, Midrange_Accommodation: 42,  Luxury_Accommodation: 130, Cheap_Meal: 4,   Midrange_Meal: 10, Expensive_Meal: 28,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 12, Luxury_Activities: 35,  Avg18m_Daily: 68,  Safety_Index: 63, Flight_Stops: 3,  Flight_Hours: '11h 50m' },
+        { City: 'Belgrade',         Country: 'Serbia',               Region: 'Eastern Europe', Currency: 'RSD',  Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 14, Midrange_Accommodation: 48,  Luxury_Accommodation: 148, Cheap_Meal: 4,   Midrange_Meal: 10, Expensive_Meal: 28,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 12, Luxury_Activities: 36,  Avg18m_Daily: 72,  Safety_Index: 62, Flight_Stops: 3,  Flight_Hours: '12h 00m' },
+        { City: 'Tallinn',          Country: 'Estonia',              Region: 'Eastern Europe', Currency: 'EUR',  Timezone: 'UTC+2',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 75,  Luxury_Accommodation: 230, Cheap_Meal: 6,   Midrange_Meal: 15, Expensive_Meal: 42,  Local_Transport: 1.5, Taxi: 8,  Budget_Activities: 8,  Midrange_Activities: 18, Luxury_Activities: 55,  Avg18m_Daily: 112, Safety_Index: 74, Flight_Stops: 3,  Flight_Hours: '11h 00m' },
+        { City: 'Riga',             Country: 'Latvia',               Region: 'Eastern Europe', Currency: 'EUR',  Timezone: 'UTC+2',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 20, Midrange_Accommodation: 68,  Luxury_Accommodation: 210, Cheap_Meal: 5,   Midrange_Meal: 14, Expensive_Meal: 40,  Local_Transport: 1.2, Taxi: 7,  Budget_Activities: 7,  Midrange_Activities: 17, Luxury_Activities: 50,  Avg18m_Daily: 102, Safety_Index: 72, Flight_Stops: 3,  Flight_Hours: '11h 10m' },
+        { City: 'Vilnius',          Country: 'Lithuania',            Region: 'Eastern Europe', Currency: 'EUR',  Timezone: 'UTC+2',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 62,  Luxury_Accommodation: 195, Cheap_Meal: 5,   Midrange_Meal: 13, Expensive_Meal: 38,  Local_Transport: 1,   Taxi: 6,  Budget_Activities: 6,  Midrange_Activities: 16, Luxury_Activities: 48,  Avg18m_Daily: 95,  Safety_Index: 71, Flight_Stops: 3,  Flight_Hours: '11h 20m' },
+        { City: 'Ljubljana',        Country: 'Slovenia',             Region: 'Eastern Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 78,  Luxury_Accommodation: 240, Cheap_Meal: 7,   Midrange_Meal: 16, Expensive_Meal: 45,  Local_Transport: 1.5, Taxi: 8,  Budget_Activities: 8,  Midrange_Activities: 20, Luxury_Activities: 60,  Avg18m_Daily: 118, Safety_Index: 78, Flight_Stops: 3,  Flight_Hours: '11h 40m' },
+        { City: 'Bratislava',       Country: 'Slovakia',             Region: 'Eastern Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 20, Midrange_Accommodation: 68,  Luxury_Accommodation: 210, Cheap_Meal: 5,   Midrange_Meal: 13, Expensive_Meal: 38,  Local_Transport: 1.2, Taxi: 7,  Budget_Activities: 7,  Midrange_Activities: 17, Luxury_Activities: 52,  Avg18m_Daily: 100, Safety_Index: 73, Flight_Stops: 3,  Flight_Hours: '11h 50m' },
+        { City: 'Sarajevo',         Country: 'Bosnia and Herzegovina', Region: 'Eastern Europe', Currency: 'BAM', Timezone: 'UTC+1',   Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 12, Midrange_Accommodation: 40,  Luxury_Accommodation: 125, Cheap_Meal: 3,   Midrange_Meal: 9,  Expensive_Meal: 26,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 11, Luxury_Activities: 32,  Avg18m_Daily: 62,  Safety_Index: 60, Flight_Stops: 3,  Flight_Hours: '12h 10m' },
+        { City: 'Skopje',           Country: 'North Macedonia',      Region: 'Eastern Europe', Currency: 'MKD',  Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 11, Midrange_Accommodation: 38,  Luxury_Accommodation: 120, Cheap_Meal: 3,   Midrange_Meal: 8,  Expensive_Meal: 22,  Local_Transport: 0.6, Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 58,  Safety_Index: 60, Flight_Stops: 3,  Flight_Hours: '12h 00m' },
+        { City: 'Tirana',           Country: 'Albania',              Region: 'Eastern Europe', Currency: 'ALL',  Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 12, Midrange_Accommodation: 40,  Luxury_Accommodation: 120, Cheap_Meal: 3,   Midrange_Meal: 9,  Expensive_Meal: 24,  Local_Transport: 0.6, Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 30,  Avg18m_Daily: 60,  Safety_Index: 61, Flight_Stops: 3,  Flight_Hours: '11h 50m' },
+        { City: 'Zagreb',           Country: 'Croatia',              Region: 'Eastern Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 62,  Luxury_Accommodation: 195, Cheap_Meal: 5,   Midrange_Meal: 13, Expensive_Meal: 38,  Local_Transport: 1.2, Taxi: 7,  Budget_Activities: 7,  Midrange_Activities: 17, Luxury_Activities: 50,  Avg18m_Daily: 95,  Safety_Index: 69, Flight_Stops: 3,  Flight_Hours: '12h 00m' },
+
+        // ── SOUTHERN EUROPE ──
+        { City: 'Lisbon',           Country: 'Portugal',             Region: 'Southern Europe', Currency: 'EUR', Timezone: 'UTC+0',    Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 25, Midrange_Accommodation: 90,  Luxury_Accommodation: 280, Cheap_Meal: 7,   Midrange_Meal: 18, Expensive_Meal: 50,  Local_Transport: 2,   Taxi: 10, Budget_Activities: 10, Midrange_Activities: 25, Luxury_Activities: 75,  Avg18m_Daily: 145, Safety_Index: 74, Flight_Stops: 2, Flight_Hours: '13h 30m' },
+        { City: 'Porto',            Country: 'Portugal',             Region: 'Southern Europe', Currency: 'EUR', Timezone: 'UTC+0',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 78,  Luxury_Accommodation: 245, Cheap_Meal: 6,   Midrange_Meal: 16, Expensive_Meal: 45,  Local_Transport: 1.8, Taxi: 9,  Budget_Activities: 9,  Midrange_Activities: 22, Luxury_Activities: 68,  Avg18m_Daily: 128, Safety_Index: 75, Flight_Stops: 2,  Flight_Hours: '13h 40m' },
+        { City: 'Athens',           Country: 'Greece',               Region: 'Southern Europe', Currency: 'EUR', Timezone: 'UTC+2',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 80,  Luxury_Accommodation: 250, Cheap_Meal: 7,   Midrange_Meal: 18, Expensive_Meal: 50,  Local_Transport: 1.5, Taxi: 9,  Budget_Activities: 9,  Midrange_Activities: 22, Luxury_Activities: 65,  Avg18m_Daily: 130, Safety_Index: 69, Flight_Stops: 2, Flight_Hours: '12h 00m' },
+        { City: 'Thessaloniki',     Country: 'Greece',               Region: 'Southern Europe', Currency: 'EUR', Timezone: 'UTC+2',    Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 65,  Luxury_Accommodation: 200, Cheap_Meal: 6,   Midrange_Meal: 15, Expensive_Meal: 42,  Local_Transport: 1.2, Taxi: 7,  Budget_Activities: 7,  Midrange_Activities: 18, Luxury_Activities: 55,  Avg18m_Daily: 105, Safety_Index: 68, Flight_Stops: 3,  Flight_Hours: '12h 10m' },
+        { City: 'Barcelona',        Country: 'Spain',                Region: 'Southern Europe', Currency: 'EUR', Timezone: 'UTC+1',    Best_Season: 'May–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 35, Midrange_Accommodation: 120, Luxury_Accommodation: 380, Cheap_Meal: 9,   Midrange_Meal: 22, Expensive_Meal: 65,  Local_Transport: 2.5, Taxi: 12, Budget_Activities: 12, Midrange_Activities: 28, Luxury_Activities: 90,  Avg18m_Daily: 185, Safety_Index: 65, Flight_Stops: 2, Flight_Hours: '13h 00m' },
+        { City: 'Madrid',           Country: 'Spain',                Region: 'Southern Europe', Currency: 'EUR', Timezone: 'UTC+1',    Best_Season: 'Sep–Nov', Visa_Free_Japan: 'Yes', Budget_Accommodation: 32, Midrange_Accommodation: 110, Luxury_Accommodation: 350, Cheap_Meal: 8,   Midrange_Meal: 20, Expensive_Meal: 60,  Local_Transport: 2.2, Taxi: 11, Budget_Activities: 11, Midrange_Activities: 26, Luxury_Activities: 82,  Avg18m_Daily: 172, Safety_Index: 67, Flight_Stops: 2, Flight_Hours: '13h 20m' },
+        { City: 'Rome',             Country: 'Italy',                Region: 'Southern Europe', Currency: 'EUR', Timezone: 'UTC+1',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 30, Midrange_Accommodation: 105, Luxury_Accommodation: 330, Cheap_Meal: 8,   Midrange_Meal: 20, Expensive_Meal: 60,  Local_Transport: 2,   Taxi: 11, Budget_Activities: 10, Midrange_Activities: 25, Luxury_Activities: 80,  Avg18m_Daily: 165, Safety_Index: 63, Flight_Stops: 2, Flight_Hours: '12h 30m' },
+        { City: 'Milan',            Country: 'Italy',                Region: 'Southern Europe', Currency: 'EUR', Timezone: 'UTC+1',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 35, Midrange_Accommodation: 120, Luxury_Accommodation: 380, Cheap_Meal: 8,   Midrange_Meal: 22, Expensive_Meal: 65,  Local_Transport: 2.2, Taxi: 12, Budget_Activities: 11, Midrange_Activities: 28, Luxury_Activities: 88,  Avg18m_Daily: 188, Safety_Index: 65, Flight_Stops: 2, Flight_Hours: '12h 20m' },
+        { City: 'Istanbul',         Country: 'Turkey',               Region: 'Southern Europe', Currency: 'TRY', Timezone: 'UTC+3',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 55,  Luxury_Accommodation: 180, Cheap_Meal: 3,   Midrange_Meal: 10, Expensive_Meal: 30,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 6,  Midrange_Activities: 15, Luxury_Activities: 45,  Avg18m_Daily: 95,  Safety_Index: 56, Flight_Stops: 2, Flight_Hours: '11h 00m' },
+
+        // ── WESTERN EUROPE ──
+        { City: 'London',           Country: 'United Kingdom',       Region: 'Western Europe', Currency: 'GBP',  Timezone: 'UTC+0',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 55, Midrange_Accommodation: 160, Luxury_Accommodation: 450, Cheap_Meal: 12,  Midrange_Meal: 28, Expensive_Meal: 80,  Local_Transport: 4,   Taxi: 18, Budget_Activities: 15, Midrange_Activities: 35, Luxury_Activities: 110, Avg18m_Daily: 255, Safety_Index: 67, Flight_Stops: 1, Flight_Hours: '12h 30m' },
+        { City: 'Edinburgh',        Country: 'United Kingdom',       Region: 'Western Europe', Currency: 'GBP',  Timezone: 'UTC+0',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 40, Midrange_Accommodation: 120, Luxury_Accommodation: 370, Cheap_Meal: 10,  Midrange_Meal: 22, Expensive_Meal: 65,  Local_Transport: 3,   Taxi: 14, Budget_Activities: 12, Midrange_Activities: 28, Luxury_Activities: 88,  Avg18m_Daily: 195, Safety_Index: 70, Flight_Stops: 2,  Flight_Hours: '12h 20m' },
+        { City: 'Paris',            Country: 'France',               Region: 'Western Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 50, Midrange_Accommodation: 155, Luxury_Accommodation: 480, Cheap_Meal: 12,  Midrange_Meal: 28, Expensive_Meal: 80,  Local_Transport: 3.5, Taxi: 16, Budget_Activities: 15, Midrange_Activities: 35, Luxury_Activities: 110, Avg18m_Daily: 248, Safety_Index: 61, Flight_Stops: 1, Flight_Hours: '12h 40m' },
+        { City: 'Nice',             Country: 'France',               Region: 'Western Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 42, Midrange_Accommodation: 130, Luxury_Accommodation: 420, Cheap_Meal: 10,  Midrange_Meal: 24, Expensive_Meal: 72,  Local_Transport: 2.5, Taxi: 14, Budget_Activities: 12, Midrange_Activities: 30, Luxury_Activities: 95,  Avg18m_Daily: 210, Safety_Index: 64, Flight_Stops: 2,  Flight_Hours: '12h 30m' },
+        { City: 'Amsterdam',        Country: 'Netherlands',          Region: 'Western Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'Apr–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 45, Midrange_Accommodation: 140, Luxury_Accommodation: 440, Cheap_Meal: 10,  Midrange_Meal: 24, Expensive_Meal: 70,  Local_Transport: 3.5, Taxi: 15, Budget_Activities: 13, Midrange_Activities: 30, Luxury_Activities: 95,  Avg18m_Daily: 220, Safety_Index: 68, Flight_Stops: 1, Flight_Hours: '11h 50m' },
+        { City: 'Berlin',           Country: 'Germany',              Region: 'Western Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 35, Midrange_Accommodation: 110, Luxury_Accommodation: 340, Cheap_Meal: 9,   Midrange_Meal: 20, Expensive_Meal: 60,  Local_Transport: 3,   Taxi: 13, Budget_Activities: 10, Midrange_Activities: 25, Luxury_Activities: 80,  Avg18m_Daily: 172, Safety_Index: 70, Flight_Stops: 2, Flight_Hours: '11h 30m' },
+        { City: 'Munich',           Country: 'Germany',              Region: 'Western Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'May–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 40, Midrange_Accommodation: 125, Luxury_Accommodation: 390, Cheap_Meal: 10,  Midrange_Meal: 22, Expensive_Meal: 65,  Local_Transport: 3.2, Taxi: 14, Budget_Activities: 11, Midrange_Activities: 27, Luxury_Activities: 86,  Avg18m_Daily: 196, Safety_Index: 72, Flight_Stops: 2, Flight_Hours: '11h 40m' },
+        { City: 'Hamburg',          Country: 'Germany',              Region: 'Western Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 38, Midrange_Accommodation: 115, Luxury_Accommodation: 360, Cheap_Meal: 9,   Midrange_Meal: 20, Expensive_Meal: 60,  Local_Transport: 3,   Taxi: 13, Budget_Activities: 10, Midrange_Activities: 24, Luxury_Activities: 78,  Avg18m_Daily: 180, Safety_Index: 71, Flight_Stops: 2,  Flight_Hours: '11h 30m' },
+        { City: 'Vienna',           Country: 'Austria',              Region: 'Western Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'Apr–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 40, Midrange_Accommodation: 125, Luxury_Accommodation: 390, Cheap_Meal: 9,   Midrange_Meal: 20, Expensive_Meal: 60,  Local_Transport: 3,   Taxi: 13, Budget_Activities: 11, Midrange_Activities: 26, Luxury_Activities: 82,  Avg18m_Daily: 192, Safety_Index: 74, Flight_Stops: 2, Flight_Hours: '11h 50m' },
+        { City: 'Zurich',           Country: 'Switzerland',          Region: 'Western Europe', Currency: 'CHF',  Timezone: 'UTC+1',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 80, Midrange_Accommodation: 220, Luxury_Accommodation: 650, Cheap_Meal: 18,  Midrange_Meal: 38, Expensive_Meal: 110, Local_Transport: 5,   Taxi: 25, Budget_Activities: 20, Midrange_Activities: 45, Luxury_Activities: 140, Avg18m_Daily: 340, Safety_Index: 84, Flight_Stops: 2, Flight_Hours: '12h 00m' },
+        { City: 'Brussels',         Country: 'Belgium',              Region: 'Western Europe', Currency: 'EUR',  Timezone: 'UTC+1',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 38, Midrange_Accommodation: 115, Luxury_Accommodation: 360, Cheap_Meal: 9,   Midrange_Meal: 20, Expensive_Meal: 58,  Local_Transport: 3,   Taxi: 13, Budget_Activities: 10, Midrange_Activities: 24, Luxury_Activities: 76,  Avg18m_Daily: 178, Safety_Index: 58, Flight_Stops: 2, Flight_Hours: '12h 10m' },
+        { City: 'Copenhagen',       Country: 'Denmark',              Region: 'Western Europe', Currency: 'DKK',  Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 55, Midrange_Accommodation: 165, Luxury_Accommodation: 500, Cheap_Meal: 14,  Midrange_Meal: 30, Expensive_Meal: 90,  Local_Transport: 4,   Taxi: 20, Budget_Activities: 15, Midrange_Activities: 35, Luxury_Activities: 110, Avg18m_Daily: 265, Safety_Index: 80, Flight_Stops: 2,  Flight_Hours: '11h 30m' },
+        { City: 'Stockholm',        Country: 'Sweden',               Region: 'Western Europe', Currency: 'SEK',  Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 55, Midrange_Accommodation: 165, Luxury_Accommodation: 500, Cheap_Meal: 13,  Midrange_Meal: 28, Expensive_Meal: 85,  Local_Transport: 4,   Taxi: 20, Budget_Activities: 14, Midrange_Activities: 33, Luxury_Activities: 105, Avg18m_Daily: 258, Safety_Index: 79, Flight_Stops: 2,  Flight_Hours: '11h 20m' },
+        { City: 'Oslo',             Country: 'Norway',               Region: 'Western Europe', Currency: 'NOK',  Timezone: 'UTC+1',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 70, Midrange_Accommodation: 200, Luxury_Accommodation: 600, Cheap_Meal: 16,  Midrange_Meal: 35, Expensive_Meal: 105, Local_Transport: 5,   Taxi: 24, Budget_Activities: 18, Midrange_Activities: 40, Luxury_Activities: 125, Avg18m_Daily: 312, Safety_Index: 81, Flight_Stops: 2,  Flight_Hours: '11h 00m' },
+
+        // ── LATIN AMERICA ──
+        { City: 'Mexico City',      Country: 'Mexico',               Region: 'Latin America',  Currency: 'MXN',  Timezone: 'UTC-6',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 65,  Luxury_Accommodation: 200, Cheap_Meal: 4,   Midrange_Meal: 12, Expensive_Meal: 35,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 6,  Midrange_Activities: 18, Luxury_Activities: 50,  Avg18m_Daily: 108, Safety_Index: 44, Flight_Stops: 1, Flight_Hours: '14h 30m' },
+        { City: 'Guadalajara',      Country: 'Mexico',               Region: 'Latin America',  Currency: 'MXN',  Timezone: 'UTC-6',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 55,  Luxury_Accommodation: 170, Cheap_Meal: 3,   Midrange_Meal: 10, Expensive_Meal: 30,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 14, Luxury_Activities: 42,  Avg18m_Daily: 88,  Safety_Index: 40, Flight_Stops: 2,  Flight_Hours: '14h 20m' },
+        { City: 'Cancun',           Country: 'Mexico',               Region: 'Latin America',  Currency: 'MXN',  Timezone: 'UTC-5',    Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 25, Midrange_Accommodation: 90,  Luxury_Accommodation: 280, Cheap_Meal: 5,   Midrange_Meal: 14, Expensive_Meal: 42,  Local_Transport: 1.5, Taxi: 6,  Budget_Activities: 8,  Midrange_Activities: 22, Luxury_Activities: 68,  Avg18m_Daily: 140, Safety_Index: 48, Flight_Stops: 2,  Flight_Hours: '15h 00m' },
+        { City: 'Medellin',         Country: 'Colombia',             Region: 'Latin America',  Currency: 'COP',  Timezone: 'UTC-5',    Best_Season: 'Feb–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 16, Midrange_Accommodation: 55,  Luxury_Accommodation: 160, Cheap_Meal: 4,   Midrange_Meal: 11, Expensive_Meal: 30,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 14, Luxury_Activities: 40,  Avg18m_Daily: 80,  Safety_Index: 47, Flight_Stops: 2,  Flight_Hours: '17h 00m' },
+        { City: 'Bogota',           Country: 'Colombia',             Region: 'Latin America',  Currency: 'COP',  Timezone: 'UTC-5',    Best_Season: 'Dec–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 52,  Luxury_Accommodation: 155, Cheap_Meal: 3.5, Midrange_Meal: 10, Expensive_Meal: 28,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 13, Luxury_Activities: 38,  Avg18m_Daily: 78,  Safety_Index: 43, Flight_Stops: 2,  Flight_Hours: '17h 20m' },
+        { City: 'Cartagena',        Country: 'Colombia',             Region: 'Latin America',  Currency: 'COP',  Timezone: 'UTC-5',    Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 18, Midrange_Accommodation: 62,  Luxury_Accommodation: 190, Cheap_Meal: 4,   Midrange_Meal: 11, Expensive_Meal: 32,  Local_Transport: 1,   Taxi: 4,  Budget_Activities: 6,  Midrange_Activities: 15, Luxury_Activities: 45,  Avg18m_Daily: 92,  Safety_Index: 50, Flight_Stops: 3,  Flight_Hours: '17h 10m' },
+        { City: 'Buenos Aires',     Country: 'Argentina',            Region: 'Latin America',  Currency: 'ARS',  Timezone: 'UTC-3',    Best_Season: 'Oct–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 50,  Luxury_Accommodation: 160, Cheap_Meal: 4,   Midrange_Meal: 10, Expensive_Meal: 28,  Local_Transport: 0.5, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 12, Luxury_Activities: 36,  Avg18m_Daily: 72,  Safety_Index: 52, Flight_Stops: 2,  Flight_Hours: '17h 30m' },
+        { City: 'Lima',             Country: 'Peru',                 Region: 'Latin America',  Currency: 'PEN',  Timezone: 'UTC-5',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 14, Midrange_Accommodation: 50,  Luxury_Accommodation: 160, Cheap_Meal: 3,   Midrange_Meal: 9,  Expensive_Meal: 27,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 12, Luxury_Activities: 36,  Avg18m_Daily: 72,  Safety_Index: 50, Flight_Stops: 2,  Flight_Hours: '18h 30m' },
+        { City: 'Cusco',            Country: 'Peru',                 Region: 'Latin America',  Currency: 'PEN',  Timezone: 'UTC-5',    Best_Season: 'Apr–Oct', Visa_Free_Japan: 'Yes', Budget_Accommodation: 12, Midrange_Accommodation: 42,  Luxury_Accommodation: 135, Cheap_Meal: 3,   Midrange_Meal: 8,  Expensive_Meal: 24,  Local_Transport: 0.8, Taxi: 3,  Budget_Activities: 6,  Midrange_Activities: 14, Luxury_Activities: 40,  Avg18m_Daily: 65,  Safety_Index: 56, Flight_Stops: 3,  Flight_Hours: '18h 40m' },
+        { City: 'Santiago',         Country: 'Chile',                Region: 'Latin America',  Currency: 'CLP',  Timezone: 'UTC-3',    Best_Season: 'Dec–Feb', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 75,  Luxury_Accommodation: 235, Cheap_Meal: 5,   Midrange_Meal: 13, Expensive_Meal: 38,  Local_Transport: 1.2, Taxi: 6,  Budget_Activities: 7,  Midrange_Activities: 16, Luxury_Activities: 50,  Avg18m_Daily: 112, Safety_Index: 58, Flight_Stops: 2,  Flight_Hours: '17h 40m' },
+        { City: 'Sao Paulo',        Country: 'Brazil',               Region: 'Latin America',  Currency: 'BRL',  Timezone: 'UTC-3',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 20, Midrange_Accommodation: 68,  Luxury_Accommodation: 215, Cheap_Meal: 4,   Midrange_Meal: 11, Expensive_Meal: 32,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 6,  Midrange_Activities: 15, Luxury_Activities: 45,  Avg18m_Daily: 100, Safety_Index: 38, Flight_Stops: 2,  Flight_Hours: '16h 00m' },
+        { City: 'Rio de Janeiro',   Country: 'Brazil',               Region: 'Latin America',  Currency: 'BRL',  Timezone: 'UTC-3',    Best_Season: 'May–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 75,  Luxury_Accommodation: 235, Cheap_Meal: 4,   Midrange_Meal: 12, Expensive_Meal: 35,  Local_Transport: 1,   Taxi: 6,  Budget_Activities: 7,  Midrange_Activities: 16, Luxury_Activities: 50,  Avg18m_Daily: 112, Safety_Index: 36, Flight_Stops: 3,  Flight_Hours: '16h 10m' },
+        { City: 'Montevideo',       Country: 'Uruguay',              Region: 'Latin America',  Currency: 'UYU',  Timezone: 'UTC-3',    Best_Season: 'Dec–Mar', Visa_Free_Japan: 'Yes', Budget_Accommodation: 20, Midrange_Accommodation: 70,  Luxury_Accommodation: 220, Cheap_Meal: 5,   Midrange_Meal: 13, Expensive_Meal: 38,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 7,  Midrange_Activities: 15, Luxury_Activities: 46,  Avg18m_Daily: 105, Safety_Index: 60, Flight_Stops: 3,  Flight_Hours: '17h 50m' },
+        { City: 'Panama City',      Country: 'Panama',               Region: 'Latin America',  Currency: 'USD',  Timezone: 'UTC-5',    Best_Season: 'Jan–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 75,  Luxury_Accommodation: 235, Cheap_Meal: 4,   Midrange_Meal: 12, Expensive_Meal: 35,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 6,  Midrange_Activities: 15, Luxury_Activities: 46,  Avg18m_Daily: 108, Safety_Index: 51, Flight_Stops: 2,  Flight_Hours: '16h 30m' },
+        { City: 'San Jose',         Country: 'Costa Rica',           Region: 'Latin America',  Currency: 'CRC',  Timezone: 'UTC-6',    Best_Season: 'Dec–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 20, Midrange_Accommodation: 68,  Luxury_Accommodation: 215, Cheap_Meal: 4,   Midrange_Meal: 11, Expensive_Meal: 32,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 7,  Midrange_Activities: 16, Luxury_Activities: 48,  Avg18m_Daily: 100, Safety_Index: 57, Flight_Stops: 3,  Flight_Hours: '16h 20m' },
+        { City: 'Quito',            Country: 'Ecuador',              Region: 'Latin America',  Currency: 'USD',  Timezone: 'UTC-5',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 14, Midrange_Accommodation: 48,  Luxury_Accommodation: 150, Cheap_Meal: 3,   Midrange_Meal: 8,  Expensive_Meal: 24,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 5,  Midrange_Activities: 11, Luxury_Activities: 32,  Avg18m_Daily: 68,  Safety_Index: 52, Flight_Stops: 3,  Flight_Hours: '19h 00m' },
+
+        // ── NORTH AMERICA ──
+        { City: 'New York',         Country: 'United States',        Region: 'North America',  Currency: 'USD',  Timezone: 'UTC-5',    Best_Season: 'Sep–Nov', Visa_Free_Japan: 'Yes', Budget_Accommodation: 80, Midrange_Accommodation: 220, Luxury_Accommodation: 600, Cheap_Meal: 15,  Midrange_Meal: 35, Expensive_Meal: 100, Local_Transport: 4,   Taxi: 20, Budget_Activities: 20, Midrange_Activities: 50, Luxury_Activities: 150, Avg18m_Daily: 320, Safety_Index: 55, Flight_Stops: 1, Flight_Hours: '14h 00m' },
+        { City: 'Los Angeles',      Country: 'United States',        Region: 'North America',  Currency: 'USD',  Timezone: 'UTC-8',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 70, Midrange_Accommodation: 195, Luxury_Accommodation: 560, Cheap_Meal: 13,  Midrange_Meal: 30, Expensive_Meal: 90,  Local_Transport: 3,   Taxi: 18, Budget_Activities: 18, Midrange_Activities: 44, Luxury_Activities: 135, Avg18m_Daily: 290, Safety_Index: 52, Flight_Stops: 1, Flight_Hours: '11h 00m' },
+        { City: 'Chicago',          Country: 'United States',        Region: 'North America',  Currency: 'USD',  Timezone: 'UTC-6',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 65, Midrange_Accommodation: 180, Luxury_Accommodation: 520, Cheap_Meal: 12,  Midrange_Meal: 28, Expensive_Meal: 85,  Local_Transport: 3,   Taxi: 17, Budget_Activities: 16, Midrange_Activities: 40, Luxury_Activities: 125, Avg18m_Daily: 270, Safety_Index: 50, Flight_Stops: 2, Flight_Hours: '13h 00m' },
+        { City: 'Toronto',          Country: 'Canada',               Region: 'North America',  Currency: 'CAD',  Timezone: 'UTC-5',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'Yes', Budget_Accommodation: 60, Midrange_Accommodation: 170, Luxury_Accommodation: 490, Cheap_Meal: 11,  Midrange_Meal: 26, Expensive_Meal: 78,  Local_Transport: 3,   Taxi: 15, Budget_Activities: 14, Midrange_Activities: 35, Luxury_Activities: 110, Avg18m_Daily: 248, Safety_Index: 66, Flight_Stops: 2, Flight_Hours: '13h 30m' },
+        { City: 'Vancouver',        Country: 'Canada',               Region: 'North America',  Currency: 'CAD',  Timezone: 'UTC-8',    Best_Season: 'Jun–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 62, Midrange_Accommodation: 175, Luxury_Accommodation: 500, Cheap_Meal: 11,  Midrange_Meal: 26, Expensive_Meal: 78,  Local_Transport: 3,   Taxi: 15, Budget_Activities: 14, Midrange_Activities: 35, Luxury_Activities: 110, Avg18m_Daily: 252, Safety_Index: 65, Flight_Stops: 2, Flight_Hours: '10h 00m' },
+
+        // ── AFRICA ──
+        { City: 'Cape Town',        Country: 'South Africa',         Region: 'Africa',         Currency: 'ZAR',  Timezone: 'UTC+2',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'Yes', Budget_Accommodation: 22, Midrange_Accommodation: 75,  Luxury_Accommodation: 235, Cheap_Meal: 4,   Midrange_Meal: 11, Expensive_Meal: 32,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 7,  Midrange_Activities: 16, Luxury_Activities: 50,  Avg18m_Daily: 108, Safety_Index: 35, Flight_Stops: 2,  Flight_Hours: '13h 30m' },
+        { City: 'Johannesburg',     Country: 'South Africa',         Region: 'Africa',         Currency: 'ZAR',  Timezone: 'UTC+2',    Best_Season: 'May–Sep', Visa_Free_Japan: 'Yes', Budget_Accommodation: 20, Midrange_Accommodation: 68,  Luxury_Accommodation: 215, Cheap_Meal: 4,   Midrange_Meal: 10, Expensive_Meal: 30,  Local_Transport: 1,   Taxi: 5,  Budget_Activities: 6,  Midrange_Activities: 14, Luxury_Activities: 42,  Avg18m_Daily: 98,  Safety_Index: 30, Flight_Stops: 2,  Flight_Hours: '13h 00m' },
+        { City: 'Nairobi',          Country: 'Kenya',                Region: 'Africa',         Currency: 'KES',  Timezone: 'UTC+3',    Best_Season: 'Jul–Oct', Visa_Free_Japan: 'No',  Budget_Accommodation: 15, Midrange_Accommodation: 52,  Luxury_Accommodation: 165, Cheap_Meal: 3,   Midrange_Meal: 9,  Expensive_Meal: 26,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 13, Luxury_Activities: 38,  Avg18m_Daily: 78,  Safety_Index: 42, Flight_Stops: 2,  Flight_Hours: '11h 30m' },
+        { City: 'Marrakech',        Country: 'Morocco',              Region: 'Africa',         Currency: 'MAD',  Timezone: 'UTC+1',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 14, Midrange_Accommodation: 50,  Luxury_Accommodation: 160, Cheap_Meal: 3,   Midrange_Meal: 8,  Expensive_Meal: 24,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 13, Luxury_Activities: 38,  Avg18m_Daily: 75,  Safety_Index: 60, Flight_Stops: 2,  Flight_Hours: '13h 00m' },
+        { City: 'Casablanca',       Country: 'Morocco',              Region: 'Africa',         Currency: 'MAD',  Timezone: 'UTC+1',    Best_Season: 'Mar–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 52,  Luxury_Accommodation: 165, Cheap_Meal: 3,   Midrange_Meal: 8,  Expensive_Meal: 24,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 12, Luxury_Activities: 35,  Avg18m_Daily: 76,  Safety_Index: 58, Flight_Stops: 2,  Flight_Hours: '13h 10m' },
+        { City: 'Cairo',            Country: 'Egypt',                Region: 'Africa',         Currency: 'EGP',  Timezone: 'UTC+2',    Best_Season: 'Oct–Apr', Visa_Free_Japan: 'No',  Budget_Accommodation: 12, Midrange_Accommodation: 42,  Luxury_Accommodation: 130, Cheap_Meal: 2,   Midrange_Meal: 6,  Expensive_Meal: 18,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 60,  Safety_Index: 50, Flight_Stops: 2, Flight_Hours: '12h 30m' },
+        { City: 'Accra',            Country: 'Ghana',                Region: 'Africa',         Currency: 'GHS',  Timezone: 'UTC+0',    Best_Season: 'Nov–Mar', Visa_Free_Japan: 'No',  Budget_Accommodation: 18, Midrange_Accommodation: 60,  Luxury_Accommodation: 185, Cheap_Meal: 3,   Midrange_Meal: 8,  Expensive_Meal: 22,  Local_Transport: 0.5, Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 85,  Safety_Index: 50, Flight_Stops: 3,  Flight_Hours: '15h 00m' },
+        { City: 'Lagos',            Country: 'Nigeria',              Region: 'Africa',         Currency: 'NGN',  Timezone: 'UTC+1',    Best_Season: 'Nov–Feb', Visa_Free_Japan: 'No',  Budget_Accommodation: 20, Midrange_Accommodation: 68,  Luxury_Accommodation: 210, Cheap_Meal: 2,   Midrange_Meal: 7,  Expensive_Meal: 20,  Local_Transport: 0.5, Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 30,  Avg18m_Daily: 90,  Safety_Index: 35, Flight_Stops: 3,  Flight_Hours: '14h 40m' },
+        { City: 'Dar es Salaam',    Country: 'Tanzania',             Region: 'Africa',         Currency: 'TZS',  Timezone: 'UTC+3',    Best_Season: 'Jun–Oct', Visa_Free_Japan: 'No',  Budget_Accommodation: 15, Midrange_Accommodation: 52,  Luxury_Accommodation: 160, Cheap_Meal: 2.5, Midrange_Meal: 7,  Expensive_Meal: 20,  Local_Transport: 0.8, Taxi: 4,  Budget_Activities: 5,  Midrange_Activities: 12, Luxury_Activities: 35,  Avg18m_Daily: 78,  Safety_Index: 48, Flight_Stops: 3,  Flight_Hours: '11h 00m' },
+        { City: 'Addis Ababa',      Country: 'Ethiopia',             Region: 'Africa',         Currency: 'ETB',  Timezone: 'UTC+3',    Best_Season: 'Oct–Jan', Visa_Free_Japan: 'No',  Budget_Accommodation: 12, Midrange_Accommodation: 40,  Luxury_Accommodation: 125, Cheap_Meal: 2,   Midrange_Meal: 5,  Expensive_Meal: 15,  Local_Transport: 0.4, Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 8,  Luxury_Activities: 22,  Avg18m_Daily: 55,  Safety_Index: 45, Flight_Stops: 2,  Flight_Hours: '11h 30m' },
+        { City: 'Tunis',            Country: 'Tunisia',              Region: 'Africa',         Currency: 'TND',  Timezone: 'UTC+1',    Best_Season: 'Apr–Jun', Visa_Free_Japan: 'Yes', Budget_Accommodation: 14, Midrange_Accommodation: 48,  Luxury_Accommodation: 148, Cheap_Meal: 2.5, Midrange_Meal: 7,  Expensive_Meal: 20,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 68,  Safety_Index: 56, Flight_Stops: 2,  Flight_Hours: '12h 40m' },
+        { City: 'Kampala',          Country: 'Uganda',               Region: 'Africa',         Currency: 'UGX',  Timezone: 'UTC+3',    Best_Season: 'Jun–Aug', Visa_Free_Japan: 'No',  Budget_Accommodation: 12, Midrange_Accommodation: 40,  Luxury_Accommodation: 125, Cheap_Meal: 2,   Midrange_Meal: 6,  Expensive_Meal: 17,  Local_Transport: 0.4, Taxi: 3,  Budget_Activities: 3,  Midrange_Activities: 8,  Luxury_Activities: 22,  Avg18m_Daily: 56,  Safety_Index: 44, Flight_Stops: 3,  Flight_Hours: '12h 00m' },
+        { City: 'Dakar',            Country: 'Senegal',              Region: 'Africa',         Currency: 'XOF',  Timezone: 'UTC+0',    Best_Season: 'Nov–May', Visa_Free_Japan: 'Yes', Budget_Accommodation: 15, Midrange_Accommodation: 52,  Luxury_Accommodation: 160, Cheap_Meal: 2.5, Midrange_Meal: 7,  Expensive_Meal: 20,  Local_Transport: 0.5, Taxi: 4,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 75,  Safety_Index: 52, Flight_Stops: 3,  Flight_Hours: '15h 30m' },
+        { City: 'Lusaka',           Country: 'Zambia',               Region: 'Africa',         Currency: 'ZMW',  Timezone: 'UTC+2',    Best_Season: 'May–Aug', Visa_Free_Japan: 'No',  Budget_Accommodation: 14, Midrange_Accommodation: 48,  Luxury_Accommodation: 148, Cheap_Meal: 2,   Midrange_Meal: 6,  Expensive_Meal: 18,  Local_Transport: 0.5, Taxi: 3,  Budget_Activities: 4,  Midrange_Activities: 10, Luxury_Activities: 28,  Avg18m_Daily: 68,  Safety_Index: 42, Flight_Stops: 3,  Flight_Hours: '12h 30m' },
+    ];
+}
+</script>
+</body>
+</html>
