@@ -1,5 +1,5 @@
 {
-  "generated": "2026-02-24T10:53:05.522Z",
+  "generated": "2026-02-24T13:58:28.392Z",
   "source": "TravelTables (RapidAPI) + Teleport",
   "cities": [
     {
@@ -26,6 +26,7 @@
       "Safety_Index": 60,
       "Avg18m_Daily": 15,
       "daily_history": [
+        15,
         15,
         15
       ],
@@ -56,6 +57,7 @@
       "Avg18m_Daily": 15,
       "daily_history": [
         15,
+        15,
         15
       ],
       "last_updated": "2026-02-24"
@@ -84,6 +86,7 @@
       "Safety_Index": 58,
       "Avg18m_Daily": 20,
       "daily_history": [
+        20,
         20,
         20
       ],
@@ -114,6 +117,7 @@
       "Avg18m_Daily": 14,
       "daily_history": [
         14,
+        14,
         14
       ],
       "last_updated": "2026-02-24"
@@ -142,6 +146,7 @@
       "Safety_Index": 63,
       "Avg18m_Daily": 12,
       "daily_history": [
+        12,
         12,
         12
       ],
@@ -172,6 +177,7 @@
       "Avg18m_Daily": 10,
       "daily_history": [
         10,
+        10,
         10
       ],
       "last_updated": "2026-02-24"
@@ -200,6 +206,7 @@
       "Safety_Index": 68,
       "Avg18m_Daily": 11,
       "daily_history": [
+        11,
         11,
         11
       ],
@@ -230,6 +237,7 @@
       "Avg18m_Daily": 18,
       "daily_history": [
         18,
+        18,
         18
       ],
       "last_updated": "2026-02-24"
@@ -258,6 +266,7 @@
       "Safety_Index": 52,
       "Avg18m_Daily": 14,
       "daily_history": [
+        14,
         14,
         14
       ],
@@ -288,6 +297,7 @@
       "Avg18m_Daily": 14,
       "daily_history": [
         14,
+        14,
         14
       ],
       "last_updated": "2026-02-24"
@@ -316,6 +326,7 @@
       "Safety_Index": 69,
       "Avg18m_Daily": 12,
       "daily_history": [
+        12,
         12,
         12
       ],
@@ -346,6 +357,7 @@
       "Avg18m_Daily": 28,
       "daily_history": [
         28,
+        28,
         28
       ],
       "last_updated": "2026-02-24"
@@ -374,6 +386,7 @@
       "Safety_Index": 44,
       "Avg18m_Daily": 11,
       "daily_history": [
+        11,
         11,
         11
       ],
@@ -404,6 +417,7 @@
       "Avg18m_Daily": 11,
       "daily_history": [
         11,
+        11,
         11
       ],
       "last_updated": "2026-02-24"
@@ -432,6 +446,7 @@
       "Safety_Index": 50,
       "Avg18m_Daily": 10,
       "daily_history": [
+        10,
         10,
         10
       ],
@@ -462,6 +477,7 @@
       "Avg18m_Daily": 12,
       "daily_history": [
         12,
+        12,
         12
       ],
       "last_updated": "2026-02-24"
@@ -490,6 +506,7 @@
       "Safety_Index": 62,
       "Avg18m_Daily": 9,
       "daily_history": [
+        9,
         9,
         9
       ],
@@ -520,6 +537,7 @@
       "Avg18m_Daily": 10,
       "daily_history": [
         10,
+        10,
         10
       ],
       "last_updated": "2026-02-24"
@@ -548,6 +566,7 @@
       "Safety_Index": 55,
       "Avg18m_Daily": 10,
       "daily_history": [
+        10,
         10,
         10
       ],
@@ -578,6 +597,7 @@
       "Avg18m_Daily": 9,
       "daily_history": [
         9,
+        9,
         9
       ],
       "last_updated": "2026-02-24"
@@ -606,6 +626,7 @@
       "Safety_Index": 42,
       "Avg18m_Daily": 8,
       "daily_history": [
+        8,
         8,
         8
       ],
@@ -636,6 +657,7 @@
       "Avg18m_Daily": 30,
       "daily_history": [
         30,
+        30,
         30
       ],
       "last_updated": "2026-02-24"
@@ -664,6 +686,7 @@
       "Safety_Index": 84,
       "Avg18m_Daily": 26,
       "daily_history": [
+        26,
         26,
         26
       ],
@@ -694,6 +717,7 @@
       "Avg18m_Daily": 20,
       "daily_history": [
         20,
+        20,
         20
       ],
       "last_updated": "2026-02-24"
@@ -722,6 +746,7 @@
       "Safety_Index": 81,
       "Avg18m_Daily": 18,
       "daily_history": [
+        18,
         18,
         18
       ],
@@ -752,6 +777,7 @@
       "Avg18m_Daily": 15,
       "daily_history": [
         15,
+        15,
         15
       ],
       "last_updated": "2026-02-24"
@@ -780,6 +806,7 @@
       "Safety_Index": 82,
       "Avg18m_Daily": 13,
       "daily_history": [
+        13,
         13,
         13
       ],
@@ -810,6 +837,7 @@
       "Avg18m_Daily": 28,
       "daily_history": [
         28,
+        28,
         28
       ],
       "last_updated": "2026-02-24"
@@ -838,6 +866,7 @@
       "Safety_Index": 72,
       "Avg18m_Daily": 16,
       "daily_history": [
+        16,
         16,
         16
       ],
@@ -868,6 +897,7 @@
       "Avg18m_Daily": 18,
       "daily_history": [
         18,
+        18,
         18
       ],
       "last_updated": "2026-02-24"
@@ -896,6 +926,7 @@
       "Safety_Index": 72,
       "Avg18m_Daily": 13,
       "daily_history": [
+        13,
         13,
         13
       ],
@@ -926,6 +957,7 @@
       "Avg18m_Daily": 15,
       "daily_history": [
         15,
+        15,
         15
       ],
       "last_updated": "2026-02-24"
@@ -954,6 +986,7 @@
       "Safety_Index": 57,
       "Avg18m_Daily": 12,
       "daily_history": [
+        12,
         12,
         12
       ],
@@ -984,6 +1017,7 @@
       "Avg18m_Daily": 22,
       "daily_history": [
         22,
+        22,
         22
       ],
       "last_updated": "2026-02-24"
@@ -1012,6 +1046,7 @@
       "Safety_Index": 55,
       "Avg18m_Daily": 10,
       "daily_history": [
+        10,
         10,
         10
       ],
@@ -1042,6 +1077,7 @@
       "Avg18m_Daily": 9,
       "daily_history": [
         9,
+        9,
         9
       ],
       "last_updated": "2026-02-24"
@@ -1070,6 +1106,7 @@
       "Safety_Index": 52,
       "Avg18m_Daily": 9,
       "daily_history": [
+        9,
         9,
         9
       ],
@@ -1100,6 +1137,7 @@
       "Avg18m_Daily": 12,
       "daily_history": [
         12,
+        12,
         12
       ],
       "last_updated": "2026-02-24"
@@ -1128,6 +1166,7 @@
       "Safety_Index": 63,
       "Avg18m_Daily": 12,
       "daily_history": [
+        12,
         12,
         12
       ],
@@ -1158,6 +1197,7 @@
       "Avg18m_Daily": 10,
       "daily_history": [
         10,
+        10,
         10
       ],
       "last_updated": "2026-02-24"
@@ -1186,6 +1226,7 @@
       "Safety_Index": 43,
       "Avg18m_Daily": 6,
       "daily_history": [
+        6,
         6,
         6
       ],
@@ -1216,6 +1257,7 @@
       "Avg18m_Daily": 7,
       "daily_history": [
         7,
+        7,
         7
       ],
       "last_updated": "2026-02-24"
@@ -1244,6 +1286,7 @@
       "Safety_Index": 38,
       "Avg18m_Daily": 7,
       "daily_history": [
+        7,
         7,
         7
       ],
@@ -1274,6 +1317,7 @@
       "Avg18m_Daily": 8,
       "daily_history": [
         8,
+        8,
         8
       ],
       "last_updated": "2026-02-24"
@@ -1302,6 +1346,7 @@
       "Safety_Index": 68,
       "Avg18m_Daily": 15,
       "daily_history": [
+        15,
         15,
         15
       ],
@@ -1332,6 +1377,7 @@
       "Avg18m_Daily": 13,
       "daily_history": [
         13,
+        13,
         13
       ],
       "last_updated": "2026-02-24"
@@ -1360,6 +1406,7 @@
       "Safety_Index": 63,
       "Avg18m_Daily": 13,
       "daily_history": [
+        13,
         13,
         13
       ],
@@ -1390,6 +1437,7 @@
       "Avg18m_Daily": 13,
       "daily_history": [
         13,
+        13,
         13
       ],
       "last_updated": "2026-02-24"
@@ -1418,6 +1466,7 @@
       "Safety_Index": 58,
       "Avg18m_Daily": 9,
       "daily_history": [
+        9,
         9,
         9
       ],
@@ -1448,6 +1497,7 @@
       "Avg18m_Daily": 7,
       "daily_history": [
         7,
+        7,
         7
       ],
       "last_updated": "2026-02-24"
@@ -1476,6 +1526,7 @@
       "Safety_Index": 59,
       "Avg18m_Daily": 9,
       "daily_history": [
+        9,
         9,
         9
       ],
@@ -1506,6 +1557,7 @@
       "Avg18m_Daily": 10,
       "daily_history": [
         10,
+        10,
         10
       ],
       "last_updated": "2026-02-24"
@@ -1534,6 +1586,7 @@
       "Safety_Index": 58,
       "Avg18m_Daily": 14,
       "daily_history": [
+        14,
         14,
         14
       ],
@@ -1564,6 +1617,7 @@
       "Avg18m_Daily": 35,
       "daily_history": [
         35,
+        35,
         35
       ],
       "last_updated": "2026-02-24"
@@ -1592,6 +1646,7 @@
       "Safety_Index": 83,
       "Avg18m_Daily": 30,
       "daily_history": [
+        30,
         30,
         30
       ],
@@ -1622,6 +1677,7 @@
       "Avg18m_Daily": 28,
       "daily_history": [
         28,
+        28,
         28
       ],
       "last_updated": "2026-02-24"
@@ -1650,6 +1706,7 @@
       "Safety_Index": 78,
       "Avg18m_Daily": 18,
       "daily_history": [
+        18,
         18,
         18
       ],
@@ -1680,6 +1737,7 @@
       "Avg18m_Daily": 18,
       "daily_history": [
         18,
+        18,
         18
       ],
       "last_updated": "2026-02-24"
@@ -1708,6 +1766,7 @@
       "Safety_Index": 65,
       "Avg18m_Daily": 18,
       "daily_history": [
+        18,
         18,
         18
       ],
@@ -1738,6 +1797,7 @@
       "Avg18m_Daily": 16,
       "daily_history": [
         16,
+        16,
         16
       ],
       "last_updated": "2026-02-24"
@@ -1766,6 +1826,7 @@
       "Safety_Index": 55,
       "Avg18m_Daily": 30,
       "daily_history": [
+        30,
         30,
         30
       ],
@@ -1796,6 +1857,7 @@
       "Avg18m_Daily": 18,
       "daily_history": [
         18,
+        18,
         18
       ],
       "last_updated": "2026-02-24"
@@ -1824,6 +1886,7 @@
       "Safety_Index": 74,
       "Avg18m_Daily": 16,
       "daily_history": [
+        16,
         16,
         16
       ],
@@ -1854,6 +1917,7 @@
       "Avg18m_Daily": 30,
       "daily_history": [
         30,
+        30,
         30
       ],
       "last_updated": "2026-02-24"
@@ -1882,6 +1946,7 @@
       "Safety_Index": 76,
       "Avg18m_Daily": 30,
       "daily_history": [
+        30,
         30,
         30
       ],
@@ -1912,6 +1977,7 @@
       "Avg18m_Daily": 25,
       "daily_history": [
         25,
+        25,
         25
       ],
       "last_updated": "2026-02-24"
@@ -1940,6 +2006,7 @@
       "Safety_Index": 79,
       "Avg18m_Daily": 25,
       "daily_history": [
+        25,
         25,
         25
       ],
@@ -1970,6 +2037,7 @@
       "Avg18m_Daily": 28,
       "daily_history": [
         28,
+        28,
         28
       ],
       "last_updated": "2026-02-24"
@@ -1998,6 +2066,7 @@
       "Safety_Index": 80,
       "Avg18m_Daily": 26,
       "daily_history": [
+        26,
         26,
         26
       ],
@@ -2028,6 +2097,7 @@
       "Avg18m_Daily": 24,
       "daily_history": [
         24,
+        24,
         24
       ],
       "last_updated": "2026-02-24"
@@ -2056,6 +2126,7 @@
       "Safety_Index": 77,
       "Avg18m_Daily": 25,
       "daily_history": [
+        25,
         25,
         25
       ],
@@ -2086,6 +2157,7 @@
       "Avg18m_Daily": 20,
       "daily_history": [
         20,
+        20,
         20
       ],
       "last_updated": "2026-02-24"
@@ -2114,6 +2186,7 @@
       "Safety_Index": 60,
       "Avg18m_Daily": 20,
       "daily_history": [
+        20,
         20,
         20
       ],
@@ -2144,6 +2217,7 @@
       "Avg18m_Daily": 25,
       "daily_history": [
         25,
+        25,
         25
       ],
       "last_updated": "2026-02-24"
@@ -2172,6 +2246,7 @@
       "Safety_Index": 70,
       "Avg18m_Daily": 30,
       "daily_history": [
+        30,
         30,
         30
       ],
@@ -2202,6 +2277,7 @@
       "Avg18m_Daily": 12,
       "daily_history": [
         12,
+        12,
         12
       ],
       "last_updated": "2026-02-24"
@@ -2230,6 +2306,7 @@
       "Safety_Index": 72,
       "Avg18m_Daily": 18,
       "daily_history": [
+        18,
         18,
         18
       ],
@@ -2260,6 +2337,7 @@
       "Avg18m_Daily": 18,
       "daily_history": [
         18,
+        18,
         18
       ],
       "last_updated": "2026-02-24"
@@ -2288,6 +2366,7 @@
       "Safety_Index": 74,
       "Avg18m_Daily": 17,
       "daily_history": [
+        17,
         17,
         17
       ],
@@ -2318,6 +2397,7 @@
       "Avg18m_Daily": 15,
       "daily_history": [
         15,
+        15,
         15
       ],
       "last_updated": "2026-02-24"
@@ -2346,6 +2426,7 @@
       "Safety_Index": 66,
       "Avg18m_Daily": 14,
       "daily_history": [
+        14,
         14,
         14
       ],
@@ -2376,6 +2457,7 @@
       "Avg18m_Daily": 13,
       "daily_history": [
         13,
+        13,
         13
       ],
       "last_updated": "2026-02-24"
@@ -2404,6 +2486,7 @@
       "Safety_Index": 65,
       "Avg18m_Daily": 13,
       "daily_history": [
+        13,
         13,
         13
       ],
@@ -2434,6 +2517,7 @@
       "Avg18m_Daily": 18,
       "daily_history": [
         18,
+        18,
         18
       ],
       "last_updated": "2026-02-24"
@@ -2462,6 +2546,7 @@
       "Safety_Index": 72,
       "Avg18m_Daily": 16,
       "daily_history": [
+        16,
         16,
         16
       ],
@@ -2492,6 +2577,7 @@
       "Avg18m_Daily": 16,
       "daily_history": [
         16,
+        16,
         16
       ],
       "last_updated": "2026-02-24"
@@ -2520,6 +2606,7 @@
       "Safety_Index": 76,
       "Avg18m_Daily": 18,
       "daily_history": [
+        18,
         18,
         18
       ],
@@ -2550,6 +2637,7 @@
       "Avg18m_Daily": 16,
       "daily_history": [
         16,
+        16,
         16
       ],
       "last_updated": "2026-02-24"
@@ -2578,6 +2666,7 @@
       "Safety_Index": 60,
       "Avg18m_Daily": 12,
       "daily_history": [
+        12,
         12,
         12
       ],
@@ -2608,6 +2697,7 @@
       "Avg18m_Daily": 10,
       "daily_history": [
         10,
+        10,
         10
       ],
       "last_updated": "2026-02-24"
@@ -2636,6 +2726,7 @@
       "Safety_Index": 61,
       "Avg18m_Daily": 10,
       "daily_history": [
+        10,
         10,
         10
       ],
@@ -2666,6 +2757,7 @@
       "Avg18m_Daily": 17,
       "daily_history": [
         17,
+        17,
         17
       ],
       "last_updated": "2026-02-24"
@@ -2694,6 +2786,7 @@
       "Safety_Index": 74,
       "Avg18m_Daily": 20,
       "daily_history": [
+        20,
         20,
         20
       ],
@@ -2724,6 +2817,7 @@
       "Avg18m_Daily": 18,
       "daily_history": [
         18,
+        18,
         18
       ],
       "last_updated": "2026-02-24"
@@ -2752,6 +2846,7 @@
       "Safety_Index": 66,
       "Avg18m_Daily": 20,
       "daily_history": [
+        20,
         20,
         20
       ],
@@ -2782,6 +2877,7 @@
       "Avg18m_Daily": 17,
       "daily_history": [
         17,
+        17,
         17
       ],
       "last_updated": "2026-02-24"
@@ -2810,6 +2906,7 @@
       "Safety_Index": 65,
       "Avg18m_Daily": 22,
       "daily_history": [
+        22,
         22,
         22
       ],
@@ -2840,6 +2937,7 @@
       "Avg18m_Daily": 20,
       "daily_history": [
         20,
+        20,
         20
       ],
       "last_updated": "2026-02-24"
@@ -2868,6 +2966,7 @@
       "Safety_Index": 64,
       "Avg18m_Daily": 22,
       "daily_history": [
+        22,
         22,
         22
       ],
@@ -2898,6 +2997,7 @@
       "Avg18m_Daily": 22,
       "daily_history": [
         22,
+        22,
         22
       ],
       "last_updated": "2026-02-24"
@@ -2926,6 +3026,7 @@
       "Safety_Index": 58,
       "Avg18m_Daily": 18,
       "daily_history": [
+        18,
         18,
         18
       ],
@@ -2956,6 +3057,7 @@
       "Avg18m_Daily": 28,
       "daily_history": [
         28,
+        28,
         28
       ],
       "last_updated": "2026-02-24"
@@ -2984,6 +3086,7 @@
       "Safety_Index": 70,
       "Avg18m_Daily": 24,
       "daily_history": [
+        24,
         24,
         24
       ],
@@ -3014,6 +3117,7 @@
       "Avg18m_Daily": 25,
       "daily_history": [
         25,
+        25,
         25
       ],
       "last_updated": "2026-02-24"
@@ -3042,6 +3146,7 @@
       "Safety_Index": 65,
       "Avg18m_Daily": 22,
       "daily_history": [
+        22,
         22,
         22
       ],
@@ -3072,6 +3177,7 @@
       "Avg18m_Daily": 25,
       "daily_history": [
         25,
+        25,
         25
       ],
       "last_updated": "2026-02-24"
@@ -3100,6 +3206,7 @@
       "Safety_Index": 68,
       "Avg18m_Daily": 22,
       "daily_history": [
+        22,
         22,
         22
       ],
@@ -3130,6 +3237,7 @@
       "Avg18m_Daily": 24,
       "daily_history": [
         24,
+        24,
         24
       ],
       "last_updated": "2026-02-24"
@@ -3158,6 +3266,7 @@
       "Safety_Index": 70,
       "Avg18m_Daily": 22,
       "daily_history": [
+        22,
         22,
         22
       ],
@@ -3188,6 +3297,7 @@
       "Avg18m_Daily": 24,
       "daily_history": [
         24,
+        24,
         24
       ],
       "last_updated": "2026-02-24"
@@ -3216,6 +3326,7 @@
       "Safety_Index": 84,
       "Avg18m_Daily": 35,
       "daily_history": [
+        35,
         35,
         35
       ],
@@ -3246,6 +3357,7 @@
       "Avg18m_Daily": 22,
       "daily_history": [
         22,
+        22,
         22
       ],
       "last_updated": "2026-02-24"
@@ -3274,6 +3386,7 @@
       "Safety_Index": 82,
       "Avg18m_Daily": 28,
       "daily_history": [
+        28,
         28,
         28
       ],
@@ -3304,6 +3417,7 @@
       "Avg18m_Daily": 28,
       "daily_history": [
         28,
+        28,
         28
       ],
       "last_updated": "2026-02-24"
@@ -3332,6 +3446,7 @@
       "Safety_Index": 82,
       "Avg18m_Daily": 32,
       "daily_history": [
+        32,
         32,
         32
       ],
@@ -3362,6 +3477,7 @@
       "Avg18m_Daily": 13,
       "daily_history": [
         13,
+        13,
         13
       ],
       "last_updated": "2026-02-24"
@@ -3390,6 +3506,7 @@
       "Safety_Index": 40,
       "Avg18m_Daily": 11,
       "daily_history": [
+        11,
         11,
         11
       ],
@@ -3420,6 +3537,7 @@
       "Avg18m_Daily": 20,
       "daily_history": [
         20,
+        20,
         20
       ],
       "last_updated": "2026-02-24"
@@ -3448,6 +3566,7 @@
       "Safety_Index": 44,
       "Avg18m_Daily": 11,
       "daily_history": [
+        11,
         11,
         11
       ],
@@ -3478,6 +3597,7 @@
       "Avg18m_Daily": 10,
       "daily_history": [
         10,
+        10,
         10
       ],
       "last_updated": "2026-02-24"
@@ -3506,6 +3626,7 @@
       "Safety_Index": 48,
       "Avg18m_Daily": 15,
       "daily_history": [
+        15,
         15,
         15
       ],
@@ -3536,6 +3657,7 @@
       "Avg18m_Daily": 13,
       "daily_history": [
         13,
+        13,
         13
       ],
       "last_updated": "2026-02-24"
@@ -3564,6 +3686,7 @@
       "Safety_Index": 42,
       "Avg18m_Daily": 12,
       "daily_history": [
+        12,
         12,
         12
       ],
@@ -3594,6 +3717,7 @@
       "Avg18m_Daily": 18,
       "daily_history": [
         18,
+        18,
         18
       ],
       "last_updated": "2026-02-24"
@@ -3622,6 +3746,7 @@
       "Safety_Index": 60,
       "Avg18m_Daily": 15,
       "daily_history": [
+        15,
         15,
         15
       ],
@@ -3652,6 +3777,7 @@
       "Avg18m_Daily": 12,
       "daily_history": [
         12,
+        12,
         12
       ],
       "last_updated": "2026-02-24"
@@ -3680,6 +3806,7 @@
       "Safety_Index": 35,
       "Avg18m_Daily": 14,
       "daily_history": [
+        14,
         14,
         14
       ],
@@ -3710,6 +3837,7 @@
       "Avg18m_Daily": 13,
       "daily_history": [
         13,
+        13,
         13
       ],
       "last_updated": "2026-02-24"
@@ -3738,6 +3866,7 @@
       "Safety_Index": 50,
       "Avg18m_Daily": 15,
       "daily_history": [
+        15,
         15,
         15
       ],
@@ -3768,6 +3897,7 @@
       "Avg18m_Daily": 15,
       "daily_history": [
         15,
+        15,
         15
       ],
       "last_updated": "2026-02-24"
@@ -3796,6 +3926,7 @@
       "Safety_Index": 45,
       "Avg18m_Daily": 12,
       "daily_history": [
+        12,
         12,
         12
       ],
@@ -3826,6 +3957,7 @@
       "Avg18m_Daily": 35,
       "daily_history": [
         35,
+        35,
         35
       ],
       "last_updated": "2026-02-24"
@@ -3854,6 +3986,7 @@
       "Safety_Index": 55,
       "Avg18m_Daily": 30,
       "daily_history": [
+        30,
         30,
         30
       ],
@@ -3884,6 +4017,7 @@
       "Avg18m_Daily": 28,
       "daily_history": [
         28,
+        28,
         28
       ],
       "last_updated": "2026-02-24"
@@ -3912,6 +4046,7 @@
       "Safety_Index": 73,
       "Avg18m_Daily": 28,
       "daily_history": [
+        28,
         28,
         28
       ],
@@ -3942,6 +4077,7 @@
       "Avg18m_Daily": 28,
       "daily_history": [
         28,
+        28,
         28
       ],
       "last_updated": "2026-02-24"
@@ -3970,6 +4106,7 @@
       "Safety_Index": 42,
       "Avg18m_Daily": 18,
       "daily_history": [
+        18,
         18,
         18
       ],
@@ -4000,6 +4137,7 @@
       "Avg18m_Daily": 15,
       "daily_history": [
         15,
+        15,
         15
       ],
       "last_updated": "2026-02-24"
@@ -4028,6 +4166,7 @@
       "Safety_Index": 38,
       "Avg18m_Daily": 15,
       "daily_history": [
+        15,
         15,
         15
       ],
@@ -4058,6 +4197,7 @@
       "Avg18m_Daily": 16,
       "daily_history": [
         16,
+        16,
         16
       ],
       "last_updated": "2026-02-24"
@@ -4086,6 +4226,7 @@
       "Safety_Index": 55,
       "Avg18m_Daily": 14,
       "daily_history": [
+        14,
         14,
         14
       ],
@@ -4116,6 +4257,7 @@
       "Avg18m_Daily": 18,
       "daily_history": [
         18,
+        18,
         18
       ],
       "last_updated": "2026-02-24"
@@ -4144,6 +4286,7 @@
       "Safety_Index": 52,
       "Avg18m_Daily": 10,
       "daily_history": [
+        10,
         10,
         10
       ],
@@ -4174,6 +4317,7 @@
       "Avg18m_Daily": 10,
       "daily_history": [
         10,
+        10,
         10
       ],
       "last_updated": "2026-02-24"
@@ -4202,6 +4346,7 @@
       "Safety_Index": 42,
       "Avg18m_Daily": 12,
       "daily_history": [
+        12,
         12,
         12
       ],
@@ -4232,6 +4377,7 @@
       "Avg18m_Daily": 8,
       "daily_history": [
         8,
+        8,
         8
       ],
       "last_updated": "2026-02-24"
@@ -4260,6 +4406,7 @@
       "Safety_Index": 55,
       "Avg18m_Daily": 12,
       "daily_history": [
+        12,
         12,
         12
       ],
@@ -4290,6 +4437,7 @@
       "Avg18m_Daily": 8,
       "daily_history": [
         8,
+        8,
         8
       ],
       "last_updated": "2026-02-24"
@@ -4318,6 +4466,7 @@
       "Safety_Index": 55,
       "Avg18m_Daily": 10,
       "daily_history": [
+        10,
         10,
         10
       ],
@@ -4348,7 +4497,414 @@
       "Avg18m_Daily": 8,
       "daily_history": [
         8,
+        8,
         8
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Malé",
+      "Country": "Maldives",
+      "Region": "South Asia",
+      "Currency": "MVR",
+      "Timezone": "UTC+5",
+      "Best_Season": "Nov–Apr",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "9h 30m",
+      "Budget_Activities": 20,
+      "Midrange_Activities": 60,
+      "Luxury_Activities": 200,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 72,
+      "Avg18m_Daily": 60,
+      "daily_history": [
+        60,
+        60
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Zanzibar",
+      "Country": "Tanzania",
+      "Region": "Africa",
+      "Currency": "TZS",
+      "Timezone": "UTC+3",
+      "Best_Season": "Jun–Oct",
+      "Visa_Free_Japan": "No",
+      "Flight_Stops": 2,
+      "Flight_Hours": "13h 30m",
+      "Budget_Activities": 8,
+      "Midrange_Activities": 22,
+      "Luxury_Activities": 65,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 52,
+      "Avg18m_Daily": 22,
+      "daily_history": [
+        22,
+        22
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "El Nido",
+      "Country": "Philippines",
+      "Region": "Southeast Asia",
+      "Currency": "PHP",
+      "Timezone": "UTC+8",
+      "Best_Season": "Nov–May",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 3,
+      "Flight_Hours": "5h 00m",
+      "Budget_Activities": 10,
+      "Midrange_Activities": 25,
+      "Luxury_Activities": 75,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 60,
+      "Avg18m_Daily": 25,
+      "daily_history": [
+        25,
+        25
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Lombok",
+      "Country": "Indonesia",
+      "Region": "Southeast Asia",
+      "Currency": "IDR",
+      "Timezone": "UTC+8",
+      "Best_Season": "May–Sep",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "6h 50m",
+      "Budget_Activities": 6,
+      "Midrange_Activities": 16,
+      "Luxury_Activities": 50,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 62,
+      "Avg18m_Daily": 16,
+      "daily_history": [
+        16,
+        16
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Dubrovnik",
+      "Country": "Croatia",
+      "Region": "Southern Europe",
+      "Currency": "EUR",
+      "Timezone": "UTC+1",
+      "Best_Season": "May–Jun",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "13h 00m",
+      "Budget_Activities": 10,
+      "Midrange_Activities": 25,
+      "Luxury_Activities": 80,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 76,
+      "Avg18m_Daily": 25,
+      "daily_history": [
+        25,
+        25
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Split",
+      "Country": "Croatia",
+      "Region": "Southern Europe",
+      "Currency": "EUR",
+      "Timezone": "UTC+1",
+      "Best_Season": "May–Sep",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "13h 10m",
+      "Budget_Activities": 8,
+      "Midrange_Activities": 20,
+      "Luxury_Activities": 60,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 76,
+      "Avg18m_Daily": 20,
+      "daily_history": [
+        20,
+        20
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Valletta",
+      "Country": "Malta",
+      "Region": "Southern Europe",
+      "Currency": "EUR",
+      "Timezone": "UTC+1",
+      "Best_Season": "Apr–Jun",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "13h 20m",
+      "Budget_Activities": 9,
+      "Midrange_Activities": 22,
+      "Luxury_Activities": 68,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 74,
+      "Avg18m_Daily": 22,
+      "daily_history": [
+        22,
+        22
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Santorini",
+      "Country": "Greece",
+      "Region": "Southern Europe",
+      "Currency": "EUR",
+      "Timezone": "UTC+2",
+      "Best_Season": "Apr–Jun",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "13h 40m",
+      "Budget_Activities": 12,
+      "Midrange_Activities": 30,
+      "Luxury_Activities": 100,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 72,
+      "Avg18m_Daily": 30,
+      "daily_history": [
+        30,
+        30
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Mykonos",
+      "Country": "Greece",
+      "Region": "Southern Europe",
+      "Currency": "EUR",
+      "Timezone": "UTC+2",
+      "Best_Season": "May–Sep",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "14h 00m",
+      "Budget_Activities": 12,
+      "Midrange_Activities": 32,
+      "Luxury_Activities": 110,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 72,
+      "Avg18m_Daily": 32,
+      "daily_history": [
+        32,
+        32
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Reykjavik",
+      "Country": "Iceland",
+      "Region": "Western Europe",
+      "Currency": "ISK",
+      "Timezone": "UTC+0",
+      "Best_Season": "Jun–Aug",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "14h 00m",
+      "Budget_Activities": 20,
+      "Midrange_Activities": 50,
+      "Luxury_Activities": 150,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 90,
+      "Avg18m_Daily": 50,
+      "daily_history": [
+        50,
+        50
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Hoi An",
+      "Country": "Vietnam",
+      "Region": "Southeast Asia",
+      "Currency": "VND",
+      "Timezone": "UTC+7",
+      "Best_Season": "Feb–May",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "5h 10m",
+      "Budget_Activities": 5,
+      "Midrange_Activities": 12,
+      "Luxury_Activities": 35,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 70,
+      "Avg18m_Daily": 12,
+      "daily_history": [
+        12,
+        12
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Sapa",
+      "Country": "Vietnam",
+      "Region": "Southeast Asia",
+      "Currency": "VND",
+      "Timezone": "UTC+7",
+      "Best_Season": "Mar–May",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "5h 30m",
+      "Budget_Activities": 5,
+      "Midrange_Activities": 12,
+      "Luxury_Activities": 35,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 68,
+      "Avg18m_Daily": 12,
+      "daily_history": [
+        12,
+        12
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Oaxaca",
+      "Country": "Mexico",
+      "Region": "Latin America",
+      "Currency": "MXN",
+      "Timezone": "UTC-6",
+      "Best_Season": "Oct–Apr",
+      "Visa_Free_Japan": "Yes",
+      "Flight_Stops": 2,
+      "Flight_Hours": "15h 30m",
+      "Budget_Activities": 5,
+      "Midrange_Activities": 14,
+      "Luxury_Activities": 42,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 50,
+      "Avg18m_Daily": 14,
+      "daily_history": [
+        14,
+        14
+      ],
+      "last_updated": "2026-02-24"
+    },
+    {
+      "City": "Havana",
+      "Country": "Cuba",
+      "Region": "Latin America",
+      "Currency": "CUP",
+      "Timezone": "UTC-5",
+      "Best_Season": "Dec–Apr",
+      "Visa_Free_Japan": "No",
+      "Flight_Stops": 2,
+      "Flight_Hours": "17h 30m",
+      "Budget_Activities": 6,
+      "Midrange_Activities": 15,
+      "Luxury_Activities": 45,
+      "Budget_Accommodation": null,
+      "Midrange_Accommodation": null,
+      "Luxury_Accommodation": null,
+      "Cheap_Meal": null,
+      "Midrange_Meal": null,
+      "Expensive_Meal": null,
+      "Local_Transport": null,
+      "Taxi": null,
+      "Safety_Index": 60,
+      "Avg18m_Daily": 15,
+      "daily_history": [
+        15,
+        15
       ],
       "last_updated": "2026-02-24"
     }
