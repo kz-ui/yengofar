@@ -269,27 +269,35 @@ async function fetchTeleportSafety(slug) {
 // ── DATA EXTRACTION ───────────────────────────────────────────────────────────
 
 function extractCosts(prices) {
-    // prices is array of { good_id, name, usd: { avg } }
-    const get = (name) => {
-        const item = prices.find(p => p.name === name);
+    // prices is array of { good_id, name, category_name, usd: { avg, min, max } }
+    // Use fuzzy lowercase partial matching — API names vary slightly by version.
+    const get = (...keywords) => {
+        const kws = keywords.map(k => k.toLowerCase());
+        const item = prices.find(p => {
+            const n = (p.name || '').toLowerCase();
+            return kws.every(k => n.includes(k));
+        });
         return item?.usd?.avg ?? null;
     };
+
+    // Debug: log all item names on first call so we can verify in Action logs
+    if (!extractCosts._logged) {
+        extractCosts._logged = true;
+        console.log('  Sample price item names:', prices.slice(0, 5).map(p => p.name).join(' | '));
+    }
+
+    const midrangeRaw = get('meal', '2', 'mid') ?? get('meal', 'two', 'mid') ?? get('restaurant', 'mid');
+    const taxiRaw     = get('taxi', '1km') ?? get('taxi', 'km');
+
     return {
-        Budget_Accommodation:   get('Hotel room (budget, per night)'),
-        Midrange_Accommodation: get('Hotel room (midrange, per night)'),
-        Luxury_Accommodation:   get('Hotel room (luxury, per night)'),
-        Cheap_Meal:             get('Meal in Inexpensive Restaurant'),
-        Midrange_Meal:          (() => {
-            const v = get('Meal for 2 People, Mid-range Restaurant, Three-course');
-            return v !== null ? Math.round(v / 2 * 100) / 100 : null;
-        })(),
-        Expensive_Meal:         get('Meal at a High End Restaurant'),
-        Local_Transport:        get('One-way Ticket (Local Transport)'),
-        Taxi:                   (() => {
-            const v = get('Taxi 1km (Normal Tariff)');
-            // Multiply by 8 to represent a typical 8km trip
-            return v !== null ? Math.round(v * 8 * 100) / 100 : null;
-        })(),
+        Budget_Accommodation:   get('hotel', 'budget')    ?? get('hostel'),
+        Midrange_Accommodation: get('hotel', 'midrange')  ?? get('hotel', 'mid-range') ?? get('hotel', 'standard'),
+        Luxury_Accommodation:   get('hotel', 'luxury')    ?? get('hotel', '5-star') ?? get('hotel', 'deluxe'),
+        Cheap_Meal:             get('meal', 'inexpensive') ?? get('meal', 'cheap') ?? get('fast food'),
+        Midrange_Meal:          midrangeRaw !== null ? Math.round(midrangeRaw / 2 * 100) / 100 : null,
+        Expensive_Meal:         get('meal', 'high end')   ?? get('fine dining') ?? get('meal', 'expensive'),
+        Local_Transport:        get('one-way', 'ticket')  ?? get('local transport') ?? get('bus ticket'),
+        Taxi:                   taxiRaw !== null ? Math.round(taxiRaw * 8 * 100) / 100 : null,
     };
 }
 

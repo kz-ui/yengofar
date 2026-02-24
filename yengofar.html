@@ -601,15 +601,7 @@
             overflow: hidden;
         }
 
-        .card-photo img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            display: block;
-            opacity: 0.85;
-            transition: opacity 0.3s;
-        }
-
-        .bento-card:hover .card-photo img { opacity: 1; }
+        /* No img in card-photo — gradient only for speed */
 
         .card-photo-overlay {
             position: absolute; inset: 0;
@@ -1560,6 +1552,23 @@ async function loadData() {
         if (!res.ok) throw new Error(`data.json: HTTP ${res.status}`);
         const json = await res.json();
         if (!Array.isArray(json.cities) || json.cities.length === 0) throw new Error('data.json: empty cities array');
+
+        // If cost fields are null (API name mismatch), merge with hardcoded baseline values
+        const COST_FIELDS = ['Budget_Accommodation','Midrange_Accommodation','Luxury_Accommodation',
+                             'Cheap_Meal','Midrange_Meal','Expensive_Meal','Local_Transport','Taxi'];
+        const needsMerge = json.cities.some(c => COST_FIELDS.some(f => c[f] == null));
+        if (needsMerge) {
+            const hardcoded = Object.fromEntries(getHardcodedData().map(c => [c.City, c]));
+            json.cities = json.cities.map(c => {
+                const base = hardcoded[c.City] || {};
+                const merged = { ...c };
+                for (const f of COST_FIELDS) {
+                    if (merged[f] == null && base[f] != null) merged[f] = base[f];
+                }
+                return merged;
+            });
+        }
+
         state.allCities = json.cities;
         state.dataDate = json.generated ? json.generated.split('T')[0] : null;
         state.usingLiveData = true;
@@ -2072,10 +2081,23 @@ function loadMoreCities() {
     if (btn && btn.parentElement) btn.parentElement.remove();
 }
 
-// Unsplash photo query per city (falls back to city name search)
-function cityPhotoUrl(city) {
-    const q = encodeURIComponent(city.City + ' ' + city.Country + ' city travel');
-    return `https://source.unsplash.com/640x320/?${q}`;
+// CSS gradient per region — instant, zero network requests
+function cityGradient(city) {
+    const REGION_GRADIENTS = {
+        'Southeast Asia':  'linear-gradient(135deg, #1a6b4a 0%, #0d7a6e 40%, #1a4a6b 100%)',
+        'East Asia':       'linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%)',
+        'South Asia':      'linear-gradient(135deg, #ff6b35 0%, #c0392b 40%, #8e1a2a 100%)',
+        'Central Asia':    'linear-gradient(135deg, #2c5364 0%, #203a43 50%, #0f2027 100%)',
+        'Middle East':     'linear-gradient(135deg, #c9a84c 0%, #8b6914 40%, #1a1a2e 100%)',
+        'Oceania':         'linear-gradient(135deg, #005c97 0%, #363795 50%, #1a6b8a 100%)',
+        'Eastern Europe':  'linear-gradient(135deg, #373b44 0%, #4286f4 60%, #1a2a5c 100%)',
+        'Southern Europe': 'linear-gradient(135deg, #c0392b 0%, #1a5276 50%, #1e8bc3 100%)',
+        'Western Europe':  'linear-gradient(135deg, #1c3a5c 0%, #2980b9 50%, #6dd5fa 100%)',
+        'Latin America':   'linear-gradient(135deg, #134e5e 0%, #71b280 50%, #f7971e 100%)',
+        'North America':   'linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%)',
+        'Africa':          'linear-gradient(135deg, #c0392b 0%, #e67e22 40%, #f39c12 100%)',
+    };
+    return REGION_GRADIENTS[city.Region] || 'linear-gradient(135deg, #091b34 0%, #1a3a5c 100%)';
 }
 
 function cardHTML(city, rank, budgetStr) {
@@ -2084,15 +2106,13 @@ function cardHTML(city, rank, budgetStr) {
     const pct     = barPercent(bd.total, state.style, BASE);
     const baseline= CONFIG.BASELINES[BASE][state.style];
     const ratio   = baseline > 0 && bd.total > 0 ? (baseline / bd.total).toFixed(1) : 'N/A';
-    const photoUrl= cityPhotoUrl(city);
+    const gradient = cityGradient(city);
 
     return `
     <article class="bento-card" role="listitem">
 
-        <!-- Photo header -->
-        <div class="card-photo">
-            <img src="${photoUrl}" alt="${city.City} cityscape" loading="lazy"
-                 onerror="this.style.display='none'">
+        <!-- Gradient header (no image — instant load) -->
+        <div class="card-photo" style="background:${gradient};">
             <div class="card-photo-overlay" aria-hidden="true"></div>
             ${rank <= 10 ? `<div class="rank-watermark" aria-hidden="true">${rank}</div>` : ''}
             <div class="card-photo-top">
