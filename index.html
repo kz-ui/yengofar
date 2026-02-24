@@ -1451,7 +1451,9 @@ const LANG = {
     },
 };
 
-let currentLang = 'en';
+// Auto-detect browser language: use Japanese if the user's preferred language starts with 'ja'
+const _browserLang = (navigator.languages || [navigator.language || 'en'])[0];
+let currentLang = _browserLang.toLowerCase().startsWith('ja') ? 'ja' : 'en';
 function t(key) { return (LANG[currentLang] && LANG[currentLang][key]) || LANG.en[key] || key; }
 
 const REGION_KEY_MAP = {
@@ -1883,6 +1885,13 @@ function updateStaticText() {
     }
     // html lang attribute (accessibility)
     document.documentElement.lang = currentLang === 'ja' ? 'ja' : 'en';
+    // Sync lang toggle button label to current language
+    const langBtn = document.getElementById('lang-toggle');
+    if (langBtn) {
+        langBtn.textContent = currentLang === 'ja' ? '🇬🇧 English' : '🇯🇵 日本語';
+        langBtn.classList.toggle('active-ja', currentLang === 'ja');
+        langBtn.setAttribute('aria-label', currentLang === 'ja' ? 'Switch to English' : 'Switch to Japanese');
+    }
 }
 
 // ── SEARCH / FILTER ──
@@ -2286,12 +2295,6 @@ function setStyle(el) {
 
 function toggleLang() {
     currentLang = currentLang === 'en' ? 'ja' : 'en';
-    const btn = document.getElementById('lang-toggle');
-    if (btn) {
-        btn.textContent = currentLang === 'en' ? '🇯🇵 日本語' : '🇬🇧 English';
-        btn.classList.toggle('active-ja', currentLang === 'ja');
-        btn.setAttribute('aria-label', currentLang === 'ja' ? 'Switch to English' : 'Switch to Japanese');
-    }
     updateStaticText();
     render();
 }
