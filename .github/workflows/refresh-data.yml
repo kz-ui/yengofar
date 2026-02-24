@@ -1,0 +1,32 @@
+name: Refresh city data
+
+on:
+  schedule:
+    - cron: '0 2 * * 1'   # Every Monday at 2:00 AM UTC
+  workflow_dispatch:        # Allow manual trigger from GitHub Actions UI
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch data from TravelTables + Teleport APIs
+        run: node scripts/refresh-data.js
+        env:
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+
+      - name: Commit updated data.json
+        run: |
+          git config user.name "YenGoFar Bot"
+          git config user.email "bot@yengofar.com"
+          git add data.json
+          git diff --staged --quiet || git commit -m "chore: weekly data refresh $(date -u +%Y-%m-%d)"
+          git push
