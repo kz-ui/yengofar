@@ -117,6 +117,7 @@
             display: flex;
             align-items: center;
             gap: 20px;
+            perspective: 400px; /* needed for 3D flip effect on lang button */
         }
 
         .lang-btn {
@@ -182,6 +183,32 @@
         }
         .jordan-btn.wiggle {
             animation: jordan-wiggle 0.55s ease;
+        }
+
+        /* ── HEX TUNNEL FLOAT ANIMATION ── */
+        @keyframes hex-float {
+            0%   { transform: translateY(0px)   rotate(0deg)   scale(1.00); }
+            25%  { transform: translateY(-6px)  rotate(1.5deg) scale(1.02); }
+            50%  { transform: translateY(-10px) rotate(0deg)   scale(1.03); }
+            75%  { transform: translateY(-5px)  rotate(-1.5deg) scale(1.02); }
+            100% { transform: translateY(0px)   rotate(0deg)   scale(1.00); }
+        }
+        .hero-art {
+            animation: hex-float 7s ease-in-out infinite;
+            transform-origin: center center;
+            will-change: transform;
+        }
+
+        /* ── LANGUAGE TOGGLE FLIP ANIMATION ── */
+        @keyframes lang-flip {
+            0%   { transform: rotateY(0deg)   scale(1); }
+            30%  { transform: rotateY(90deg)  scale(0.85); }
+            50%  { transform: rotateY(90deg)  scale(0.85); }
+            80%  { transform: rotateY(0deg)   scale(1.08); }
+            100% { transform: rotateY(0deg)   scale(1); }
+        }
+        .lang-btn.flip {
+            animation: lang-flip 0.45s ease;
         }
 
         /* Glowing pulse on the stat cards when Jordan mode is active */
@@ -2402,6 +2429,15 @@ function toggleLang() {
     currentLang = currentLang === 'en' ? 'ja' : 'en';
     updateStaticText();
     render();
+
+    // Flip animation on the button
+    const btn = document.getElementById('lang-toggle');
+    if (btn) {
+        btn.classList.remove('flip');
+        void btn.offsetWidth; // force browser to reset before replaying
+        btn.classList.add('flip');
+        btn.addEventListener('animationend', () => btn.classList.remove('flip'), { once: true });
+    }
 }
 
 function keySelect(event, el) {
