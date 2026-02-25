@@ -2222,6 +2222,10 @@ function cardHTML(city, rank, budgetStr) {
     const pct     = barPercent(bd.total, state.style, getBase());
     const baseline= CONFIG.BASELINES[getBase()][state.style];
     const ratio   = baseline > 0 && bd.total > 0 ? (baseline / bd.total).toFixed(1) : 'N/A';
+    // Jordan mode: also compute Okinawa comparison
+    const okiBaseline = CONFIG.BASELINES['OKI'][state.style];
+    const okiPct      = barPercent(bd.total, state.style, 'OKI');
+    const okiRatio    = okiBaseline > 0 && bd.total > 0 ? (okiBaseline / bd.total).toFixed(1) : 'N/A';
     const gradient = cityGradient(city);
 
     return `
@@ -2253,10 +2257,17 @@ function cardHTML(city, rank, budgetStr) {
 
             <div class="value-bar-wrap" aria-hidden="true">
                 <div class="value-bar-track">
-                    <div class="value-bar-fill" style="width:${pct}%;background:${tier.color};"></div>
+                    <div class="value-bar-fill" style="width:${pct}%;background:${state.jordanMode ? '#fb923c' : tier.color};"></div>
                 </div>
                 <div class="value-bar-label">${ratio}${state.jordanMode ? '× cheaper than 🌺 Hawaii' : t('cheaperThan')}</div>
             </div>
+            ${state.jordanMode ? `
+            <div class="value-bar-wrap" aria-hidden="true">
+                <div class="value-bar-track">
+                    <div class="value-bar-fill" style="width:${okiPct}%;background:#34d399;"></div>
+                </div>
+                <div class="value-bar-label">${okiRatio}× cheaper than 🌊 Okinawa</div>
+            </div>` : ''}
 
             <div class="daily-cost-line">
                 ¥${jpyPerDay.toLocaleString()}/day
