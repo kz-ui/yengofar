@@ -1079,7 +1079,19 @@
         }
 
         @media (max-width: 640px) {
-            .topnav { padding: 0 16px; }
+            .topnav { padding: 0 16px; height: 48px; }
+            /* Hide the status text on mobile — keep the dot only */
+            #status-text { display: none; }
+            /* Shrink Jordan + lang buttons to icon-only pills on mobile */
+            .jordan-btn,
+            .lang-btn {
+                padding: 5px 8px;
+                font-size: 14px;
+                letter-spacing: 0;
+            }
+            .jordan-btn .jordan-label,
+            .lang-btn .lang-label { display: none; }
+            .nav-right { gap: 8px; }
             .hero { padding: 28px 16px 0; }
             .controls-panel { grid-template-columns: 1fr; padding: 20px 18px; gap: 20px; }
             .page-body { padding: 0 0 40px; }
@@ -1129,10 +1141,10 @@
             <span id="status-text">Fetching live rates…</span>
         </div>
         <button id="jordan-toggle" class="jordan-btn" onclick="toggleJordanMode()" aria-label="Toggle Jordan Mode">
-            🏄 Jordan Mode
+            🏄<span class="jordan-label"> Jordan Mode</span>
         </button>
         <button id="lang-toggle" class="lang-btn" onclick="toggleLang()" aria-label="Switch to Japanese">
-            🇯🇵 日本語
+            🇯🇵<span class="lang-label"> 日本語</span>
         </button>
     </div>
 </nav>
@@ -1976,7 +1988,9 @@ function updateStaticText() {
     // Sync lang toggle button label to current language
     const langBtn = document.getElementById('lang-toggle');
     if (langBtn) {
-        langBtn.textContent = currentLang === 'ja' ? '🇬🇧 English' : '🇯🇵 日本語';
+        langBtn.innerHTML = currentLang === 'ja'
+            ? '🇬🇧<span class="lang-label"> English</span>'
+            : '🇯🇵<span class="lang-label"> 日本語</span>';
         langBtn.classList.toggle('active-ja', currentLang === 'ja');
         langBtn.setAttribute('aria-label', currentLang === 'ja' ? 'Switch to English' : 'Switch to Japanese');
     }
@@ -2387,7 +2401,9 @@ function toggleJordanMode() {
     const btn = document.getElementById('jordan-toggle');
     if (btn) {
         btn.classList.toggle('active', state.jordanMode);
-        btn.textContent = state.jordanMode ? '🏄 Jordan Mode ON' : '🏄 Jordan Mode';
+        btn.innerHTML = state.jordanMode
+            ? '🏄<span class="jordan-label"> Jordan Mode ON</span>'
+            : '🏄<span class="jordan-label"> Jordan Mode</span>';
 
         // Wiggle animation — remove then re-add the class so it replays every click
         btn.classList.remove('wiggle');
