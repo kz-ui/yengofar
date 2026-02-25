@@ -143,6 +143,60 @@
             color: var(--kiwi);
         }
 
+        /* ── JORDAN MODE BUTTON ── */
+        .jordan-btn {
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.20);
+            color: rgba(255,255,255,0.85);
+            border-radius: 999px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+            white-space: nowrap;
+        }
+        .jordan-btn:hover {
+            background: rgba(255,255,255,0.18);
+            border-color: rgba(255,255,255,0.35);
+        }
+        .jordan-btn.active {
+            background: rgba(251,146,60,0.22);
+            border-color: #fb923c;
+            color: #fb923c;
+            box-shadow: 0 0 12px rgba(251,146,60,0.35);
+        }
+
+        /* Wiggle animation when Jordan mode is toggled */
+        @keyframes jordan-wiggle {
+            0%   { transform: rotate(0deg) scale(1); }
+            15%  { transform: rotate(-8deg) scale(1.12); }
+            30%  { transform: rotate(8deg) scale(1.12); }
+            45%  { transform: rotate(-6deg) scale(1.08); }
+            60%  { transform: rotate(6deg) scale(1.08); }
+            75%  { transform: rotate(-3deg) scale(1.04); }
+            90%  { transform: rotate(3deg) scale(1.04); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+        .jordan-btn.wiggle {
+            animation: jordan-wiggle 0.55s ease;
+        }
+
+        /* Glowing pulse on the stat cards when Jordan mode is active */
+        @keyframes jordan-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(251,146,60,0); }
+            50%       { box-shadow: 0 0 0 6px rgba(251,146,60,0.18); }
+        }
+        .jordan-mode-active .stat-card {
+            animation: jordan-pulse 2s ease-in-out infinite;
+        }
+        .jordan-mode-active .top-pick {
+            border: 1px solid rgba(251,146,60,0.4);
+            box-shadow: 0 4px 24px rgba(251,146,60,0.15);
+        }
+
         /* ── HERO LAYOUT ── */
         .hero-inner {
             display: flex;
@@ -1047,6 +1101,9 @@
             <span class="status-dot" id="status-dot" aria-hidden="true"></span>
             <span id="status-text">Fetching live rates…</span>
         </div>
+        <button id="jordan-toggle" class="jordan-btn" onclick="toggleJordanMode()" aria-label="Toggle Jordan Mode">
+            🏄 Jordan Mode
+        </button>
         <button id="lang-toggle" class="lang-btn" onclick="toggleLang()" aria-label="Switch to Japanese">
             🇯🇵 日本語
         </button>
@@ -1509,10 +1566,12 @@ const CONFIG = {
     // ─────────────────────────────────────────────────────────────────────────
     RAPIDAPI_KEY: '',  // removed — API no longer used
 
-    // Baseline daily costs in USD for each style (Tokyo / New York)
+    // Baseline daily costs in USD for each style (Tokyo / New York / Hawaii / Okinawa)
     BASELINES: {
-        JP: { budget: 45, midrange: 90, luxury: 160 },
-        US: { budget: 90, midrange: 180, luxury: 320 },
+        JP:     { budget: 45,  midrange: 90,  luxury: 160 },  // Tokyo
+        US:     { budget: 90,  midrange: 180, luxury: 320 },  // New York
+        HI:     { budget: 120, midrange: 220, luxury: 420 },  // Hawaii (expensive)
+        OKI:    { budget: 35,  midrange: 70,  luxury: 130 },  // Okinawa (cheap)
     },
 
     // Delay between per-city API calls (ms) — stay within free tier rate limits
@@ -1520,8 +1579,6 @@ const CONFIG = {
 };
 
 // ── STATE ──
-const BASE = 'JP'; // always compare vs Tokyo
-
 const state = {
     style: 'midrange',
     budgetJpy: 100000,
@@ -1534,7 +1591,11 @@ const state = {
     visaOnly: false,
     usingLiveData: false,
     dataDate: null,        // ISO date string from data.json generated timestamp
+    jordanMode: false,     // 🏄 Jordan Mode: compare vs Hawaii + Okinawa instead of Tokyo
 };
+
+// Returns the active baseline key — 'JP' normally, or dynamically in Jordan mode
+function getBase() { return state.jordanMode ? 'HI' : 'JP'; }
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', loadData);
@@ -1988,7 +2049,7 @@ function render() {
     const processed = state.cities.map(city => {
         const bd      = calcDaily(city, state.style);
         const days    = bd.total > 0 ? budgetUsd / bd.total : 0;
-        const tier    = valueTier(bd.total, state.style, BASE);
+        const tier    = valueTier(bd.total, state.style, getBase());
         // Deal: current midrange daily cost is >8% below 18-month average
         const avg18m  = num(city.Avg18m_Daily);
         const isDeal  = avg18m > 0 && bd.total < avg18m * 0.92;
@@ -2020,10 +2081,17 @@ function render() {
     }
     const top       = globalProcessed[0];
     const worst     = globalProcessed[globalProcessed.length - 1];
-    const baseLabel = 'Tokyo';
     const budgetStr = `¥${state.budgetJpy.toLocaleString()}`;
-    const baseDaily = CONFIG.BASELINES[BASE][state.style];
+
+    // Jordan mode: compare vs two baselines (Hawaii = expensive, Okinawa = cheap)
+    // Normal mode: compare vs Tokyo
+    const jordanOn  = state.jordanMode;
+    const baseLabel = jordanOn ? '🌺 Hawaii' : 'Tokyo';
+    const baseLabel2= jordanOn ? '🌊 Okinawa' : null;
+    const baseDaily = CONFIG.BASELINES[jordanOn ? 'HI' : 'JP'][state.style];
+    const baseDaily2= jordanOn ? CONFIG.BASELINES['OKI'][state.style] : null;
     const baseDays  = baseDaily > 0 ? Math.round(budgetUsd / baseDaily) : '—';
+    const baseDays2 = baseDaily2 > 0 ? Math.round(budgetUsd / baseDaily2) : null;
     const dataLabel = `${processed.length} ${t('cities')}`;
 
     const html = `
@@ -2061,7 +2129,10 @@ function render() {
                     <div class="top-pick-eyebrow">${t('topPickEyebrow')}</div>
                     <div class="top-pick-destination">${top.City}, ${top.Country}</div>
                     <div style="font-size:13px;color:rgba(255,255,255,0.55);margin-top:4px;">
-                        vs. <strong style="color:rgba(255,255,255,0.8);">${baseDays} days</strong> in ${baseLabel} on ${budgetStr}
+                        ${jordanOn
+                            ? `vs. <strong style="color:#fb923c;">${baseDays} days</strong> in ${baseLabel} &nbsp;·&nbsp; <strong style="color:#34d399;">${baseDays2} days</strong> in ${baseLabel2} on ${budgetStr}`
+                            : `vs. <strong style="color:rgba(255,255,255,0.8);">${baseDays} days</strong> in ${baseLabel} on ${budgetStr}`
+                        }
                     </div>
                 </div>
             </div>
@@ -2148,8 +2219,8 @@ function cityGradient(city) {
 function cardHTML(city, rank, budgetStr) {
     const { bd, days, tier, isDeal, jpyPerDay } = city;
     const visa    = city.Visa_Free_Japan === 'Yes' || city.Visa_Free_Japan === 'TRUE';
-    const pct     = barPercent(bd.total, state.style, BASE);
-    const baseline= CONFIG.BASELINES[BASE][state.style];
+    const pct     = barPercent(bd.total, state.style, getBase());
+    const baseline= CONFIG.BASELINES[getBase()][state.style];
     const ratio   = baseline > 0 && bd.total > 0 ? (baseline / bd.total).toFixed(1) : 'N/A';
     const gradient = cityGradient(city);
 
@@ -2184,7 +2255,7 @@ function cardHTML(city, rank, budgetStr) {
                 <div class="value-bar-track">
                     <div class="value-bar-fill" style="width:${pct}%;background:${tier.color};"></div>
                 </div>
-                <div class="value-bar-label">${ratio}${t('cheaperThan')}</div>
+                <div class="value-bar-label">${ratio}${state.jordanMode ? '× cheaper than 🌺 Hawaii' : t('cheaperThan')}</div>
             </div>
 
             <div class="daily-cost-line">
@@ -2252,7 +2323,7 @@ function cardHTML(city, rank, budgetStr) {
                     <span class="d-value">${city.Best_Season || t('yearRound')}</span>
                 </div>
                 <div class="detail-row">
-                    <span class="d-label"><svg class="d-icon" viewBox="0 0 256 256" fill="currentColor"><path d="M235.58,128.84l-32-112A8,8,0,0,0,196,11.06L128,32.69,60,11.06A8,8,0,0,0,52.42,16.84l-32,112a8,8,0,0,0,3.37,8.79L96,178.93V240a8,8,0,0,0,16,0V178.93l72.21-41.3A8,8,0,0,0,235.58,128.84ZM128,161.07,63.89,122.43,87.12,38.19,128,51.31l40.88-13.12,23.23,84.24Z"/></svg>${t('fromTokyo')}</span>
+                    <span class="d-label"><svg class="d-icon" viewBox="0 0 256 256" fill="currentColor"><path d="M235.58,128.84l-32-112A8,8,0,0,0,196,11.06L128,32.69,60,11.06A8,8,0,0,0,52.42,16.84l-32,112a8,8,0,0,0,3.37,8.79L96,178.93V240a8,8,0,0,0,16,0V178.93l72.21-41.3A8,8,0,0,0,235.58,128.84ZM128,161.07,63.89,122.43,87.12,38.19,128,51.31l40.88-13.12,23.23,84.24Z"/></svg>${state.jordanMode ? '🌊 From Okinawa' : t('fromTokyo')}</span>
                     <span class="d-value">${flightStopsLabel(city.Flight_Stops)}</span>
                 </div>
                 <div class="detail-row">
@@ -2269,6 +2340,29 @@ function cardHTML(city, rank, budgetStr) {
         </div><!-- /card-body -->
     </article>
     `;
+}
+
+// ── JORDAN MODE ──
+function toggleJordanMode() {
+    state.jordanMode = !state.jordanMode;
+
+    const btn = document.getElementById('jordan-toggle');
+    if (btn) {
+        btn.classList.toggle('active', state.jordanMode);
+        btn.textContent = state.jordanMode ? '🏄 Jordan Mode ON' : '🏄 Jordan Mode';
+
+        // Wiggle animation — remove then re-add the class so it replays every click
+        btn.classList.remove('wiggle');
+        void btn.offsetWidth; // force browser to notice the removal before re-adding
+        btn.classList.add('wiggle');
+        btn.addEventListener('animationend', () => btn.classList.remove('wiggle'), { once: true });
+    }
+
+    // Add/remove the glow effect class on the results section
+    const results = document.getElementById('results');
+    if (results) results.classList.toggle('jordan-mode-active', state.jordanMode);
+
+    render();
 }
 
 // ── UI INTERACTION ──
