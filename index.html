@@ -1605,11 +1605,12 @@ const CONFIG = {
     // ─────────────────────────────────────────────────────────────────────────
     RAPIDAPI_KEY: '',  // removed — API no longer used
 
-    // Baseline daily costs in USD for each style (Tokyo / New York / Hawaii / Okinawa)
+    // Baseline all-in daily costs in USD per style (accommodation + food + transport + activities)
+    // Tokyo (JP) updated Feb 2026 — hotel prices have surged ~40% due to inbound tourism demand
     BASELINES: {
-        JP:     { budget: 45,  midrange: 90,  luxury: 160 },  // Tokyo
+        JP:     { budget: 80,  midrange: 180, luxury: 420 },  // Tokyo (updated Feb 2026)
         US:     { budget: 90,  midrange: 180, luxury: 320 },  // New York
-        HI:     { budget: 120, midrange: 220, luxury: 420 },  // Hawaii (expensive)
+        HI:     { budget: 120, midrange: 220, luxury: 450 },  // Hawaii (expensive)
         OKI:    { budget: 35,  midrange: 70,  luxury: 130 },  // Okinawa (cheap)
     },
 
