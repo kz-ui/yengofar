@@ -51,7 +51,12 @@ const CITY_MANIFEST = [
     { city: 'Yangon',           country: 'Myanmar',               region: 'Southeast Asia', currency: 'MMK', timezone: 'UTC+6:30', bestSeason: 'Nov–Feb', visaFreeJapan: 'No',  flightStops: 3, flightHours: '6h 50m',     Safety_Index: 42, Budget_Activities: 3,  Midrange_Activities: 8,  Luxury_Activities: 22,  teleportSlug: null },
 
     // ── EAST ASIA (13) ───────────────────────────────────────────────────────
-    { city: 'Tokyo',            country: 'Japan',                 region: 'East Asia',      currency: 'JPY', timezone: 'UTC+9',    bestSeason: 'Mar–May', visaFreeJapan: 'Yes', flightStops: 0, flightHours: '0h (origin)', Safety_Index: 85, Budget_Activities: 10, Midrange_Activities: 30, Luxury_Activities: 100, teleportSlug: 'tokyo' },
+    // Tokyo fallback costs hand-curated Feb 2026 — used if TravelTables API returns null.
+    // Hotel prices have surged ~40% due to record inbound tourism demand + weak yen.
+    // Accommodation figures = avg nightly rate; meals/transport = per-person per-day.
+    // Review and update these every 6 months against Booking.com / Numbeo spot checks.
+    { city: 'Tokyo',            country: 'Japan',                 region: 'East Asia',      currency: 'JPY', timezone: 'UTC+9',    bestSeason: 'Mar–May', visaFreeJapan: 'Yes', flightStops: 0, flightHours: '0h (origin)', Safety_Index: 85, Budget_Activities: 10, Midrange_Activities: 30, Luxury_Activities: 100, teleportSlug: 'tokyo',
+      fallback: { Budget_Accommodation: 45, Midrange_Accommodation: 130, Luxury_Accommodation: 320, Cheap_Meal: 8, Midrange_Meal: 20, Expensive_Meal: 65, Local_Transport: 4, Taxi: 24 } },
     { city: 'Osaka',            country: 'Japan',                 region: 'East Asia',      currency: 'JPY', timezone: 'UTC+9',    bestSeason: 'Mar–May', visaFreeJapan: 'Yes', flightStops: 2, flightHours: '1h 20m',     Safety_Index: 84, Budget_Activities: 9,  Midrange_Activities: 26, Luxury_Activities: 85,  teleportSlug: 'osaka' },
     { city: 'Seoul',            country: 'South Korea',           region: 'East Asia',      currency: 'KRW', timezone: 'UTC+9',    bestSeason: 'Sep–Nov', visaFreeJapan: 'Yes', flightStops: 1, flightHours: '2h 30m',     Safety_Index: 82, Budget_Activities: 8,  Midrange_Activities: 20, Luxury_Activities: 65,  teleportSlug: 'seoul' },
     { city: 'Busan',            country: 'South Korea',           region: 'East Asia',      currency: 'KRW', timezone: 'UTC+9',    bestSeason: 'Sep–Nov', visaFreeJapan: 'Yes', flightStops: 1, flightHours: '1h 30m',     Safety_Index: 81, Budget_Activities: 7,  Midrange_Activities: 18, Luxury_Activities: 55,  teleportSlug: null },
@@ -290,9 +295,9 @@ function extractCosts(prices) {
     const taxiRaw     = get('taxi', '1km') ?? get('taxi', 'km');
 
     return {
-        Budget_Accommodation:   get('hotel', 'budget')    ?? get('hostel'),
-        Midrange_Accommodation: get('hotel', 'midrange')  ?? get('hotel', 'mid-range') ?? get('hotel', 'standard'),
-        Luxury_Accommodation:   get('hotel', 'luxury')    ?? get('hotel', '5-star') ?? get('hotel', 'deluxe'),
+        Budget_Accommodation:   get('hotel', 'budget')    ?? get('hostel')            ?? get('hotel', '1-star') ?? get('hotel', '2-star') ?? get('cheap', 'hotel'),
+        Midrange_Accommodation: get('hotel', 'midrange')  ?? get('hotel', 'mid-range') ?? get('hotel', 'standard') ?? get('hotel', '3-star') ?? get('hotel', 'moderate'),
+        Luxury_Accommodation:   get('hotel', 'luxury')    ?? get('hotel', '5-star')   ?? get('hotel', 'deluxe') ?? get('hotel', '4-star') ?? get('hotel', 'upscale'),
         Cheap_Meal:             get('meal', 'inexpensive') ?? get('meal', 'cheap') ?? get('fast food'),
         Midrange_Meal:          midrangeRaw !== null ? Math.round(midrangeRaw / 2 * 100) / 100 : null,
         Expensive_Meal:         get('meal', 'high end')   ?? get('fine dining') ?? get('meal', 'expensive'),
@@ -341,19 +346,24 @@ async function run() {
             successCount++;
             process.stdout.write(' ✓\n');
         } else {
-            // Fall back to previous week's live costs (or null if first run)
+            // Fall back in order: (1) previous week's live data, (2) manifest hand-curated
+            // fallback, (3) null. Manifest fallbacks are used for cities where the API
+            // consistently returns no accommodation data (e.g. Tokyo as of early 2026).
+            const mf = manifest.fallback || {};
             costs = {
-                Budget_Accommodation:   prev.Budget_Accommodation   ?? null,
-                Midrange_Accommodation: prev.Midrange_Accommodation ?? null,
-                Luxury_Accommodation:   prev.Luxury_Accommodation   ?? null,
-                Cheap_Meal:             prev.Cheap_Meal             ?? null,
-                Midrange_Meal:          prev.Midrange_Meal          ?? null,
-                Expensive_Meal:         prev.Expensive_Meal         ?? null,
-                Local_Transport:        prev.Local_Transport        ?? null,
-                Taxi:                   prev.Taxi                   ?? null,
+                Budget_Accommodation:   prev.Budget_Accommodation   ?? mf.Budget_Accommodation   ?? null,
+                Midrange_Accommodation: prev.Midrange_Accommodation ?? mf.Midrange_Accommodation ?? null,
+                Luxury_Accommodation:   prev.Luxury_Accommodation   ?? mf.Luxury_Accommodation   ?? null,
+                Cheap_Meal:             prev.Cheap_Meal             ?? mf.Cheap_Meal             ?? null,
+                Midrange_Meal:          prev.Midrange_Meal          ?? mf.Midrange_Meal          ?? null,
+                Expensive_Meal:         prev.Expensive_Meal         ?? mf.Expensive_Meal         ?? null,
+                Local_Transport:        prev.Local_Transport        ?? mf.Local_Transport        ?? null,
+                Taxi:                   prev.Taxi                   ?? mf.Taxi                   ?? null,
             };
             fallbackCount++;
-            process.stdout.write(ttPrices === null ? ' (API fallback)\n' : ' (no prices in response)\n');
+            const src = ttPrices === null ? 'API error' : 'no prices in response';
+            const hasMf = Object.keys(mf).length > 0;
+            process.stdout.write(` (${src}${hasMf ? ', using manifest fallback' : ''})\n`);
         }
 
         // Safety: blend Numbeo baseline (60%) with Teleport live score (40%)
