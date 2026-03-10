@@ -16,13 +16,56 @@
     <meta property="og:description" content="Live yen purchasing power tracker across 150+ global destinations. Find where your budget goes the furthest.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yengofar.com/">
-    <meta property="og:image" content="https://yengofar.com/og-image.png">
+    <meta property="og:image" content="https://yengofar.com/og-image.svg">
+    <meta property="og:image:type" content="image/svg+xml">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="YenGoFar — Where Does Your Yen Go Furthest?">
     <meta name="twitter:description" content="Live yen purchasing power tracker across 150+ global destinations.">
-    <meta name="twitter:image" content="https://yengofar.com/og-image.png">
+    <meta name="twitter:image" content="https://yengofar.com/og-image.svg">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "YenGoFar",
+          "url": "https://yengofar.com/",
+          "description": "Find where the Japanese Yen goes furthest. Compare purchasing power, cost of living, and daily travel budgets across 150+ global destinations with live exchange rates.",
+          "applicationCategory": "TravelApplication",
+          "operatingSystem": "Web",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "author": {
+            "@type": "Organization",
+            "name": "Marigold Lobster"
+          }
+        },
+        {
+          "@type": "Dataset",
+          "name": "YenGoFar — Yen Purchasing Power Data",
+          "description": "Cost of living and daily travel budget data for 150+ global destinations, updated weekly, denominated in JPY with live exchange rates.",
+          "url": "https://yengofar.com/",
+          "keywords": ["yen", "JPY", "purchasing power", "cost of living", "travel budget", "Japan travel", "currency comparison"],
+          "creator": {
+            "@type": "Organization",
+            "name": "Marigold Lobster"
+          },
+          "temporalCoverage": "2026",
+          "spatialCoverage": "Worldwide",
+          "license": "https://yengofar.com/"
+        }
+      ]
+    }
+    </script>
 
     <!-- Favicon (inline SVG as data URI — no extra file needed) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💴</text></svg>">
