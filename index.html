@@ -2474,11 +2474,26 @@ function toggleJordanMode() {
 
 // ── UI INTERACTION ──
 function toggleDetails(btn) {
-    const panel = btn.nextElementSibling;
-    const open  = panel.classList.toggle('open');
-    panel.setAttribute('aria-hidden', String(!open));
-    btn.setAttribute('aria-expanded', String(open));
-    btn.textContent = open ? t('hideDetails') : t('showDetails');
+    const clickedCard = btn.closest('.bento-card');
+    const panel       = btn.nextElementSibling;
+    const open        = !panel.classList.contains('open'); // new desired state
+
+    // Apply to all cards in the same visual row
+    const grid       = clickedCard.closest('.grid');
+    const allCards   = [...grid.querySelectorAll('.bento-card')];
+    const clickedTop = Math.round(clickedCard.getBoundingClientRect().top);
+
+    allCards.forEach(card => {
+        if (Math.abs(Math.round(card.getBoundingClientRect().top) - clickedTop) < 5) {
+            const cardPanel = card.querySelector('.extra-details');
+            const cardBtn   = card.querySelector('.toggle-details');
+            if (!cardPanel || !cardBtn) return;
+            cardPanel.classList.toggle('open', open);
+            cardPanel.setAttribute('aria-hidden', String(!open));
+            cardBtn.setAttribute('aria-expanded', String(open));
+            cardBtn.textContent = open ? t('hideDetails') : t('showDetails');
+        }
+    });
 }
 
 function setStyle(el) {
