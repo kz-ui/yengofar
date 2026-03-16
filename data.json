@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-09T05:58:32.130Z",
+  "generated": "2026-03-16T07:10:36.269Z",
   "source": "TravelTables (RapidAPI) + Teleport",
   "cities": [
     {
@@ -29,9 +29,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Chiang Mai",
@@ -60,9 +61,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Phuket",
@@ -91,9 +93,10 @@
         20,
         20,
         20,
+        20,
         20
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Pattaya",
@@ -122,9 +125,10 @@
         14,
         14,
         14,
+        14,
         14
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Ho Chi Minh City",
@@ -153,9 +157,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Hanoi",
@@ -184,9 +189,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Da Nang",
@@ -215,9 +221,10 @@
         11,
         11,
         11,
+        11,
         11
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Bali",
@@ -246,9 +253,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Jakarta",
@@ -277,9 +285,10 @@
         14,
         14,
         14,
+        14,
         14
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Kuala Lumpur",
@@ -308,9 +317,10 @@
         14,
         14,
         14,
+        14,
         14
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Penang",
@@ -339,9 +349,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Singapore",
@@ -370,9 +381,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Manila",
@@ -401,9 +413,10 @@
         11,
         11,
         11,
+        11,
         11
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Cebu City",
@@ -432,9 +445,10 @@
         11,
         11,
         11,
+        11,
         11
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Phnom Penh",
@@ -463,9 +477,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Siem Reap",
@@ -494,9 +509,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Vientiane",
@@ -525,9 +541,10 @@
         9,
         9,
         9,
+        9,
         9
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Luang Prabang",
@@ -556,9 +573,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Surabaya",
@@ -587,9 +605,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Davao",
@@ -618,9 +637,10 @@
         9,
         9,
         9,
+        9,
         9
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Yangon",
@@ -649,9 +669,10 @@
         8,
         8,
         8,
+        8,
         8
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Tokyo",
@@ -675,14 +696,15 @@
       "Local_Transport": 4,
       "Taxi": 24,
       "Safety_Index": 85,
-      "Avg18m_Daily": 123,
+      "Avg18m_Daily": 142,
       "daily_history": [
         30,
         30,
         216,
+        216,
         216
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Osaka",
@@ -711,9 +733,10 @@
         26,
         26,
         26,
+        26,
         26
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Seoul",
@@ -742,9 +765,10 @@
         20,
         20,
         20,
+        20,
         20
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Busan",
@@ -773,9 +797,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Taipei",
@@ -804,9 +829,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Taichung",
@@ -835,9 +861,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Hong Kong",
@@ -866,9 +893,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Beijing",
@@ -897,9 +925,10 @@
         16,
         16,
         16,
+        16,
         16
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Shanghai",
@@ -928,9 +957,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Chengdu",
@@ -959,9 +989,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Shenzhen",
@@ -990,9 +1021,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Ulaanbaatar",
@@ -1021,9 +1053,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Macau",
@@ -1052,9 +1085,10 @@
         22,
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Mumbai",
@@ -1083,9 +1117,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Delhi",
@@ -1114,9 +1149,10 @@
         9,
         9,
         9,
+        9,
         9
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Bangalore",
@@ -1145,9 +1181,10 @@
         9,
         9,
         9,
+        9,
         9
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Goa",
@@ -1176,9 +1213,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Colombo",
@@ -1207,9 +1245,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Kathmandu",
@@ -1238,9 +1277,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Dhaka",
@@ -1269,9 +1309,10 @@
         6,
         6,
         6,
+        6,
         6
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Islamabad",
@@ -1300,9 +1341,10 @@
         7,
         7,
         7,
+        7,
         7
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Lahore",
@@ -1331,9 +1373,10 @@
         7,
         7,
         7,
+        7,
         7
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Jaipur",
@@ -1362,9 +1405,10 @@
         8,
         8,
         8,
+        8,
         8
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Tbilisi",
@@ -1393,9 +1437,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Yerevan",
@@ -1424,9 +1469,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Baku",
@@ -1455,9 +1501,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Almaty",
@@ -1486,9 +1533,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Tashkent",
@@ -1517,9 +1565,10 @@
         9,
         9,
         9,
+        9,
         9
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Bishkek",
@@ -1548,9 +1597,10 @@
         7,
         7,
         7,
+        7,
         7
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Samarkand",
@@ -1579,9 +1629,10 @@
         9,
         9,
         9,
+        9,
         9
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Ashgabat",
@@ -1610,9 +1661,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Nur-Sultan",
@@ -1641,9 +1693,10 @@
         14,
         14,
         14,
+        14,
         14
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Dubai",
@@ -1672,9 +1725,10 @@
         35,
         35,
         35,
+        35,
         35
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Abu Dhabi",
@@ -1703,9 +1757,10 @@
         30,
         30,
         30,
+        30,
         30
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Doha",
@@ -1734,9 +1789,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Muscat",
@@ -1765,9 +1821,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Riyadh",
@@ -1796,9 +1853,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Amman",
@@ -1827,9 +1885,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Beirut",
@@ -1858,9 +1917,10 @@
         16,
         16,
         16,
+        16,
         16
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Tel Aviv",
@@ -1889,9 +1949,10 @@
         30,
         30,
         30,
+        30,
         30
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Kuwait City",
@@ -1920,9 +1981,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Manama",
@@ -1951,9 +2013,10 @@
         16,
         16,
         16,
+        16,
         16
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Sydney",
@@ -1982,9 +2045,10 @@
         30,
         30,
         30,
+        30,
         30
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Melbourne",
@@ -2013,9 +2077,10 @@
         30,
         30,
         30,
+        30,
         30
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Brisbane",
@@ -2044,9 +2109,10 @@
         25,
         25,
         25,
+        25,
         25
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Perth",
@@ -2075,9 +2141,10 @@
         25,
         25,
         25,
+        25,
         25
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Auckland",
@@ -2106,9 +2173,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Wellington",
@@ -2137,9 +2205,10 @@
         26,
         26,
         26,
+        26,
         26
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Christchurch",
@@ -2168,9 +2237,10 @@
         24,
         24,
         24,
+        24,
         24
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Gold Coast",
@@ -2199,9 +2269,10 @@
         25,
         25,
         25,
+        25,
         25
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Suva",
@@ -2230,9 +2301,10 @@
         20,
         20,
         20,
+        20,
         20
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Nadi",
@@ -2261,9 +2333,10 @@
         20,
         20,
         20,
+        20,
         20
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Noumea",
@@ -2292,9 +2365,10 @@
         25,
         25,
         25,
+        25,
         25
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Papeete",
@@ -2323,9 +2397,10 @@
         30,
         30,
         30,
+        30,
         30
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Port Moresby",
@@ -2354,9 +2429,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Budapest",
@@ -2385,9 +2461,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Prague",
@@ -2416,9 +2493,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Warsaw",
@@ -2447,9 +2525,10 @@
         17,
         17,
         17,
+        17,
         17
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Krakow",
@@ -2478,9 +2557,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Bucharest",
@@ -2509,9 +2589,10 @@
         14,
         14,
         14,
+        14,
         14
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Sofia",
@@ -2540,9 +2621,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Belgrade",
@@ -2571,9 +2653,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Tallinn",
@@ -2602,9 +2685,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Riga",
@@ -2633,9 +2717,10 @@
         16,
         16,
         16,
+        16,
         16
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Vilnius",
@@ -2664,9 +2749,10 @@
         16,
         16,
         16,
+        16,
         16
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Ljubljana",
@@ -2695,9 +2781,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Bratislava",
@@ -2726,9 +2813,10 @@
         16,
         16,
         16,
+        16,
         16
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Sarajevo",
@@ -2757,9 +2845,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Skopje",
@@ -2788,9 +2877,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Tirana",
@@ -2819,9 +2909,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Zagreb",
@@ -2850,9 +2941,10 @@
         17,
         17,
         17,
+        17,
         17
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Lisbon",
@@ -2881,9 +2973,10 @@
         20,
         20,
         20,
+        20,
         20
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Porto",
@@ -2912,9 +3005,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Athens",
@@ -2943,9 +3037,10 @@
         20,
         20,
         20,
+        20,
         20
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Thessaloniki",
@@ -2974,9 +3069,10 @@
         17,
         17,
         17,
+        17,
         17
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Barcelona",
@@ -3005,9 +3101,10 @@
         22,
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Madrid",
@@ -3036,9 +3133,10 @@
         20,
         20,
         20,
+        20,
         20
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Rome",
@@ -3067,9 +3165,10 @@
         22,
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Milan",
@@ -3098,9 +3197,10 @@
         22,
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Istanbul",
@@ -3129,9 +3229,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "London",
@@ -3160,9 +3261,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Edinburgh",
@@ -3191,9 +3293,10 @@
         24,
         24,
         24,
+        24,
         24
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Paris",
@@ -3222,9 +3325,10 @@
         25,
         25,
         25,
+        25,
         25
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Nice",
@@ -3253,9 +3357,10 @@
         22,
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Amsterdam",
@@ -3284,9 +3389,10 @@
         25,
         25,
         25,
+        25,
         25
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Berlin",
@@ -3315,9 +3421,10 @@
         22,
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Munich",
@@ -3346,9 +3453,10 @@
         24,
         24,
         24,
+        24,
         24
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Hamburg",
@@ -3377,9 +3485,10 @@
         22,
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Vienna",
@@ -3408,9 +3517,10 @@
         24,
         24,
         24,
+        24,
         24
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Zurich",
@@ -3439,9 +3549,10 @@
         35,
         35,
         35,
+        35,
         35
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Brussels",
@@ -3470,9 +3581,10 @@
         22,
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Copenhagen",
@@ -3501,9 +3613,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Stockholm",
@@ -3532,9 +3645,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Oslo",
@@ -3563,9 +3677,10 @@
         32,
         32,
         32,
+        32,
         32
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Mexico City",
@@ -3594,9 +3709,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Guadalajara",
@@ -3625,9 +3741,10 @@
         11,
         11,
         11,
+        11,
         11
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Cancun",
@@ -3656,9 +3773,10 @@
         20,
         20,
         20,
+        20,
         20
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Medellin",
@@ -3687,9 +3805,10 @@
         11,
         11,
         11,
+        11,
         11
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Bogota",
@@ -3718,9 +3837,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Cartagena",
@@ -3749,9 +3869,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Buenos Aires",
@@ -3780,9 +3901,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Lima",
@@ -3811,9 +3933,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Cusco",
@@ -3842,9 +3965,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Santiago",
@@ -3873,9 +3997,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Sao Paulo",
@@ -3904,9 +4029,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Rio de Janeiro",
@@ -3935,9 +4061,10 @@
         14,
         14,
         14,
+        14,
         14
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Montevideo",
@@ -3966,9 +4093,10 @@
         13,
         13,
         13,
+        13,
         13
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Panama City",
@@ -3997,9 +4125,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "San Jose",
@@ -4028,9 +4157,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Quito",
@@ -4059,9 +4189,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "New York",
@@ -4090,9 +4221,10 @@
         35,
         35,
         35,
+        35,
         35
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Los Angeles",
@@ -4121,9 +4253,10 @@
         30,
         30,
         30,
+        30,
         30
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Chicago",
@@ -4152,9 +4285,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Toronto",
@@ -4183,9 +4317,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Vancouver",
@@ -4214,9 +4349,10 @@
         28,
         28,
         28,
+        28,
         28
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Cape Town",
@@ -4245,9 +4381,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Johannesburg",
@@ -4276,9 +4413,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Nairobi",
@@ -4307,9 +4445,10 @@
         15,
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Marrakech",
@@ -4338,9 +4477,10 @@
         16,
         16,
         16,
+        16,
         16
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Casablanca",
@@ -4369,9 +4509,10 @@
         14,
         14,
         14,
+        14,
         14
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Cairo",
@@ -4400,9 +4541,10 @@
         18,
         18,
         18,
+        18,
         18
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Accra",
@@ -4431,9 +4573,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Lagos",
@@ -4462,9 +4605,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Dar es Salaam",
@@ -4493,9 +4637,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Addis Ababa",
@@ -4524,9 +4669,10 @@
         8,
         8,
         8,
+        8,
         8
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Tunis",
@@ -4555,9 +4701,10 @@
         12,
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Kampala",
@@ -4586,9 +4733,10 @@
         8,
         8,
         8,
+        8,
         8
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Dakar",
@@ -4617,9 +4765,10 @@
         10,
         10,
         10,
+        10,
         10
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Lusaka",
@@ -4648,9 +4797,10 @@
         8,
         8,
         8,
+        8,
         8
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Malé",
@@ -4678,9 +4828,10 @@
       "daily_history": [
         60,
         60,
+        60,
         60
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Zanzibar",
@@ -4708,9 +4859,10 @@
       "daily_history": [
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "El Nido",
@@ -4738,9 +4890,10 @@
       "daily_history": [
         25,
         25,
+        25,
         25
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Lombok",
@@ -4768,9 +4921,10 @@
       "daily_history": [
         16,
         16,
+        16,
         16
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Dubrovnik",
@@ -4798,9 +4952,10 @@
       "daily_history": [
         25,
         25,
+        25,
         25
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Split",
@@ -4828,9 +4983,10 @@
       "daily_history": [
         20,
         20,
+        20,
         20
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Valletta",
@@ -4858,9 +5014,10 @@
       "daily_history": [
         22,
         22,
+        22,
         22
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Santorini",
@@ -4888,9 +5045,10 @@
       "daily_history": [
         30,
         30,
+        30,
         30
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Mykonos",
@@ -4918,9 +5076,10 @@
       "daily_history": [
         32,
         32,
+        32,
         32
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Reykjavik",
@@ -4948,9 +5107,10 @@
       "daily_history": [
         50,
         50,
+        50,
         50
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Hoi An",
@@ -4978,9 +5138,10 @@
       "daily_history": [
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Sapa",
@@ -5008,9 +5169,10 @@
       "daily_history": [
         12,
         12,
+        12,
         12
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Oaxaca",
@@ -5038,9 +5200,10 @@
       "daily_history": [
         14,
         14,
+        14,
         14
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     },
     {
       "City": "Havana",
@@ -5068,9 +5231,10 @@
       "daily_history": [
         15,
         15,
+        15,
         15
       ],
-      "last_updated": "2026-03-09"
+      "last_updated": "2026-03-16"
     }
   ]
 }
